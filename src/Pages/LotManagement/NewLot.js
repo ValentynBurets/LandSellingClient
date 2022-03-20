@@ -17,7 +17,8 @@ import { useHistory } from "react-router-dom";
 import UploadImage from "./Components/UploadImage";
 import TextData from "../../Assets/jsonData/NewLotPage.json";
 import Spinner from "react-bootstrap/spinner";
-import {Loader, LoaderOptions} from 'google-maps';
+
+import Map from "./Components/Map/Map"
 
 export default function NewLot() {
   let history = useHistory();
@@ -243,6 +244,9 @@ export default function NewLot() {
                 {TextData.Addlot}
               </Button>
             </Col>
+          </Row>
+          <Row>
+            <Map/>
           </Row>
         </Container>
       )}
