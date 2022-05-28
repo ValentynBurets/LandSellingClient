@@ -11,7 +11,8 @@
     "AuthorizeBox": {
         "Title": "Please log in or register",
         "LoginTab": {
-            "Title": "Log in",
+            "LogIn": "Log in",
+            "LogOut": "Log out",
             "ButtonText": "Log in",
             "Labels": {
                 "Email": "Email address",

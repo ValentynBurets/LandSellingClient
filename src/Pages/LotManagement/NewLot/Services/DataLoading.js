@@ -1,4 +1,4 @@
-import ConnectionConfig from '../../../Assets/jsonData/ConnectionConfig.json'
+import ConnectionConfig from '../../../../Assets/jsonData/ConnectionConfig.json'
 
 import axios from 'axios'
 

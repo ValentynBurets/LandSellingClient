@@ -1,7 +1,8 @@
-import { React, useState } from "react";
+import { useState } from "react";
 import Carousel from "react-bootstrap/Carousel";
 import Image from "react-bootstrap/Image";
-import style from "./Style.module.sass";
+import style from "./LotImageCarouselStyle.module.sass";
+import img from "../../../../Assets/Images/picture.png"
 
 function LotImageCarousel(props) {
   const [index, setIndex] = useState(0);
@@ -11,8 +12,10 @@ function LotImageCarousel(props) {
 
   console.log(props.imgArray)
   return (
-    <Carousel
-      className={style.carouselStyle}
+    <div
+      className={style.CardImageStyle}
+    >
+<Carousel
       variant={"dark"}
       indicators={true}
       interval={3000}
@@ -27,7 +30,7 @@ function LotImageCarousel(props) {
             <Image
               key={img.id}
               fluid={true}
-              className={style.CardImageStyle}
+              
               src={"data:image/jpg;base64," + img.picture}
               alt="picture"
             />
@@ -35,6 +38,7 @@ function LotImageCarousel(props) {
         );
       })}
     </Carousel>
+    </div>
   );
 }
 
