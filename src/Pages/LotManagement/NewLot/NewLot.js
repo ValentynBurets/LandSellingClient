@@ -99,20 +99,26 @@ export default function NewLot() {
       inProgress: true,
     }));
 
-    if(lotData.location.country === "" || lotData.location.city || lotData.location.house || lotData.location.street === null){
+    if (
+      lotData.location.country === "" ||
+      lotData.location.city ||
+      lotData.location.house ||
+      lotData.location.street === null
+    ) {
       alert("Please enter the location");
-      
+
       saveDataStatus((prev) => ({
         ...prev,
         isLoading: false,
         requests: false,
         inProgress: false,
       }));
-      
-      return
+
+      return;
     }
 
     saveLot(lotData, setLotId, saveDataStatus);
+
     if (lotData.isRent) {
       savePriceCoef(priceCoefs, lotId, saveDataStatus);
     }
@@ -125,7 +131,7 @@ export default function NewLot() {
     }));
 
     history.push({
-      pathname: "/order_list",
+      pathname: "/lot_list",
     });
   };
 
