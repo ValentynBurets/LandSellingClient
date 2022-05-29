@@ -1,10 +1,12 @@
 import "./App.css";
 import React from "react";
-import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import { Layout } from "./Components/Layouts/Layout/Layout";
 
 import StartPage from "./Pages/StartPage/StartPage";
 import NewLot from "./Pages/LotManagement/NewLot/NewLot.js"
+import LotList from "./Pages/LotManagement/LotListPage/LotList"
+import LotView from "./Pages/LotManagement/LotViewPage/LotView"
 import AgreementPage from "./Pages/LotManagement/AgreementManagement/AgreementPage/AgreementPage"
 import AgreementListPage from "./Pages/LotManagement/AgreementManagement/AgreementListPage/AgreementListPage"
 import NewAgreementPage from "./Pages/LotManagement/AgreementManagement/NewAgreementPage/NewAgreementPage"
@@ -50,6 +52,12 @@ function App() {
             <li>
               <Link to="/payment">Payment</Link>
             </li>
+            <li>
+              <Link to="/lot-list">Lots List</Link>
+            </li>
+            <li>
+              <Link to="/lot"> LotView</Link>
+            </li>
           </ul>
         </nav>
       </div>
@@ -59,6 +67,8 @@ function App() {
         <Route exact path="/index" component={StartPage} />
         <Route exact path="/index.html" component={StartPage} />
         <Route exact path="/new-lot" component={NewLot} />
+        <Route exact path="/lot-list" component={LotList} />
+        <Route exact path="/lot" component={LotView} />
         <Route exact path="/map" component={MapComponent} />
         <Route exact path="/agreement" component={AgreementPage} />
         <Route exact path="/agreement-list" component={AgreementListPage} />

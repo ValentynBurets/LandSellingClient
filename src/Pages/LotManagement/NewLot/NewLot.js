@@ -13,9 +13,11 @@ import saveLot from "./Services/SaveLot";
 import savePriceCoef from "./Services/SavePriceCoef";
 import { useHistory } from "react-router-dom";
 import UploadImage from "../Components/UploadImage";
+import SaveImages from "./Services/SaveImages";
 import TextData from "../../../Assets/jsonData/NewLotPage.json";
 import Spinner from "react-bootstrap/spinner";
 import MapComponent from "../../../Components/Map/MapComponent";
+import LinkConfig from "../../../Assets/jsonData/LinkConfig/LinkConfig.json"
 
 export default function NewLot() {
   let history = useHistory();
@@ -26,7 +28,11 @@ export default function NewLot() {
     inProgress: null,
   });
 
-  const [lotId, setLotId] = useState("");
+  const [lotId, setLotId] = useState(null);
+
+  useEffect(() => {
+    console.log("lotId, ", lotId);
+  }, [lotId]);
 
   const [lotData, setLotData] = useState({
     managerId: "",
@@ -119,21 +125,27 @@ export default function NewLot() {
 
     saveLot(lotData, setLotId, saveDataStatus);
 
-    if (lotData.isRent) {
-      savePriceCoef(priceCoefs, lotId, saveDataStatus);
-    }
-
     saveDataStatus((prev) => ({
       ...prev,
       isLoading: false,
       requests: false,
       inProgress: false,
     }));
-
-    history.push({
-      pathname: "/lot_list",
-    });
   };
+
+  useEffect(() => {
+    if(lotId !== null){
+      if (lotData.isRent) {
+        savePriceCoef(priceCoefs, lotId, saveDataStatus);
+      }
+  
+      SaveImages(lotPictures, lotId);
+
+      history.push({
+        pathname: LinkConfig.lot_management.lot_list
+      })
+    }
+  }, [lotId]);
 
   const [newPriceCoef, setNewPriceCoef] = useState({
     id: 1,

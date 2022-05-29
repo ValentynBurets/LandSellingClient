@@ -1,0 +1,21 @@
+{
+  "home": {
+    "home": "/",
+    "about": "/about"
+  },
+  "lot_management": {
+    "new_lot": "/new-lot",
+    "lot_list": "/lot-list",
+    "lot": "lot",
+    
+    "agreement": {
+      "agreement": "/agreement",
+      "agreement_list": "/agreement-list",
+      "new_agreement": "/new-agreement"
+    },
+    "comonents": {
+      "map": "/map",
+      "payment": "/payment"
+    }
+  }
+}

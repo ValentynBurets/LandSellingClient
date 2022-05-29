@@ -18,7 +18,7 @@ const saveLot = (priceCoefs, lotId) => {
     axios
     .post(
       `${
-        ConnectionConfig.ServerUrl + ConnectionConfig.Routes.PriceCoef.CreateNewPriceCoef
+        ConnectionConfig.ServerUrl + ConnectionConfig.Routes.PriceCoef.Create
       }`,
       singlePriceCoef,
       {

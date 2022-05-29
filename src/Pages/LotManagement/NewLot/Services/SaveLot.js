@@ -11,7 +11,7 @@ const saveLot = (lotData, setLotId) => {
   axios
     .post(
       `${
-        ConnectionConfig.ServerUrl + ConnectionConfig.Routes.Lot.CreateNewLot
+        ConnectionConfig.ServerUrl + ConnectionConfig.Routes.Lot.Create
       }`,
       lotData,
       {
@@ -21,7 +21,7 @@ const saveLot = (lotData, setLotId) => {
     .then((responce) => {
       var data = responce.data;
       setLotId(data);
-      console.log(data);
+      //console.log(data);
     })
     .catch((e) => {
       console.log(e);

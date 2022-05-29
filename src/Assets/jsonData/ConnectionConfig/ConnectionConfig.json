@@ -7,7 +7,7 @@
       "RegisterAdmin": "Authentication/RegisterAdmin",
       
       "Lot": {
-        "CreateNewLot": "Lot/Create",
+        "Create": "Lot/Create",
         "GetAllLots": "Lot/GetAll",
         "UpdateLot": "Lot/Update",
         "DeleteLot": "Lot/Delete",
@@ -16,10 +16,16 @@
         "GetViewsByLotId": "Lot/GetViewsByLotId"
       },
       "PriceCoef": {
-        "CreateNewPriceCoef": "PriceCoef/Create",
-        "UpdatePriceCoef": "PriceCoef/Update",
-        "DeletePriceCoef": "PriceCoef/Delete",
+        "Create": "PriceCoef/Create",
+        "Update": "PriceCoef/Update",
+        "Delete": "PriceCoef/Delete",
         "GetAllPriceCoefByLotId": "/PriceCoef/GetAllByLotId"
+      },
+      "Image": {
+        "Create": "Image/Create",
+        "Update": "Image/Update",
+        "Delete": "Image/Delete",
+        "GetAllByLotId": "Image/GetAllByLotId"
       },
       "Payment": {
         "GetPaymentToken": "Payment/GetToken",
