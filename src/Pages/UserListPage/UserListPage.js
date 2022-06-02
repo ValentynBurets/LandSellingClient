@@ -1,21 +1,21 @@
-import './TemplateStyle.css'
 import Button from 'react-bootstrap/Button'
 import React from 'react'
 import { useState, useEffect } from 'react'
 import { AddUserModalWindow } from './AddUser/ModalWindow'
 import styled from 'styled-components'
 import { makeStyles } from '@material-ui/core/styles'
-//import Paper from '@material-ui/core/Paper'
 import Table from '@material-ui/core/Table'
 import TableBody from '@material-ui/core/TableBody'
 import TableCell from '@material-ui/core/TableCell'
 import TableContainer from '@material-ui/core/TableContainer'
-//import TableHead from '@material-ui/core/TableHead'
 import TablePagination from '@material-ui/core/TablePagination'
 import TableRow from '@material-ui/core/TableRow'
-//import Container from '@material-ui/core/Container'
-import TextData from '../../jsonData/UserList.json'
 import axios from 'axios'
+
+import TextData from '../../Assets/jsonData/TextData/UserList.json'
+import ConnectionConfig from '../../Assets/jsonData/ConnectionConfig/ConnectionConfig.json'
+
+import './UserListPage.sass'
 
 const columns = [
   {
@@ -157,7 +157,7 @@ function UserListPage() {
   }
 
   function loadUsers(){
-    axios.get('https://localhost:44383/api/Profile/getAll', {
+    axios.get(ConnectionConfig.ServerUrl + ConnectionConfig.Routes.Profile.getAll, {
       headers: {
           "Content-type": "application/json; charset=UTF-8",
           "Authorization": 'Bearer ' + localStorage.getItem('token') //the token is a variable which holds the token
@@ -179,11 +179,11 @@ function UserListPage() {
 
   function postUser(newUser, rowUser){
 
-    if(newUser.role == 'Admin'){
+    if(newUser.role === 'Admin'){
       axios
-      .post("https://localhost:44383/api/Authentication/RegisterAdmin", newUser)
+      .post(ConnectionConfig.ServerUrl + ConnectionConfig.Routes.Authentication.RegisterAdmin, newUser)
       .then((responce) => {
-        var data = responce.data;
+        // var data = responce.data;
         loadUsers();
       })
       .catch((e) => {
@@ -195,9 +195,9 @@ function UserListPage() {
     }
     else{
       axios
-      .post("https://localhost:44383/api/Authentication/RegisterStudent", newUser)
+      .post(ConnectionConfig.ServerUrl + ConnectionConfig.Routes.Authentication.RegisterUser, newUser)
       .then((responce) => {
-        var data = responce.data;
+        // var data = responce.data;
         loadUsers();
       })
       .catch((e) => {

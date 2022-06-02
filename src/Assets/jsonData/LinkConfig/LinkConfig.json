@@ -17,5 +17,8 @@
       "map": "/map",
       "payment": "/payment"
     }
+  },
+  "person": {
+    "profile": "/profile"
   }
 }

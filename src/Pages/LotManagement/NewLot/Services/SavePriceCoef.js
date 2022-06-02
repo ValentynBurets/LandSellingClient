@@ -1,5 +1,5 @@
 import axios from "axios";
-import ConnectionConfig from "../../../../Assets/jsonData/ConnectionConfig.json";
+import ConnectionConfig from "../../../../Assets/jsonData/ConnectionConfig/ConnectionConfig.json";
 
 const saveLot = (priceCoefs, lotId) => {
   if (priceCoefs == null) {

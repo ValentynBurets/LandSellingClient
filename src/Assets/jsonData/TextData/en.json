@@ -1,0 +1,145 @@
+{
+  "BadRequest": {
+    "BadConnection": "We have a problem with connection to API"
+  },
+  "AgreementsListPage": {
+    "AgreementsList": "list of agreements",
+    "Modal": {
+      "Header": {
+        "Approve": "approve",
+        "Disapprove": "disapprove"
+      },
+      "Body": {
+        "Disapprove": "you are going to disapprove of this agreement. To confirm press continue or press cancel",
+        "Approve": "you are going to approve of this agreement. To confirm press continue or press cancel"
+      },
+      "Footer": {
+        "Continue": "Continue",
+        "Cancel": "cancel"
+      }
+    },
+    "TableOptions": {
+      "Number": "№",
+      "LotLink": "lot link",
+      "CustomerLink": "customer link",
+      "Status": "status",
+      "Description": "description",
+      "CreationDate": "creation date",
+      "StartDate": "start date",
+      "EndDate": "end date"
+    }
+  },
+  "Header": {
+    "AboutUs": "About Us",
+    "LS": "LS 2022",
+    "AuthorizeBox": {
+      "Title": "Please log in or register",
+      "LoginTab": {
+          "LogIn": "Log in",
+          "LogOut": "Log out",
+          "Profile": "Profile",
+          "ButtonText": "Log in",
+          "Labels": {
+              "Email": "Email address",
+              "Password": "Password",
+              "ShowPasswordButton": "Show password"
+          },
+          "Placeholders": {
+              "Email": "Enter email",
+              "Password": "Enter password"
+          },
+          "InvalidText": {
+              "Email": "Invalid email format",
+              "Password": "Invalid password format"
+          },
+          "ErrorText": {
+              "IncorrectData": "Invalid email or password"
+          }
+      },
+      "RegisterTab": {
+          "Title": "Register",
+          "ButtonText": "Register",
+          "SubmitButtonText": "Submit",
+          "Labels": {
+              "Name": "Name",
+              "Surname": "Surname",
+              "Phone": "Phone number",
+              "Email": "Email address",
+              "Password": "Password",
+              "NewPassword": "New password",
+              "CurrentPassword": "Current password",
+              "ShowPasswordButton": "Show password"
+          },
+          "Placeholders": {
+              "Name": "Enter name",
+              "Surname": "Enter surname",
+              "Phone": "+380 (xx) xxx-xx-xx",
+              "Email": "email@gmail.com",
+              "Password": "Enter password"
+          },
+          "InvalidText": {
+              "Name": "Name must consist of 2-20 letters of the Cyrillic or Latin alphabet.",
+              "Surname": "Surname must consist of 2-20 letters of the Cyrillic or Latin alphabet.",
+              "Phone": "Invalid phone number format",
+              "Email": "Invalid email format",
+              "Password": "Invalid password format"
+          },
+          "ErrorText": {
+              "IncorrectData": "Server: incorrect data"
+          }
+      }
+    }
+  },
+  "LotList": {
+    "Back": "Back",
+    "SortType": "sort type",
+    "LotType": "lot type",
+    "StateType": "state type",
+    "Clear": "Clear"
+  },  
+  "LotView": {
+    "Header": "Lot ",
+    "BuyNow": "buy it now",
+    "PlaceBid": "place bid",
+    "Loading": "Data is Loading",
+    "NewLot": "New Lot",
+    "Cansel": "Cancel",
+    "Services": "Services",
+    "Amount" : "Amount: ",
+    "Create" : "Save changes and create a new lot",
+    "SelectServiceAmount" : "Select sevice and amount",
+    "Select": "Select",
+    "CancelText": "Cancel",
+    "AddProduct": "Add product to list",
+    "ProductList": "Product List",
+    "TotalPrice": "Price is ",
+    "Description": "Description",
+    "PleaseAddProduct": "",
+    "AddComment": "AddComment",
+    "CommentAdded": "Comment Added"
+  },
+  "UserList": {
+    "Header": "User List",
+    "AddUserButtonText": "Add user",
+    "Position": "Position",
+    "Role": "Role"
+  },
+  "NewLotPage": {
+    "Loading": "Data is Loading",
+    "NewLot": "New Lot",
+    "Cansel": "Cancel",
+    "Services": "Services",
+    "Amount" : "Amount: ",
+    "Create" : "Save changes and create a new lot",
+    "SelectServiceAmount" : "Select sevice and amount",
+    "Select": "Select",
+    "CancelText": "Cancel",
+    "AddProduct": "Add product to list",
+    "ProductList": "Product List",
+    "TotalPrice": "Price is ",
+    "Description": "Description",
+    "PleaseAddProduct": "",
+    "AddComment": "AddComment",
+    "CommentAdded": "Comment Added"
+  }
+}

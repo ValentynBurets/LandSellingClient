@@ -8,18 +8,19 @@
       
       "Lot": {
         "Create": "Lot/Create",
-        "GetAllLots": "Lot/GetAll",
-        "UpdateLot": "Lot/Update",
-        "DeleteLot": "Lot/Delete",
-        "GetLotById": "Lot/GetById",
         "GetAll": "Lot/GetAll",
+        "Update": "Lot/Update",
+        "Viewed": "Lot/Viewed",
+        "Delete": "Lot/Delete",
+        "GetLotById": "Lot/GetById",
+        "Get": "Lot/Get",
         "GetViewsByLotId": "Lot/GetViewsByLotId"
       },
       "PriceCoef": {
         "Create": "PriceCoef/Create",
         "Update": "PriceCoef/Update",
         "Delete": "PriceCoef/Delete",
-        "GetAllPriceCoefByLotId": "/PriceCoef/GetAllByLotId"
+        "GetAllPriceCoefByLotId": "PriceCoef/GetAllByLotId"
       },
       "Image": {
         "Create": "Image/Create",
@@ -31,7 +32,25 @@
         "GetPaymentToken": "Payment/GetToken",
         "CreatePayment": "Payment/Create"  
       },
-      
+      "Bid": {
+        "Create": "Bid/Create",
+        "GetAllByLotId": "Bid/GetAllByLotId"
+      },
+      "Profile": {
+        "getAll": "Profile/getAll"
+      },
+      "Authentication": {
+        "RegisterAdmin": "Authentication/RegisterAdmin",
+        "RegisterUser": "Authentication/RegisterUser"
+      },
+      "Agreement": {
+        "Create": "Agreement/Create",
+        "GetAll": "Agreement/GetAll",
+        "GetByOwnerId": "Agreement/GetByOwnerId",
+        "GetMy": "Agreement/GetMy",
+        "Approve": "Agreement/Approve",
+        "Disapprove": "Agreement/Disapprove"
+      },
       "ProductService": "ProductService",
       "GetProfileInfo": "Profile/info",
       "UpdateProfileInfo": "Profile/info/update",

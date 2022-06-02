@@ -1,5 +1,7 @@
 import compass from "../../../Assets/Images/icons/compass.svg";
 
+import useMapContext from "../useMapContext";
+
 import "./Locate.sass";
 
 interface LocateProps {
@@ -7,6 +9,7 @@ interface LocateProps {
 }
 
 export default function Locate(props: LocateProps) {
+  const { setLocation } = useMapContext();
   return (
     <button
       className="locate"
@@ -16,6 +19,7 @@ export default function Locate(props: LocateProps) {
               lat: position.coords.latitude,
               lng: position.coords.longitude,
             });
+            console.log("position", position);
           },
           () => null);
       }}

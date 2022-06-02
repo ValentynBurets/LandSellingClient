@@ -7,17 +7,18 @@ import {
   InputGroup,
   FormControl,
 } from "react-bootstrap";
-import { BootstrapTable, TableHeaderColumn } from "react-bootstrap-table";
+// import { BootstrapTable, TableHeaderColumn } from "react-bootstrap-table";
 import style from "./NewLot.module.sass";
 import saveLot from "./Services/SaveLot";
 import savePriceCoef from "./Services/SavePriceCoef";
 import { useHistory } from "react-router-dom";
-import UploadImage from "../Components/UploadImage";
+import UploadImage from "./Component/UploadImage/UploadImage";
 import SaveImages from "./Services/SaveImages";
-import TextData from "../../../Assets/jsonData/NewLotPage.json";
+import TextData from "../../../Assets/jsonData/TextData/NewLotPage.json";
 import Spinner from "react-bootstrap/spinner";
 import MapComponent from "../../../Components/Map/MapComponent";
-import LinkConfig from "../../../Assets/jsonData/LinkConfig/LinkConfig.json"
+import LinkConfig from "../../../Assets/jsonData/LinkConfig/LinkConfig.json";
+import { MapContextProvider } from "../../../Components/Map/useMapContext";
 
 export default function NewLot() {
   let history = useHistory();
@@ -35,16 +36,17 @@ export default function NewLot() {
   }, [lotId]);
 
   const [lotData, setLotData] = useState({
-    managerId: "",
     header: "",
     description: "",
     buyPrice: 100,
     isRent: false,
     isAuction: false,
     minBidPrice: 100,
+    minBidStep: 100,
+    auctionDuration: 1,
     location: {
-      latitude: "",
-      longitude: "",
+      latitude: 0,
+      longitude: 0,
       country: "",
       region: "",
       city: "",
@@ -52,6 +54,14 @@ export default function NewLot() {
       house: "",
     },
   });
+
+  const handleSetLocationFunction = (value) => {
+    setLotData((prev) => ({ ...prev, location: value }));
+  };
+
+  const handleSetLocation = useCallback((value) => {
+    handleSetLocationFunction(value);
+  }, []);
 
   const handleInputChangeFunction = (event) => {
     const { name, value } = event.target;
@@ -65,7 +75,7 @@ export default function NewLot() {
     setLotData((prev) => ({
       ...prev,
       location: {
-        ...prev,
+        ...prev.location,
         [name]: value,
       },
     }));
@@ -84,9 +94,9 @@ export default function NewLot() {
     handleCheckChangeFunction(value);
   }, []);
 
-  useEffect(() => {
-    console.log(lotData);
-  }, [lotData]);
+  // useEffect(() => {
+  //   console.log(lotData);
+  // }, [lotData]);
 
   var options = {
     weekday: "long",
@@ -105,12 +115,7 @@ export default function NewLot() {
       inProgress: true,
     }));
 
-    if (
-      lotData.location.country === "" ||
-      lotData.location.city ||
-      lotData.location.house ||
-      lotData.location.street === null
-    ) {
+    if (lotData.location.country === "" || lotData.location.city === "") {
       alert("Please enter the location");
 
       saveDataStatus((prev) => ({
@@ -134,17 +139,18 @@ export default function NewLot() {
   };
 
   useEffect(() => {
-    if(lotId !== null){
+    if (lotId !== null) {
       if (lotData.isRent) {
         savePriceCoef(priceCoefs, lotId, saveDataStatus);
       }
-  
+
       SaveImages(lotPictures, lotId);
 
       history.push({
-        pathname: LinkConfig.lot_management.lot_list
-      })
+        pathname: LinkConfig.lot_management.lot_list,
+      });
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [lotId]);
 
   const [newPriceCoef, setNewPriceCoef] = useState({
@@ -180,7 +186,7 @@ export default function NewLot() {
   const [lotPictures, addLotPicture] = useState([]);
 
   return (
-    <div>
+    <div className={style.newLot_page_background}>
       {dataStatus.isLoading ? (
         <Spinner animation="border" role="status">
           <span className="visually-hidden">Loading...</span>
@@ -270,27 +276,73 @@ export default function NewLot() {
 
                   <Col>
                     {lotData.isAuction && (
-                      <div
-                        className={style.text_input}
-                        style={{ display: "flex", flexDirection: "column" }}
-                      >
-                        <label>Min bid</label>
-                        <input
-                          className={style.input_style}
-                          type="number"
-                          min="100"
-                          max="50000000000"
-                          id="flexCheckDefault"
-                          step="100"
-                          name="minBidPrice"
-                          value={lotData.minBidPrice}
-                          onChange={(e) => {
-                            handleInputChange(e);
-                          }}
-                        />
-                        <small id="emailHelp" class="form-text text-muted">
-                          minimum bid price
-                        </small>
+                      <div>
+                        <div
+                          className={style.text_input}
+                          style={{ display: "flex", flexDirection: "column" }}
+                        >
+                          <label>Min bid</label>
+                          <input
+                            className={style.input_style}
+                            type="number"
+                            min="100"
+                            max="50000000000"
+                            id="flexCheckDefault"
+                            step="100"
+                            name="minBidPrice"
+                            value={lotData.minBidPrice}
+                            onChange={(e) => {
+                              handleInputChange(e);
+                            }}
+                          />
+                          <small id="emailHelp" class="form-text text-muted">
+                            minimum bid price
+                          </small>
+                        </div>
+                        <div
+                          className={style.text_input}
+                          style={{ display: "flex", flexDirection: "column" }}
+                        >
+                          <label>Min bid step</label>
+                          <input
+                            className={style.input_style}
+                            type="number"
+                            min="100"
+                            max="50000000000"
+                            id="flexCheckDefault"
+                            step="100"
+                            name="minBidStep"
+                            value={lotData.minBidStep}
+                            onChange={(e) => {
+                              handleInputChange(e);
+                            }}
+                          />
+                          <small id="emailHelp" class="form-text text-muted">
+                            minimum bid step
+                          </small>
+                        </div>
+                        <div
+                          className={style.text_input}
+                          style={{ display: "flex", flexDirection: "column" }}
+                        >
+                          <label>auction duration</label>
+                          <input
+                            className={style.input_style}
+                            type="number"
+                            min="1"
+                            max="100"
+                            id="flexCheckDefault"
+                            step="1"
+                            name="auctionDuration"
+                            value={lotData.auctionDuration}
+                            onChange={(e) => {
+                              handleInputChange(e);
+                            }}
+                          />
+                          <small id="emailHelp" class="form-text text-muted">
+                            set duration of auction
+                          </small>
+                        </div>
                       </div>
                     )}
                   </Col>
@@ -332,34 +384,36 @@ export default function NewLot() {
                     <div>{TextData.Services}</div>
                   </Row>
                   <Row>
-                    <BootstrapTable
-                      data={priceCoefs}
-                      bodyStyle={{ border: "none" }}
-                      tableStyle={{ border: "none" }}
-                      headerStyle={{ border: "none !important" }}
-                      version="4"
-                    >
-                      <TableHeaderColumn width="150" isKey dataField="id">
-                        ID
-                      </TableHeaderColumn>
-                      <TableHeaderColumn width="150" dataField="days">
-                        Days
-                      </TableHeaderColumn>
-                      <TableHeaderColumn width="150" dataField="cost">
-                        Cost
-                      </TableHeaderColumn>
-                    </BootstrapTable>
+                    <div className={style.price_coefs_style}>
+                      {/* <BootstrapTable
+                        data={priceCoefs}
+                        bodyStyle={{ border: "none" }}
+                        tableStyle={{ border: "none" }}
+                        headerStyle={{ border: "none !important" }}
+                        version="4"
+                      >
+                        <TableHeaderColumn width="100" isKey dataField="id">
+                          ID
+                        </TableHeaderColumn>
+                        <TableHeaderColumn width="100" dataField="days">
+                          Months
+                        </TableHeaderColumn>
+                        <TableHeaderColumn width="100" dataField="cost">
+                          Cost
+                        </TableHeaderColumn>
+                      </BootstrapTable> */}
+                    </div>
                   </Row>
                   <Row>
                     <Col>
                       <InputGroup className="form-control">
-                        <InputGroup.Text>Days</InputGroup.Text>
+                        <InputGroup.Text>Months</InputGroup.Text>
                         <FormControl
                           onChange={(e) => daysClickHandler(e.target.value)}
                           type="number"
                           min="1"
                           max="100"
-                          aria-label="Dayds (Dyration for rent)"
+                          aria-label="Months (Dyration for rent)"
                         />
                       </InputGroup>
                     </Col>
@@ -370,7 +424,8 @@ export default function NewLot() {
                           onChange={(e) => costClickHandler(e.target.value)}
                           type="number"
                           min="1"
-                          max="100"
+                          max="10000"
+                          step="100"
                           aria-label="Cost (Cost of rent dyring this period)"
                         />
                       </InputGroup>
@@ -401,11 +456,23 @@ export default function NewLot() {
               </div>
             </Col>
           </Row>
-          <Row className={style.container_style}>
-            <Col>
-              <MapComponent />
+          <Row>
+            <Col className={style.container_style}>
+              <div className={style.map_col_style}>
+                <MapContextProvider>
+                  <MapComponent
+                    isNewLot={true}
+                    handleSetLocation={handleSetLocation}
+                    lotLocation={lotData.location}
+                    center={{
+                      lat: lotData.location.latitude,
+                      lng: lotData.location.longitude,
+                    }}
+                  />
+                </MapContextProvider>
+              </div>
             </Col>
-            <Col>
+            <Col className={style.text_input_col}>
               <div className={style.text_input}>
                 <label>Country</label>
                 <input
@@ -443,6 +510,24 @@ export default function NewLot() {
                 </small>
               </div>
               <div className={style.text_input}>
+                <label>City</label>
+                <input
+                  type="header"
+                  class="form-control"
+                  id="exampleInputEmail1"
+                  aria-describedby="headerHelp"
+                  placeholder="Enter region"
+                  name="city"
+                  value={lotData.location.city}
+                  onChange={(e) => {
+                    handleInputChangeLocation(e);
+                  }}
+                />
+                <small id="emailHelp" class="form-text text-muted">
+                  Enter region text.
+                </small>
+              </div>
+              <div className={style.text_input}>
                 <label>Street</label>
                 <input
                   type="header"
@@ -469,7 +554,7 @@ export default function NewLot() {
                   aria-describedby="headerHelp"
                   placeholder="Enter house number"
                   name="house"
-                  value={lotData.location.street}
+                  value={lotData.location.house}
                   onChange={(e) => {
                     handleInputChangeLocation(e);
                   }}
@@ -518,6 +603,7 @@ export default function NewLot() {
                 className={style.lot_button}
                 variant="primary"
                 onClick={newLot}
+                style={{ backgroundColor: "#4CAF50", borderColor: "#2f6d31" }}
               >
                 {TextData.Create}
               </Button>

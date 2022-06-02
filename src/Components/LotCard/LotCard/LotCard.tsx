@@ -1,11 +1,15 @@
+import { SetStateAction, useState, useEffect } from "react";
 import { useHistory } from "react-router-dom";
 import { Card, Row, Col } from "react-bootstrap";
 import Coll from "react-bootstrap/Col";
 
 import LinkConfig from "../../../Assets/jsonData/LinkConfig/LinkConfig.json";
-import SimpleLot from "../../Types/Lot/SimpleLot";
-
-import "./TaskCardStyle.sass";
+import { SimpleLot } from "../../Types/Lot/Lot";
+import { LotImage } from "../../Types/LotImage";
+import Image from "react-bootstrap/Image";
+import LotImageCarousel from "../../Image/ImageCarousel/LotImageCarousel";
+import LoadImagesService from "./Service/LoadImagesService";
+import style from "./LotCardStyle.module.sass";
 
 interface lotCardProps {
   lot: SimpleLot;
@@ -13,6 +17,7 @@ interface lotCardProps {
 
 export default function LotCard(props: lotCardProps) {
   let history = useHistory();
+  const [imageArray, setImageArray] = useState<LotImage[]>([]);
 
   const viewLot = () => {
     history.push({
@@ -22,28 +27,63 @@ export default function LotCard(props: lotCardProps) {
   };
 
   const lot = props.lot;
-  const date = lot.publicationDate.split("T");
 
-  console.log(lot);
+  let d = new Date(lot.publicationDate);
+  let ye = new Intl.DateTimeFormat("en", { year: "numeric" }).format(d);
+  let mo = new Intl.DateTimeFormat("en", { month: "short" }).format(d);
+  let da = new Intl.DateTimeFormat("en", { day: "2-digit" }).format(d);
+
+  useEffect(() => {
+    if (props.lot.id) {
+      LoadImagesService({
+        lotId: props.lot.id,
+        setImageArray: (arg: LotImage[]) => {
+          setImageArray(arg);
+        },
+      });
+    }
+  }, [props.lot]);
+
+  console.log(props.lot);
 
   return (
     <Card
       bg=""
       border="success"
-      className="cardTemplateStyle"
+      style={{    
+        backgroundColor: "RGB(250, 250, 250, 0.823)",
+        margin: "1em", 
+        marginLeft: "auto", 
+        marginRight: "auto", 
+        textAlign: "center",   
+        borderRadius: "20px"
+      }}
       onClick={viewLot}
     >
       <Row>
         <Col>
-          <Card.Title>{lot.header}</Card.Title>
+          {imageArray && imageArray.length > 0 && (
+            <LotImageCarousel imgArray={imageArray} />
+          )}
         </Col>
-        <Coll className="ColBlock">
-          <Card.Text className="ml-3">{"Publiction date: " + date}</Card.Text>
+        <Coll className={style.card_col_block}>
+          <Card.Title style={{fontSize: "30px"}}>{lot.header}</Card.Title>
           <Card.Text className="ml-3">
+            {"Publiction date: " + `${da} ${mo} ${ye}`}
+          </Card.Text>
+          <Card.Text style={{fontSize: "20px"}} className="ml-3">
             {lot.isAuction ? "Auction" : lot.isRent && "Rent"}
           </Card.Text>
-          <Card.Text className="ml-3">
+          <Card.Text style={{fontSize: "20px"}} className="ml-3">
             {lot.isAuction && "Buy price: " + lot.buyPrice}
+          </Card.Text>
+          <Card.Text className="ml-3">
+            {lot.location &&
+              lot.location.region +
+                " " +
+                lot.location.city +
+                " " +
+                lot.location.street}
           </Card.Text>
         </Coll>
       </Row>

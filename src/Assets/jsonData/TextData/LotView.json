@@ -1,0 +1,21 @@
+{
+  "Header": "Lot ",
+  "BuyNow": "buy it now",
+  "PlaceBid": "place bid",
+  "Loading": "Data is Loading",
+  "NewLot": "New Lot",
+  "Cansel": "Cancel",
+  "Services": "Services",
+  "Amount" : "Amount: ",
+  "Create" : "Save changes and create a new lot",
+  "SelectServiceAmount" : "Select sevice and amount",
+  "Select": "Select",
+  "CancelText": "Cancel",
+  "AddProduct": "Add product to list",
+  "ProductList": "Product List",
+  "TotalPrice": "Price is ",
+  "Description": "Description",
+  "PleaseAddProduct": "",
+  "AddComment": "AddComment",
+  "CommentAdded": "Comment Added"
+}

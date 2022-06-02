@@ -1,136 +1,193 @@
-import React, {useState, useEffect} from 'react'
-import { useHistory } from 'react-router-dom'
-import { Container, Col, Row, Button, Form } from 'react-bootstrap'
+import React, { useState, useEffect } from "react";
+import { useHistory } from "react-router-dom";
+import {
+  Container,
+  Col,
+  Row,
+  Button,
+  DropdownButton,
+  Dropdown,
+} from "react-bootstrap";
+import Spinner from "react-bootstrap/spinner";
 
-import LoadDataService from './Services/LoadDataService'
-import TaskCardDeck from '../../Components/TaskCard/TeskCardDeck/TaskCardDeck'
-import TextData from '../../jsonData/TaskListPage'
-import './TaskListStyle.sass'
-import { DropdownButton } from 'react-bootstrap';
-import { Dropdown } from 'react-bootstrap';
-import PerfectScrollbar from 'react-perfect-scrollbar'
-import style from "./LotLsitStyle.module.sass"
+import { SimpleLot } from "../../../Components/Types/Lot/Lot";
+import LoadLotsService from "./Services/LoadLotsService";
+import LotCardDeck from "../../../Components/LotCard/LotCardDeck/LotCardDeck";
+import TextData from "../../../Assets/jsonData/TextData/LotList.json";
 
-interface LotListProps{
+import style from "./LotListStyle.module.sass";
 
-}
+interface LotListProps {}
 
-function LotList(props: LotListProps){
-  let history = useHistory()
+function LotList(props: LotListProps) {
+  let history = useHistory();
 
-  const [data, saveData] = useState({
-      isLoading: true,
-      requests: null,
-      inProgress: null
-  })
-
-  const back = () =>{
-      history.push({
-          pathname: '/home'
-      })
-  }
-
-  const clear = () =>{
-      setSortType('Choose Sort Type')
-      setSelectedParam(prevState => ({ ... prevState, selectedCategory: 'Choose Category' }))
-  }
-
-  const [tasks, setTasks] = useState(null);
-  const [categories, setCategories] = useState(null);
-  const [types, setTypes] = useState(null);
-  
-  useEffect(() => {
-      LoadDataService(setTasks, setCategories, setTypes)
-  }, [setTasks])
-  
-  useEffect(()=>
-      {
-          if(tasks != null && categories != null)
-              (saveData({isLoading: false}))
-      },
-      [tasks, types, categories]
-  )
-
-  const [sortType,setSortType] = useState('Choose Sort Type');
-  const SortTypeSelect = (e) => {
-      //console.log(e);
-      setSortType(e)
-  }
-
-  const [selectedParams, setSelectedParam] = useState({
-      "selectedType": 'Choose Type',
-      "selectedCategory": 'Choose Category'
+  const [dataLoading, setDataLoading] = useState({
+    isLoading: true,
+    requests: null,
+    inProgress: null,
   });
 
-  const CategoryHandler = (CategoryName) => {
-      //alert("sorting by" + CategoryName);
-      setSelectedParam(prevState => ({ ... prevState, selectedCategory: CategoryName }))
-  }
-  const TypeHandler = (TypeName) => {
-      //alert("sorting by" + TypeName);
-      setSelectedParam(prevState => ({ ... prevState, selectedType: TypeName }))
-  }
+  const back = () => {
+    history.push({
+      pathname: "/home",
+    });
+  };
 
-  console.log(tasks)
-  return(
-    <div>
-            <Container>
-            {data.isLoading 
-                ? <Loading/>
-                :<Container>
-                    <Row>
-                        <Col xs={6} md={8} className='PageHeader'>
-                            <div>Design Module Tasks</div>    
-                        </Col>
-                        <Col >
-                            <Button className='BackButton' variant='primary' onClick={back}>
-                                {TextData.Back}
-                            </Button>
-                        </Col>
-                    </Row>
-                   
-                    <Row className='PageHeader'>
-                        
-                            <Col >
-                                <DropdownButton
-                                 className='DropDown'
-                                 id="dropdown-basic-button" title={selectedParams.selectedCategory} 
-                                 onSelect={CategoryHandler}>
-                                    {categories.map((item) => (
-                                        <Dropdown.Item eventKey={item.name}>{item.name}</Dropdown.Item>    
-                                    ))}
-                                </DropdownButton>
-                            </Col>
+  const clearSortTypes = () => {
+    setSelectedParam({
+      lotType: "All",
+      sortType: "Default",
+      state: "Default",
+    });
+  };
 
-                            <Col>
-                                <DropdownButton
-                                    className='DropDown'
-                                    alignRight
-                                    title={sortType}
-                                    id="dropdown-menu-align-right"
-                                    onSelect={SortTypeSelect}
-                                >
-                                    <Dropdown.Item eventKey="Date">Date</Dropdown.Item>
-                                    <Dropdown.Item eventKey="TitleName">Title Name</Dropdown.Item>
-                                </DropdownButton>
-                            </Col>
-                            
-                            <Col md={2}>
-                                <Button className='BackButton' variant='primary' onClick={clear}>
-                                    Clear
-                                </Button>
-                            </Col>
-                    </Row>
+  const [lots, setLots] = useState<SimpleLot[]>();
 
-                    <Col>               
-                        <TaskCardDeck tasks = {tasks} />
-                    </Col>
+  const SortTypes: string[] = ["Default", "ByCostRaising", "ByСostDescending"];
 
-                </Container>
-            }
-        </Container>
+  const LotTypes: string[] = ["All", "Rent", "Auction"];
+
+  const States: string[] = ["Default", "Open", "Close"];
+
+  const [selectedParams, setSelectedParam] = useState<{
+    lotType: string;
+    sortType: string;
+    state: string;
+  }>({
+    lotType: "All",
+    sortType: "Default",
+    state: "Default",
+  });
+
+  const setSortTypeHandler = (value: any) => {
+    setSelectedParam((prev) => ({
+      ...prev,
+      sortType: value,
+    }));
+  };
+
+  const setLotTypeHandler = (value: any) => {
+    setSelectedParam((prev) => ({
+      ...prev,
+      lotType: value,
+    }));
+  };
+
+  const setStateHandler = (value: any) => {
+    setSelectedParam((prev) => ({
+      ...prev,
+      state: value,
+    }));
+  };
+
+  useEffect(() => {
+    LoadLotsService({
+      selectedParams: selectedParams,
+      setLots: setLots,
+      setDataLoading: setDataLoading,
+    });
+  }, [selectedParams]);
+
+  return (
+    <div className={style.lotlist_page_background}>
+      <Container>
+        {dataLoading.isLoading ? (
+          <Spinner animation="border" role="status">
+            <span className="visually-hidden">Loading...</span>
+          </Spinner>
+        ) : (
+          <Container>
+            <Row className={style.lot_list_header_text}>
+              <div>List of lots</div>
+            </Row>
+
+            <Row className={style.top_row_options_style}>
+              <Col md="auto">
+                <Row>
+                  <Col>
+                    <label className={style.sort_label_style}>
+                      {TextData.SortType}
+                    </label>
+                    <DropdownButton
+                      className={style.drop_down_button}
+                      title={selectedParams.sortType}
+                      onSelect={setSortTypeHandler}
+                    >
+                      {SortTypes.map((item, id) => (
+                        <Dropdown.Item key={id} eventKey={item}>
+                          {item}
+                        </Dropdown.Item>
+                      ))}
+                    </DropdownButton>
+                  </Col>
+                  <Col style={{ width: "6rem" }}>
+                    <label className={style.sort_label_style}>
+                      {TextData.LotType}
+                    </label>
+                    <DropdownButton
+                      className={style.drop_down_button}
+                      title={selectedParams.lotType}
+                      onSelect={setLotTypeHandler}
+                    >
+                      {LotTypes.map((item, id) => (
+                        <Dropdown.Item key={id} eventKey={item}>
+                          {item}
+                        </Dropdown.Item>
+                      ))}
+                    </DropdownButton>
+                  </Col>
+                  <Col>
+                    <label className={style.sort_label_style}>
+                      {TextData.StateType}
+                    </label>
+                    <DropdownButton
+                      className={style.drop_down_button}
+                      title={selectedParams.state}
+                      onSelect={setStateHandler}
+                    >
+                      {States.map((item, id) => (
+                        <Dropdown.Item key={id} eventKey={item}>
+                          {item}
+                        </Dropdown.Item>
+                      ))}
+                    </DropdownButton>
+                  </Col>
+                  <Col style={{ display: "flex", justifyContent: "bottom" }}>
+                    <Button
+                      style={{
+                        width: "5rem",
+                        height: "2.5rem",
+                        marginTop: "1.5rem",
+                      }}
+                      variant="primary"
+                      onClick={clearSortTypes}
+                    >
+                      {TextData.Clear}
+                    </Button>
+                  </Col>
+                </Row>
+              </Col>
+              <Col md={7} className={style.top_row_back_button}>
+                <Button
+                  style={{
+                    width: "5rem",
+                    height: "2.5rem",
+                    marginTop: "1.5rem",
+                  }}
+                  variant="primary"
+                  onClick={back}
+                >
+                  {TextData.Back}
+                </Button>
+              </Col>
+            </Row>
+            <Col>{lots && <LotCardDeck lots={lots} />}</Col>
+          </Container>
+        )}
+      </Container>
     </div>
   );
 }
 
-export default LotList
+export default LotList;

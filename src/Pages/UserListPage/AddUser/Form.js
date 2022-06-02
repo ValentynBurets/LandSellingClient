@@ -1,11 +1,6 @@
-import React, { useState } from 'react'
-import Radio from '@material-ui/core/Radio'
-import RadioGroup from '@material-ui/core/RadioGroup'
-import FormControlLabel from '@material-ui/core/FormControlLabel'
-import FormControl from '@material-ui/core/FormControl'
-import FormLabel from '@material-ui/core/FormLabel'
+import { useState } from 'react'
 import TextField from '@material-ui/core/TextField'
-import TextData from '../../../jsonData/UserList.json'
+import TextData from '../../../Assets/jsonData/TextData/UserList.json'
 import { DropdownButton } from 'react-bootstrap';
 import { Dropdown } from 'react-bootstrap';
 
@@ -157,7 +152,7 @@ function AddUserForm({ addUserModal }) {
           onSelect = {(e) => RoleSelect(e)}
           >
           <Dropdown.Item eventKey="Admin">Admin</Dropdown.Item>
-          <Dropdown.Item eventKey="Student">Student</Dropdown.Item>
+          <Dropdown.Item eventKey="User">User</Dropdown.Item>
         </DropdownButton>
         <TextField
           required

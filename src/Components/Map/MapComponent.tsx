@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback, useRef } from "react";
+import React, { useState, useCallback, useRef, useEffect } from "react";
 import {
   GoogleMap,
   useLoadScript,
@@ -6,6 +6,7 @@ import {
   InfoWindow,
 } from "@react-google-maps/api";
 import { formatRelative } from "date-fns";
+import Geocode from "react-geocode";
 
 import Search from "./Search/Search";
 import Locate from "./Locate/Locate";
@@ -14,18 +15,15 @@ import realEstateIcon from "../../Assets/Images/icons/real-estate-business-house
 
 import "@reach/combobox/styles.css";
 import mapStyles from "./mapStyles.json";
-import style from "./MapComponent.module.sass"
+import style from "./MapComponent.module.sass";
+import { LotLocation } from "../Types/LotLocation";
+import useMapContext from "./useMapContext";
 
 const mapContainerStyle = {
   margin: "1rem",
   width: "55rem",
   height: "30rem",
   borderRadius: "10px",
-};
-
-const center = {
-  lat: 43.6532225,
-  lng: -79.383186,
 };
 
 const options = {
@@ -45,29 +43,119 @@ const libraries = ["places"] as (
 interface MarkerProps {
   lat: number;
   lng: number;
-  time: Date;
 }
 
-export default function MapComponent() {
+interface MapComponentProps {
+  isNewLot: boolean;
+  center: { lat: number; lng: number };
+  handleSetLocation: (arg: LotLocation) => void;
+  lotLocation: LotLocation;
+}
+
+export default function MapComponent(props: MapComponentProps) {
+  const { location, setLocation } = useMapContext();
+
   const { isLoaded, loadError } = useLoadScript({
     googleMapsApiKey: process.env.REACT_APP_GOOGLE_MAPS_API_KEY!,
     libraries,
   });
-
-  const [markers, setMarkers] = useState<MarkerProps[]>([]);
+  const [adress, setAdress] = useState<string>("");
+  const [marker, setMarker] = useState<MarkerProps>();
   const [selected, setSelected] = useState<MarkerProps>(
     null as unknown as MarkerProps
   );
 
+  const getGeocode = () => {
+    console.log("test");
+    Geocode.setApiKey(process.env.REACT_APP_GOOGLE_MAPS_API_KEY!);
+    // set response language. Defaults to english.
+    Geocode.setLanguage("en");
+
+    Geocode.fromLatLng(
+      location.latitude.toString(),
+      location.longitude.toString()
+    ).then(
+      (response) => {
+        setAdress(response.results[0].formatted_address);
+        let city = "",
+          region = "",
+          country = "",
+          house = "",
+          street = "";
+        for (
+          let i = 0;
+          i < response.results[0].address_components.length;
+          i++
+        ) {
+          for (
+            let j = 0;
+            j < response.results[0].address_components[i].types.length;
+            j++
+          ) {
+            switch (response.results[0].address_components[i].types[j]) {
+              case "locality":
+                city = response.results[0].address_components[i].long_name;
+                break;
+              case "administrative_area_level_1":
+                region = response.results[0].address_components[i].long_name;
+                break;
+              case "country":
+                country = response.results[0].address_components[i].long_name;
+                break;
+              case "street_number":
+                house = response.results[0].address_components[i].long_name;
+                break;
+              case "route":
+                street = response.results[0].address_components[i].long_name;
+                break;
+            }
+          }
+        }
+
+        props.handleSetLocation({
+          latitude: location.latitude,
+          longitude: location.longitude,
+          country: country,
+          region: region,
+          city: city,
+          street: street,
+          house: house,
+        } as LotLocation);
+        console.log(response);
+      },
+      (error) => {
+        console.error(error);
+      }
+    );
+  };
+  useEffect(() => {
+    if (!props.isNewLot && props.lotLocation) {
+      console.log(props.lotLocation)
+      setMarker({
+        lat: props.lotLocation.latitude,
+        lng: props.lotLocation.longitude,
+      });
+    }
+  }, [props.lotLocation]);
+
+  useEffect(() => {
+    getGeocode();
+  }, [location]);
+
   const onMapClick = useCallback((e) => {
-    setMarkers((current) => [
-      ...current,
-      {
+    console.log(props.isNewLot);
+    if (props.isNewLot) {
+      setMarker({
         lat: e.latLng.lat(),
         lng: e.latLng.lng(),
-        time: new Date(),
-      },
-    ]);
+      });
+
+      setLocation((prev: LotLocation) => ({
+        ...prev,
+        longitude: e.latLng.lng(),
+        latitude: e.latLng.lat(),
+      }));
+    }
   }, []);
 
   const mapRef = useRef<google.maps.Map>();
@@ -82,8 +170,8 @@ export default function MapComponent() {
     mapRef.current !== undefined && mapRef.current.setZoom(14);
   }, []);
 
-  if (loadError) return "Error loading maps";
-  if (!isLoaded) return "Loading Maps";
+  if (loadError) return <div>Error loading maps</div>;
+  if (!isLoaded) return <div>Loading Maps</div>;
 
   return (
     <div>
@@ -97,15 +185,21 @@ export default function MapComponent() {
       <GoogleMap
         id="map"
         mapContainerStyle={mapContainerStyle}
-        zoom={8}
-        center={center}
+        zoom={12}
+        center={
+          props.center.lat !== 0
+            ? props.center
+            : {
+                lat: 49.835457,
+                lng: 24.022879,
+              }
+        }
         options={options}
         onClick={onMapClick}
         onLoad={onMapLoad}
       >
-        {markers.map((marker) => (
+        {marker && (
           <Marker
-            key={marker.time.toISOString()}
             position={{
               lat: marker.lat,
               lng: marker.lng,
@@ -120,7 +214,7 @@ export default function MapComponent() {
               setSelected(marker);
             }}
           />
-        ))}
+        )}
         {selected ? (
           <InfoWindow
             position={{
@@ -132,8 +226,8 @@ export default function MapComponent() {
             }}
           >
             <div>
-              <h2> Point Spoted!</h2>
-              <p>Spotted {formatRelative(selected.time, new Date())}</p>
+              <h2> Selected Location</h2>
+              <p>{adress}</p>
             </div>
           </InfoWindow>
         ) : null}

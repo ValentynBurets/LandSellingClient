@@ -48,6 +48,7 @@ export default function Search(props: SearchProps) {
             const geocodeResult = await getGeocode({ address });
 
             //using this promice you can get the location data(full address and coordinates)
+            console.log(await getLatLng(geocodeResult[0]))
             const { lat, lng } = await getLatLng(geocodeResult[0]);
 
             props.panTo({ lat, lng });

@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from "react";
 
 import style from "./AgreementPage.module.sass";
 import GetPaymentToken from "./Services/GetPaymentToken";
-import ConnectionConfig from "../../Assets/jsonData/ConnectionConfig.json";
+import ConnectionConfig from "../../Assets/jsonData/ConnectionConfig/ConnectionConfig.json";
 import axios from "axios";
 
 interface PaymentProps {}

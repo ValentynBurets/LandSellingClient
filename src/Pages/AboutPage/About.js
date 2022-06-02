@@ -45,6 +45,13 @@ export default class About extends Component {
                     direction in the future and develop better and better
                     projects.
                   </p>
+                  <p>
+                    As part of this thesis, a web system for the sale and lease
+                    of land and real estate was designed and implemented. The
+                    system provides for its use by real estate companies. To do
+                    this, the system has a user-friendly interface and various
+                    opportunities for sale or lease of land and real estate.
+                  </p>
                   <img
                     className="mb-4 mx-auto d-block"
                     width="700"
@@ -74,7 +81,7 @@ export default class About extends Component {
                         <Card.Text>
                           Valentyn Burets
                           <p />
-                          Front-end developer
+                          Front-end and back end developer
                         </Card.Text>
                       </Card.Body>
                     </Card>

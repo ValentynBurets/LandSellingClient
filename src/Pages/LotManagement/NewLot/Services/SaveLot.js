@@ -1,5 +1,5 @@
 import axios from "axios";
-import ConnectionConfig from "../../../../Assets/jsonData/ConnectionConfig.json";
+import ConnectionConfig from "../../../../Assets/jsonData/ConnectionConfig/ConnectionConfig.json";
 
 const saveLot = (lotData, setLotId) => {
   if (lotData == null) {
@@ -7,6 +7,7 @@ const saveLot = (lotData, setLotId) => {
     return;
   }
 
+  console.log(lotData)
   let token = localStorage.getItem("token");
   axios
     .post(
