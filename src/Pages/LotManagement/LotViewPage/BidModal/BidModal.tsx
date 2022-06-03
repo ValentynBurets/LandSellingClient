@@ -1,4 +1,4 @@
-import { ReactNode } from "react";
+import React, { ReactNode } from "react";
 // import style from  "./BidModal.module.css";
 // import {
 //   Container,

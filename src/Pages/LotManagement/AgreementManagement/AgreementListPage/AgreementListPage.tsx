@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { Row, Modal, Button, Container, Table } from "react-bootstrap";
 
 import BadRequest from "../../../../Components/BadRequest/BadRequest";
@@ -13,6 +13,7 @@ import {
 } from "../../../../Components/Types/Agreement";
 import Tbody from "./Components/Table/Tbody";
 import TheaderList from "./Components/Table/TheaderList";
+import { Trans } from "react-i18next";
 
 interface AgreementPageProps {}
 
@@ -121,15 +122,15 @@ function AgreementListPage(props: AgreementPageProps) {
           >
             <Modal.Header>
               <Modal.Title>
-                {TextData.AgreementsListPage.Modal.Header.Disapprove}
+                <Trans i18nKey="HeaderDisapprove">HeaderDisapprove</Trans>
               </Modal.Title>
             </Modal.Header>
             <Modal.Body>
-              {TextData.AgreementsListPage.Modal.Body.Disapprove}
+              <Trans i18nKey="BodyDisapprove">BodyDisapprove</Trans>
             </Modal.Body>
             <Modal.Footer>
               <Button variant="danger" onClick={disApproveAgreement}>
-                {TextData.AgreementsListPage.Modal.Footer.Continue}
+                <Trans i18nKey="FooterDisapprove">FooterDisapprove</Trans>
               </Button>
               <div className="vr" />
               <Button
@@ -139,7 +140,7 @@ function AgreementListPage(props: AgreementPageProps) {
                   setAgreementNumber(0);
                 }}
               >
-                {TextData.AgreementsListPage.Modal.Footer.Cancel}
+                <Trans i18nKey="FooterCancel">FooterCancel</Trans>
               </Button>
             </Modal.Footer>
           </Modal>
@@ -151,15 +152,15 @@ function AgreementListPage(props: AgreementPageProps) {
           >
             <Modal.Header>
               <Modal.Title>
-                {TextData.AgreementsListPage.Modal.Header.Approve}
+                <Trans i18nKey="HeaderApprove">HeaderApprove</Trans>
               </Modal.Title>
             </Modal.Header>
             <Modal.Body>
-              {TextData.AgreementsListPage.Modal.Body.Approve}
+              <Trans i18nKey="BodyApprove">BodyApprove</Trans>
             </Modal.Body>
             <Modal.Footer>
               <Button variant="danger" onClick={approveAgreement}>
-                {TextData.AgreementsListPage.Modal.Footer.Continue}
+                <Trans i18nKey="FooterContinue">FooterContinue</Trans>
               </Button>
               <div className="vr" />
               <Button
@@ -169,14 +170,16 @@ function AgreementListPage(props: AgreementPageProps) {
                   setAgreementNumber(0);
                 }}
               >
-                {TextData.AgreementsListPage.Modal.Footer.Cancel}
+                <Trans i18nKey="FooterCancel">FooterCancel</Trans>
               </Button>
             </Modal.Footer>
           </Modal>
 
           <Row style={{marginTop: "5rem"}}>
             <h1 className="text-center mt-3">
-              {TextData.AgreementsListPage.AgreementsList}
+              <Trans i18nKey="AgreementsList">
+                AgreementsList 
+              </Trans>
             </h1>
           </Row>
           <Row style={{marginBottom: "20rem"}} className="justify-content-md-center mx-auto mt-3 ListOfElem">

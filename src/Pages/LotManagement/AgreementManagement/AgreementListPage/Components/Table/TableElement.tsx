@@ -1,8 +1,10 @@
+import React from "react"
 import Button from "react-bootstrap/Button";
 import LinkConfig from "../../../../../../Assets/jsonData/LinkConfig/LinkConfig.json";
 
 import { Link } from "react-router-dom";
 import { TableAgreement } from "../../../../../../Components/Types/Agreement";
+import { Trans } from "react-i18next";
 
 interface TableElementProps {
   index: number;
@@ -78,7 +80,7 @@ function TableElement(props: TableElementProps) {
           variant="dark"
           disabled={props.elementData.isDisApprove ? true : false}
         >
-          Approve
+          <Trans i18nKey="HeaderApprove">HeaderApprove</Trans>
         </Button>
       </td>
       <td>
@@ -91,7 +93,7 @@ function TableElement(props: TableElementProps) {
           variant="dark"
           disabled={props.elementData.isApprove ? true : false}
         >
-          Disapprove
+          <Trans i18nKey="HeaderDisapprove">HeaderDisapprove</Trans>
         </Button>
       </td>
     </tr>

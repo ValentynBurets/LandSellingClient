@@ -1,22 +1,37 @@
-import TextData from "../../../../../../Assets/jsonData/TextData/TextData.json"
+import React from "react";
+import { Trans } from "react-i18next";
 
 function TheaderList() {
-    return (
-        <thead>
-            <tr className='text-center'>
-                <th>{TextData.AgreementsListPage.TableOptions.Number}</th>
-                <th>{TextData.AgreementsListPage.TableOptions.LotLink}</th>
-                <th>{TextData.AgreementsListPage.TableOptions.CustomerLink}</th>
-                <th>{TextData.AgreementsListPage.TableOptions.Description}</th>
-                <th>{TextData.AgreementsListPage.TableOptions.Status}</th>
-                <th>{TextData.AgreementsListPage.TableOptions.CreationDate}</th>
-                <th>{TextData.AgreementsListPage.TableOptions.StartDate}</th>
-                <th>{TextData.AgreementsListPage.TableOptions.EndDate}</th>
-                <th></th>
-                <th></th>
-            </tr>
-        </thead>
-    )
+  return (
+    <thead>
+      <tr className="text-center">
+        <th>
+          <Trans i18nKey="Number">Number</Trans>
+        </th>
+        <th>
+          <Trans i18nKey="LotLink">LotLink</Trans>
+        </th>
+        <th>
+          <Trans i18nKey="CustomerLink">CustomerLink</Trans>
+        </th>
+        <th>
+          <Trans i18nKey="Description">Description</Trans>
+        </th>
+        <th>
+          <Trans i18nKey="Status">Status</Trans>
+        </th>
+        <th>
+          <Trans i18nKey="CreationDate">LotLink</Trans>
+        </th>
+        <th>
+          <Trans i18nKey="StartDate">StartDate</Trans>
+        </th>
+        <th>
+          <Trans i18nKey="EndDate">end date</Trans>
+        </th>
+      </tr>
+    </thead>
+  );
 }
 
-export default TheaderList
+export default TheaderList;

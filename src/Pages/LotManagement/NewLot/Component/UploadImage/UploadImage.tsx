@@ -1,3 +1,4 @@
+import React from 'react'
 import PropTypes from "prop-types";
 import encodeFile from "../../Services/encodeFile";
 import LotImageCarousel from "../../../../../Components/Image/ImageCarousel/LotImageCarousel";

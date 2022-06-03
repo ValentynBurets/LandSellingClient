@@ -14,9 +14,9 @@ import axios from "axios";
 
 import TextData from "../../../Assets/jsonData/TextData/Header.json";
 import ConnectionConfig from "../../../Assets/jsonData/ConnectionConfig/ConnectionConfig.json";
-import { AppLocaleList } from "../../Localization/LanguageProvider/LanguageConstains"
+import { useTranslation, Trans } from "react-i18next";
 
-import style from "./Header.module.sass"
+import style from "./Header.module.sass";
 
 function Header() {
   const [name, setName] = useState(null);
@@ -27,6 +27,13 @@ function Header() {
 
   const [show, setShow] = useState(false);
   let history = useHistory();
+
+  const lngs = {
+    en: { nativeName: "Eng" },
+    ua: { nativeName: "Ukr" },
+  };
+
+  const { i18n } = useTranslation();
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
@@ -67,7 +74,10 @@ function Header() {
   }
 
   const myInfo = () => {
-    console.log("ConnectionConfig.ServerUrl + ConnectionConfig.Routes.GetProfileInfo", ConnectionConfig.ServerUrl + ConnectionConfig.Routes.GetProfileInfo)
+    console.log(
+      "ConnectionConfig.ServerUrl + ConnectionConfig.Routes.GetProfileInfo",
+      ConnectionConfig.ServerUrl + ConnectionConfig.Routes.GetProfileInfo
+    );
     axios
       .get(
         `${
@@ -117,14 +127,14 @@ function Header() {
           >
             {/* <Dropdown.Item variant="primary" id="dd-but-sign-in" onClick={handleShow}>Sign in</Dropdown.Item> */}
             <Dropdown.Item variant="primary" id="dd-but-profile">
-              {TextData.AuthorizeBox.LoginTab.Profile}
+              <Trans i18nKey="Profile">Profile</Trans>
             </Dropdown.Item>
             <Dropdown.Item
               variant="primary"
               id="dd-but-sign-out"
               onClick={handleSignOut}
             >
-              {TextData.AuthorizeBox.LoginTab.LogOut}
+              <Trans i18nKey="LogOut">LogOut</Trans>
             </Dropdown.Item>
           </DropdownButton>
         </Nav>
@@ -138,7 +148,7 @@ function Header() {
               id="dd-but-sign-in"
               onClick={handleShow}
             >
-              {TextData.AuthorizeBox.LoginTab.LogIn}
+              <Trans i18nKey="LogIn">LogIn</Trans>
             </Dropdown.Item>
           </DropdownButton>
         </Nav>
@@ -150,16 +160,28 @@ function Header() {
     if (localStorage.getItem("UserRole") === "Student") {
       return (
         <div className={style.header_links_container}>
-          <Nav.Link href="/home">Home</Nav.Link>
-          <Nav.Link href="/lots">Lots</Nav.Link>
+          <Nav.Link href="/home">
+            <Trans i18nKey="Home">Home</Trans>
+          </Nav.Link>
+          <Nav.Link href="/lots">
+            <Trans i18nKey="Lots">Lots</Trans>
+          </Nav.Link>
         </div>
       );
-    } else if (localStorage.getItem("UserRole") == "Admin") {
+    } else if (localStorage.getItem("UserRole") === "Admin") {
       return (
         <div className={style.header_links_container}>
-          <Nav.Link href="/statistics-page">Statistics</Nav.Link>
-          <Nav.Link href="/admin-task-list-page">Lots</Nav.Link>
-          <Nav.Link href="/user-list-page">Users</Nav.Link>
+          <Nav.Link href="/statistics-page">
+            <Nav.Link href="/lots">
+              <Trans i18nKey="Statistics">Statistics</Trans>
+            </Nav.Link>
+          </Nav.Link>
+          <Nav.Link href="/admin-task-list-page">
+            <Trans i18nKey="Lots">Lots</Trans>
+          </Nav.Link>
+          <Nav.Link href="/user-list-page">
+            <Trans i18nKey="Users">Users</Trans>
+          </Nav.Link>
         </div>
       );
     }
@@ -169,14 +191,37 @@ function Header() {
     <>
       <Navbar collapseOnSelect expand="md" bg="dark" variant="dark">
         <Container>
-          <Navbar.Brand href="/home">{TextData.LS}</Navbar.Brand>
+          <Navbar.Brand href="/home">
+            <Trans i18nKey="LS">LS</Trans>
+          </Navbar.Brand>
 
+          <div>
+            {Object.keys(lngs).map((lng) => (
+              <button
+                key={lng}
+                style={{
+                  fontWeight: i18n.resolvedLanguage === lng ? "bold" : "normal",
+                }}
+                type="submit"
+                onClick={() => {
+                  i18n.changeLanguage(lng);
+                  window.location.reload();
+                }}
+              >
+                {lngs[lng].nativeName}
+              </button>
+            ))}
+          </div>
           <Navbar.Toggle aria-controls="responsive-navbar-nav" />
           <Navbar.Collapse id="responsive-navbar-nav">
             <Nav className="mr-auto">
-              <Nav.Link href="/home">Home</Nav.Link>
-                {getUserLinks()}
-              <Nav.Link href="/about">About Us</Nav.Link>
+              <Nav.Link href="/home">
+                <Trans i18nKey="Home">Home</Trans>
+              </Nav.Link>
+              {getUserLinks()}
+              <Nav.Link href="/about">
+                <Trans i18nKey="AboutUs">About Us</Trans>
+              </Nav.Link>
             </Nav>
           </Navbar.Collapse>
           <Nav>{getDropdown()}</Nav>
@@ -184,12 +229,16 @@ function Header() {
       </Navbar>
       <Modal show={show} onHide={handleClose}>
         <Modal.Header closeButton>
-          <Modal.Title>Log in</Modal.Title>
+          <Modal.Title>
+            <Trans i18nKey="LogIn">LogIn</Trans>
+          </Modal.Title>
         </Modal.Header>
         <Modal.Body>
           <Form>
             <Form.Group controlId="fromBasicEmail">
-              <Form.Label>Email Address</Form.Label>
+              <Form.Label>
+                <Trans i18nKey="Email">Email</Trans>
+              </Form.Label>
               <Form.Control
                 type="email"
                 placeholder="Enter email"
@@ -199,11 +248,14 @@ function Header() {
                 }}
               />
               <Form.Text className="text-muted">
-                We`ll never share your email with anyone else.
+                <Trans i18nKey="InvalidEmail">InvalidEmail</Trans>
               </Form.Text>
             </Form.Group>
             <Form.Group controlId="fromBasicPassword">
-              <Form.Label>Password</Form.Label>
+              <Form.Label>
+                {" "}
+                <Trans i18nKey="Password">Password</Trans>
+              </Form.Label>
               <Form.Control
                 type="password"
                 placeholder="Enter password"

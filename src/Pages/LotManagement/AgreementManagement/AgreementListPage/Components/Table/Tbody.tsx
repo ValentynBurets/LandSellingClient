@@ -1,3 +1,4 @@
+import React from "react"
 import { TableAgreement } from "../../../../../../Components/Types/Agreement";
 import TableElement from "./TableElement";
 

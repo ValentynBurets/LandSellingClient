@@ -1,8 +1,9 @@
 /* eslint-disable react-hooks/exhaustive-deps */
+import React from "react"
 import { useCallback, useEffect, useState } from "react";
 import { useHistory, useParams } from "react-router-dom";
 import Spinner from "react-bootstrap/spinner";
-import { Container, Col, Row, Button } from "react-bootstrap";
+import { Container, Col, Row, Button, Table } from "react-bootstrap";
 
 // import { BootstrapTable, TableHeaderColumn } from "react-bootstrap-table";
 
@@ -25,6 +26,8 @@ import CountdownTimer from "../../../Components/TimeCounter/CountdownTimer";
 import LinkConfig from "../../../Assets/jsonData/LinkConfig/LinkConfig.json";
 import { CreateAgreement } from "../../../Components/Types/Agreement";
 import CreateNewAgreementService from "./Services/CreateNewAgreementService";
+import TheaderList from "./Components/Table/TheaderList";
+import Tbody from "./Components/Table/Tbody";
 
 interface LotViewProps {}
 
@@ -84,6 +87,9 @@ function LotView(props: LotViewProps) {
     startDate: new Date("2022-08-01T11:55:03.030Z").toISOString(),
     endDate: new Date("2022-12-06T11:55:03.030Z").toISOString(),
   });
+
+  const [selectedPriceCoefIdState, setSelectedPriceCoefIdState] = useState<string>()
+
 
   const [dataLoading, setDataLoading] = useState({
     isLoading: true,
@@ -266,6 +272,13 @@ function LotView(props: LotViewProps) {
                         Cost
                       </TableHeaderColumn>
                     </BootstrapTable> */}
+                    <Table responsive>
+                      <TheaderList />
+                      <Tbody
+                        bodyData={lotInfo.priceCoefs}
+                        setSelectedPriceCoefIdState={(arg: string) => setSelectedPriceCoefIdState(arg)}
+                      />
+                    </Table>
                   </div>
                 )}
               </Col>

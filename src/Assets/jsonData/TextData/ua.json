@@ -1,0 +1,129 @@
+{
+  "LogIn": "увійти",
+  "LogOut": "вийти",
+  "Profile": "профіль",
+  "ButtonText": "увійти",
+  "Email": "пошта",
+  "Password": "пароль",
+  "ShowPasswordButton": "показати пароль",
+  "EnterEmail": "уведіть пошту",
+  "EnterPassword": "уведіть пароль",
+  "InvalidEmail": "неправильний формат пошти",
+  "indvalidPassword": "неправильний формат паролю",
+  "IncorrectData": "неправильний пароль або пошта",
+  "Home": "Дім",
+  "Lots": "Оголошення",
+  "Statistics": "Статистика",
+  "Users": "Користувачі",
+  "AboutUs": "Про нас",
+  
+  "LS": "ПЗ",
+
+  "AgreementsList": "список угод",
+  "Number": "№",
+  "LotLink": "оголошення",
+  "CustomerLink": "замовник",
+  "Status": "статус",
+  "Description": "опис",
+  "CreationDate": "дата створення",
+  "StartDate": "початок дії",
+  "EndDate": "кінець дії",
+
+  "HeaderApprove": "прийняти",
+  "HeaderDisapprove": "відхилити",
+  "BodyDisapprove": "ви зираєтеся відхилити цю угоду. Щоб відхилити, натисніть відхилити або щоб вийти натисніть повернутися",
+  "BodyApprove": "ви зираєтеся прийняти цю угоду. Щоб прийняти, натисніть прийняти або щоб вийти натисніть повернутися",
+  "FooterContinue": "продовжити",
+  "FooterCancel": "повернутися",
+
+  "BadConnection": "Ви маєье проблеми із з'єднанням з API",
+  
+  "LotViewHeader": "оголошення",
+  "LotViewBuyNow": "купити це зараз",
+  "LotViewPlaceBid": "зробити ставку",
+  "LotViewLoading": "дані завантажуються",
+  "LotViewNewLot": "нове оголошення",
+  "LotViewCansel": "повернутися",
+  "LotViewServices": "сервіси",
+  "LotViewAmount" : "кількість: ",
+  "LotViewCreate" : "зберегти зміни та створити нове оголошення",
+  "LotViewSelectServiceAmount" : "зберегти сервіси та кількість",
+  "LotViewSelect": "вибрати",
+  "LotViewTotalPrice": "кінцева ціна",
+  "LotViewDescription": "опис",
+  "LotViewAddComment": "додати коментар",
+
+
+  "Header": {
+    "AboutUs": "Про нас",
+    "LS": "ПЗ 2022",
+    "AuthorizeBox": {
+      "Title": "будь ласка увійдіть у систему",
+      
+      "RegisterTab": {
+          "Title": "Register",
+          "ButtonText": "Register",
+          "SubmitButtonText": "Submit",
+          "Labels": {
+              "Name": "Name",
+              "Surname": "Surname",
+              "Phone": "Phone number",
+              "Email": "Email address",
+              "Password": "Password",
+              "NewPassword": "New password",
+              "CurrentPassword": "Current password",
+              "ShowPasswordButton": "Show password"
+          },
+          "Placeholders": {
+              "Name": "Enter name",
+              "Surname": "Enter surname",
+              "Phone": "+380 (xx) xxx-xx-xx",
+              "Email": "email@gmail.com",
+              "Password": "Enter password"
+          },
+          "InvalidText": {
+              "Name": "Name must consist of 2-20 letters of the Cyrillic or Latin alphabet.",
+              "Surname": "Surname must consist of 2-20 letters of the Cyrillic or Latin alphabet.",
+              "Phone": "Invalid phone number format",
+              "Email": "Invalid email format",
+              "Password": "Invalid password format"
+          },
+          "ErrorText": {
+              "IncorrectData": "Server: incorrect data"
+          }
+      }
+    }
+  },
+  "LotList": {
+    "Back": "Back",
+    "SortType": "sort type",
+    "LotType": "lot type",
+    "StateType": "state type",
+    "Clear": "Clear"
+  },  
+  
+  "UserList": {
+    "Header": "User List",
+    "AddUserButtonText": "Add user",
+    "Position": "Position",
+    "Role": "Role"
+  },
+  "NewLotPage": {
+    "Loading": "Data is Loading",
+    "NewLot": "New Lot",
+    "Cansel": "Cancel",
+    "Services": "Services",
+    "Amount" : "Amount: ",
+    "Create" : "Save changes and create a new lot",
+    "SelectServiceAmount" : "Select sevice and amount",
+    "Select": "Select",
+    "CancelText": "Cancel",
+    "AddProduct": "Add product to list",
+    "ProductList": "Product List",
+    "TotalPrice": "Price is ",
+    "Description": "Description",
+    "PleaseAddProduct": "",
+    "AddComment": "AddComment",
+    "CommentAdded": "Comment Added"
+  }
+}
