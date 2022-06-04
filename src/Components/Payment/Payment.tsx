@@ -1,102 +1,51 @@
-import React, { useState, useEffect, useRef } from "react";
+/* eslint-disable react-hooks/exhaustive-deps */
+import React, { useEffect, useState } from "react";
 
-import style from "./AgreementPage.module.sass";
-import GetPaymentToken from "./Services/GetPaymentToken";
-import ConnectionConfig from "../../Assets/jsonData/ConnectionConfig/ConnectionConfig.json";
-import axios from "axios";
+import { Row, Modal, Button, Container, Table } from "react-bootstrap";
 
-interface PaymentProps {}
+import style from "./PaymentStyle.module.sass";
+import { Trans } from "react-i18next";
+import BraintreeDropIn from "./Components/BraintreeDropIn/BraintreeDropIn";
 
-export default function Payment(props: PaymentProps){
-  const [token, setToken] = useState<string>("");
-
-  useEffect(() => {
-    GetPaymentToken({ setToken: (arg: string) => setToken(arg) });
-  }, []);
-
-  var client = require("braintree-web-drop-in");
-
-  // client.create({
-  //   authorization: token
-  // }, function (err: any, clientInstance: any) {
-  //   hostedFields.create(/* ... */);
-  // });
-
-  const onPaymentClick = () => {
-    client.create(
-      {
-        authorization: token,
-        container: "#dropin-container",
-        googlePay: {
-          googlePayVersion: 2,
-          merchantId: "merchant-id-from-google",
-          transactionInfo: {
-            totalPriceStatus: "FINAL",
-            totalPrice: "123.45",
-            currencyCode: "USD",
-          },
-          allowedPaymentMethods: [
-            {
-              type: "CARD",
-              parameters: {
-                // We recommend collecting and passing billing address information with all Google Pay transactions as a best practice.
-                billingAddressRequired: true,
-                billingAddressParameters: {
-                  format: "FULL",
-                },
-              },
-            },
-          ],
-        },
-      },
-      function (
-        err: any,
-        instance: {
-          requestPaymentMethod: (
-            arg0: (requestPaymentMethodErr: any, payload: any) => void
-          ) => void;
-        }
-      ) {
-
-        if (err) {
-          // Handle any errors that might've occurred when creating Drop-in
-          console.error(err);
-          return;
-        }
-
-
-        instance.requestPaymentMethod(function (
-          requestPaymentMethodErr: any,
-          payload: any
-        ) {
-          axios
-            .post(
-              `${
-                ConnectionConfig.ServerUrl +
-                ConnectionConfig.Routes.Payment.CreatePayment
-              }`,
-              payload,
-              {
-                headers: { Authorization: `Bearer ${token}` },
-              }
-            )
-            .then((responce) => {
-              var data = responce.data;
-              console.log(data);
-            })
-            .catch((e) => {
-              console.log(e);
-              alert(e);
-            });
-        });
-      }
-    );
-  };
-
-    return (
-      <div>
-        <button style={{width: "100px", height : "50px"}} onClick={onPaymentClick} />
-      </div>
-    );
-  
+interface PaymentProps {
+  show: boolean;
+  setShowPayment: (arg: boolean) => void;
+  AgreementId: string;
+  Price: number;
 }
+
+function Payment(props: PaymentProps) {
+  return (
+    <div>
+      <Modal
+        style={{ display: "flex", marginTop: "10%" }}
+        show={props.show}
+        // getOpenState={(e: any) => setDisApproveState(e)}
+        tabIndex="-1"
+      >
+        <Modal.Header>
+          <Modal.Title>
+            <Trans i18nKey="Payment">Payment</Trans>
+          </Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          <Trans i18nKey="PaymentDescription">You're agoing to make a payment for agreement</Trans>
+          <BraintreeDropIn show={true} onPaymentCompleted={() => {}} AgreementId={props.AgreementId} Price={props.Price}/>
+        </Modal.Body>
+        <Modal.Footer>
+          <div className="vr" />
+          <Button
+            variant="secondary"
+            onClick={() => {
+              props.setShowPayment(!props.show);
+            }}
+          >
+            <Trans i18nKey="FooterCancel">FooterCancel</Trans>
+          </Button>
+        </Modal.Footer>
+      </Modal>
+    </div>
+  );
+}
+
+export default Payment;

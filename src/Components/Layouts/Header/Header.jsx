@@ -157,27 +157,28 @@ function Header() {
   };
 
   const getUserLinks = () => {
-    if (localStorage.getItem("UserRole") === "Student") {
+    if (localStorage.getItem("UserRole") === "User") {
       return (
         <div className={style.header_links_container}>
-          <Nav.Link href="/home">
-            <Trans i18nKey="Home">Home</Trans>
+          <Nav.Link href="/statistics">
+            <Trans i18nKey="Statistics">Statistics</Trans>
           </Nav.Link>
-          <Nav.Link href="/lots">
-            <Trans i18nKey="Lots">Lots</Trans>
+          <Nav.Link href="/agreement-list">
+            <Trans i18nKey="AgreementList">Agreement list</Trans>
+          </Nav.Link>
+          <Nav.Link href="/new-lot">
+            <Trans i18nKey="CreateNewLot">create new lot</Trans>
           </Nav.Link>
         </div>
       );
     } else if (localStorage.getItem("UserRole") === "Admin") {
       return (
         <div className={style.header_links_container}>
-          <Nav.Link href="/statistics-page">
-            <Nav.Link href="/lots">
-              <Trans i18nKey="Statistics">Statistics</Trans>
-            </Nav.Link>
+          <Nav.Link href="/statistics">
+            <Trans i18nKey="Statistics">Statistics</Trans>
           </Nav.Link>
-          <Nav.Link href="/admin-task-list-page">
-            <Trans i18nKey="Lots">Lots</Trans>
+          <Nav.Link href="/agreement-list">
+            <Trans i18nKey="AgreementList">Agreement list</Trans>
           </Nav.Link>
           <Nav.Link href="/user-list-page">
             <Trans i18nKey="Users">Users</Trans>
@@ -215,8 +216,8 @@ function Header() {
           <Navbar.Toggle aria-controls="responsive-navbar-nav" />
           <Navbar.Collapse id="responsive-navbar-nav">
             <Nav className="mr-auto">
-              <Nav.Link href="/home">
-                <Trans i18nKey="Home">Home</Trans>
+              <Nav.Link href="/lot-list">
+                <Trans i18nKey="Lots">Lots</Trans>
               </Nav.Link>
               {getUserLinks()}
               <Nav.Link href="/about">

@@ -1,10 +1,11 @@
-import React from "react"
+import React, { useState } from "react";
 import Button from "react-bootstrap/Button";
 import LinkConfig from "../../../../../../Assets/jsonData/LinkConfig/LinkConfig.json";
 
 import { Link } from "react-router-dom";
 import { TableAgreement } from "../../../../../../Components/Types/Agreement";
 import { Trans } from "react-i18next";
+import Payment from "../../../../../../Components/Payment/Payment";
 
 interface TableElementProps {
   index: number;
@@ -12,9 +13,12 @@ interface TableElementProps {
   setApproveState: () => void;
   setDisApproveState: () => void;
   setAgreementNumber: (arg: number) => void;
+  isCustomer?: boolean;
 }
 
 function TableElement(props: TableElementProps) {
+  const [showPayment, setShowPayment] = useState<boolean>(false);
+
   const disApproveToggleShow = (number: number) => {
     props.setDisApproveState();
     props.setAgreementNumber(number);
@@ -36,25 +40,26 @@ function TableElement(props: TableElementProps) {
               state: { lotId: `${props.elementData.lotId}` },
             }}
           >
-            {" "}
             Lot
           </Link>
         )}
       </td>
-      <td>
-        {props.elementData && props.elementData.customerId && (
-          <Link
-            to={{
-              pathname:
-                LinkConfig.person.profile + `/${props.elementData.customerId}`,
-              state: { lotId: `${props.elementData.customerId}` },
-            }}
-          >
-            {" "}
-            Customer{" "}
-          </Link>
-        )}
-      </td>
+      {!props.isCustomer && (
+        <td>
+          {props.elementData && props.elementData.customerId && (
+            <Link
+              to={{
+                pathname:
+                  LinkConfig.person.profile +
+                  `/${props.elementData.customerId}`,
+                state: { lotId: `${props.elementData.customerId}` },
+              }}
+            >
+              Customer
+            </Link>
+          )}
+        </td>
+      )}
       <td>{props.elementData.description}</td>
       <td>{props.elementData.status}</td>
       <td>
@@ -72,17 +77,58 @@ function TableElement(props: TableElementProps) {
           .substring(0, props.elementData.endDate.indexOf("."))
           .replace("T", " ")}
       </td>
-      <td>
-        <Button
-          onClick={() =>
-            !props.elementData.isApprove ? approveToggleShow(props.index) : null
-          }
-          variant="dark"
-          disabled={props.elementData.isDisApprove ? true : false}
-        >
-          <Trans i18nKey="HeaderApprove">HeaderApprove</Trans>
-        </Button>
-      </td>
+      {props.isCustomer && <td>{props.elementData.price}</td>}
+      {props.isCustomer && (
+        <td>
+          {props.elementData && props.elementData.customerId && (
+            <Link
+              to={{
+                pathname:
+                  LinkConfig.lot_management.agreement.payments +
+                  `/${props.elementData.id}`,
+                state: { agreementId: `${props.elementData.id}` },
+              }}
+            >
+              <Trans i18nKey="Payments">Payments</Trans>
+            </Link>
+          )}
+        </td>
+      )}
+      {!props.isCustomer ? (
+        <td>
+          <Button
+            onClick={() =>
+              !props.elementData.isApprove
+                ? approveToggleShow(props.index)
+                : null
+            }
+            variant="dark"
+            disabled={props.elementData.isDisApprove ? true : false}
+          >
+            <Trans i18nKey="HeaderApprove">HeaderApprove</Trans>
+          </Button>
+        </td>
+      ) : (
+        <div>
+          <td>
+            <Payment
+              show={showPayment}
+              setShowPayment={setShowPayment}
+              AgreementId={props.elementData.id}
+              Price={props.elementData.price}
+            />
+            <Button
+              onClick={() => {
+                setShowPayment(!showPayment);
+              }}
+              variant="dark"
+              disabled={props.elementData.isDisApprove ? true : false}
+            >
+              <Trans i18nKey="PayForAgreement">PayForAgreement</Trans>
+            </Button>
+          </td>
+        </div>
+      )}
       <td>
         <Button
           onClick={() =>

@@ -1,5 +1,5 @@
 import axios from "axios";
-import { DetailedLot } from "../../../../Components/Types/Lot/Lot";
+import { DetailedLot } from "../../../../Components/Types/Lot";
 import ConnectionConfig from "../../../../Assets/jsonData/ConnectionConfig/ConnectionConfig.json";
 
 interface LoadDetailLotInfoServiceProps {

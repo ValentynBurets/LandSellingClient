@@ -10,7 +10,7 @@ import {
 } from "react-bootstrap";
 import Spinner from "react-bootstrap/spinner";
 
-import { SimpleLot } from "../../../Components/Types/Lot/Lot";
+import { SimpleLot } from "../../../Components/Types/Lot";
 import LoadLotsService from "./Services/LoadLotsService";
 import LotCardDeck from "../../../Components/LotCard/LotCardDeck/LotCardDeck";
 import TextData from "../../../Assets/jsonData/TextData/LotList.json";
@@ -98,6 +98,12 @@ function LotList(props: LotListProps) {
           </Spinner>
         ) : (
           <Container>
+            <div className={style.present_col}>
+              <div className={style.description}>
+                <h1>LAND AND BUILDING</h1>
+                <h5>Find your best offer for you with our service</h5>
+              </div>
+            </div>
             <Row className={style.lot_list_header_text}>
               <div>List of lots</div>
             </Row>

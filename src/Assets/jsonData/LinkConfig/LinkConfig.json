@@ -1,6 +1,5 @@
 {
   "home": {
-    "home": "/",
     "about": "/about"
   },
   "lot_management": {
@@ -11,14 +10,15 @@
     "agreement": {
       "agreement": "/agreement",
       "agreement_list": "/agreement-list",
-      "new_agreement": "/new-agreement"
+      "new_agreement": "/new-agreement",
+      "payments": "payments"
     },
-    "comonents": {
+    "components": {
       "map": "/map",
       "payment": "/payment"
     }
   },
   "person": {
     "profile": "/profile"
-  }
+  }  
 }

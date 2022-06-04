@@ -1,7 +1,11 @@
 import React from "react";
 import { Trans } from "react-i18next";
 
-function TheaderList() {
+interface TheaderListProps {
+  isCustomer?: boolean;
+}
+
+function TheaderList(props: TheaderListProps) {
   return (
     <thead>
       <tr className="text-center">
@@ -11,9 +15,11 @@ function TheaderList() {
         <th>
           <Trans i18nKey="LotLink">LotLink</Trans>
         </th>
-        <th>
-          <Trans i18nKey="CustomerLink">CustomerLink</Trans>
-        </th>
+        {!props.isCustomer && (
+          <th>
+            <Trans i18nKey="CustomerLink">CustomerLink</Trans>
+          </th>
+        )}
         <th>
           <Trans i18nKey="Description">Description</Trans>
         </th>
@@ -29,6 +35,18 @@ function TheaderList() {
         <th>
           <Trans i18nKey="EndDate">end date</Trans>
         </th>
+        {props.isCustomer && (
+          <th>
+            <Trans i18nKey="Price">price</Trans>
+          </th>
+        )}
+        {props.isCustomer && (
+          <th>
+            <Trans i18nKey="Payments">payments</Trans>
+          </th>
+        )}
+        <th></th>
+        <th></th>
       </tr>
     </thead>
   );

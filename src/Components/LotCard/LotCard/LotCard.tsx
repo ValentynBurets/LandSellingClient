@@ -1,15 +1,15 @@
-import { SetStateAction, useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { useHistory } from "react-router-dom";
 import { Card, Row, Col } from "react-bootstrap";
 import Coll from "react-bootstrap/Col";
 
 import LinkConfig from "../../../Assets/jsonData/LinkConfig/LinkConfig.json";
-import { SimpleLot } from "../../Types/Lot/Lot";
+import { SimpleLot } from "../../Types/Lot";
 import { LotImage } from "../../Types/LotImage";
-import Image from "react-bootstrap/Image";
 import LotImageCarousel from "../../Image/ImageCarousel/LotImageCarousel";
 import LoadImagesService from "./Service/LoadImagesService";
 import style from "./LotCardStyle.module.sass";
+import React from "react";
 
 interface lotCardProps {
   lot: SimpleLot;

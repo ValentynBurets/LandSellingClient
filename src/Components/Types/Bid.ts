@@ -5,3 +5,8 @@ export interface Bid{
   isWinner: boolean;
   date: string;
 }
+
+export interface CreateBid{
+  lotId: string;
+  value: number;
+}

@@ -1,6 +1,6 @@
 import axios from "axios";
 import ConnectionConfig from "../../../../Assets/jsonData/ConnectionConfig/ConnectionConfig.json";
-import {SimpleLot} from "../../../../Components/Types/Lot/Lot"
+import {SimpleLot} from "../../../../Components/Types/Lot"
 
 interface LoadServiceProps{
   selectedParams: any,

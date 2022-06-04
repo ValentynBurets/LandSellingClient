@@ -7,6 +7,7 @@ interface TbodyProps {
   setApproveState: () => void;
   setDisApproveState: () => void;
   setAgreementNumber: (arg: number) => void;
+  isCustomer?: boolean;
 }
 
 function Tbody(props: TbodyProps) {
@@ -14,6 +15,7 @@ function Tbody(props: TbodyProps) {
     <tbody>
       {props.bodyData && props.bodyData.map((elem: TableAgreement, index: number) => (
         <TableElement
+          isCustomer={props.isCustomer}
           elementData={elem}
           key={index}
           setApproveState={props.setApproveState}

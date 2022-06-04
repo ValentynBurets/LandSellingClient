@@ -1,28 +1,37 @@
-import React, { useState, useEffect, useRef } from "react";
-import ConnectionConfig from '../../../Assets/jsonData/ConnectionConfig/ConnectionConfig.json'
+import React from "react";
 
-import axios from 'axios'
+import ConnectionConfig from "../../../Assets/jsonData/ConnectionConfig/ConnectionConfig.json";
 
-interface GetPaymentTokenProps{
-  setToken: (arg: string) => void
-} 
+import axios from "axios";
 
-function GetPaymentToken(props: GetPaymentTokenProps): void{
+interface GetPaymentTokenProps {
+  setToken: (arg: string) => void;
+}
+
+function GetPaymentToken(props: GetPaymentTokenProps): void {
+  let token = localStorage.getItem("token");
 
   axios
-    .get(`${ConnectionConfig.ServerUrl + ConnectionConfig.Routes.Payment.GetPaymentToken}`)
+    .get(
+      `${
+        ConnectionConfig.ServerUrl +
+        ConnectionConfig.Routes.Payment.GetPaymentToken
+      }`,
+      {
+        headers: { Authorization: `Bearer ${token}` },
+      }
+    )
     .then((responce) => {
-      var data = responce.data
+      var data = responce.data;
       //console.log(data)
       if (data != null) {
-        props.setToken(data)
+        props.setToken(data);
       }
     })
     .catch((e) => {
-      props.setToken("")
-      console.log(e)
-    }
-  )
+      props.setToken("");
+      console.log(e);
+    });
 }
 
-export default GetPaymentToken
+export default GetPaymentToken;

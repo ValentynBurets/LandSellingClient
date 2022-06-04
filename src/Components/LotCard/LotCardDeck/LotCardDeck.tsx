@@ -1,6 +1,6 @@
 import { Container } from "react-bootstrap";
 import LotCard from "../LotCard/LotCard";
-import { SimpleLot } from "../../Types/Lot/Lot";
+import { SimpleLot } from "../../Types/Lot";
 
 interface TaskCardDeckProps {
   lots: SimpleLot[];

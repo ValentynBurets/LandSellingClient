@@ -1,4 +1,4 @@
-import React from "react"
+import React, { useState } from "react"
 import { PriceCoef } from "../../../../../Components/Types/PriceCoef";
 import TableElement from "./TableElement";
 
@@ -8,6 +8,8 @@ interface TbodyProps {
 }
 
 function Tbody(props: TbodyProps) {
+  const [isSelected, setIsSelected] = useState<number>(0);
+
   return (
     <tbody>
       {props.bodyData && props.bodyData.map((elem: PriceCoef, index: number) => (
@@ -16,6 +18,8 @@ function Tbody(props: TbodyProps) {
           key={index}
           setSelectedPriceCoefIdState={props.setSelectedPriceCoefIdState}
           index={index}
+          isSelected={isSelected}
+          setIsSelected={setIsSelected}
         />
       ))}
     </tbody>

@@ -20,7 +20,8 @@
         "Create": "PriceCoef/Create",
         "Update": "PriceCoef/Update",
         "Delete": "PriceCoef/Delete",
-        "GetAllPriceCoefByLotId": "PriceCoef/GetAllByLotId"
+        "GetAllPriceCoefByLotId": "PriceCoef/GetAllByLotId",
+        "Select": "PriceCoef/Select"
       },
       "Image": {
         "Create": "Image/Create",
@@ -30,7 +31,8 @@
       },
       "Payment": {
         "GetPaymentToken": "Payment/GetToken",
-        "CreatePayment": "Payment/Create"  
+        "CreatePayment": "Payment/Create", 
+        "GetByAgreementId": "Payment/GetByAgreementId"
       },
       "Bid": {
         "Create": "Bid/Create",
@@ -48,6 +50,7 @@
         "GetAll": "Agreement/GetAll",
         "GetByOwnerId": "Agreement/GetByOwnerId",
         "GetMy": "Agreement/GetMy",
+        "GetMyAsCustomer": "Agreement/GetMyAsCustomer",
         "Approve": "Agreement/Approve",
         "Disapprove": "Agreement/Disapprove"
       },

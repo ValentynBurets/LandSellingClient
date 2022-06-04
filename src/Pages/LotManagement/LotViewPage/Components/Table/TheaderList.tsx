@@ -9,11 +9,12 @@ function TheaderList() {
           <Trans i18nKey="Number">Number</Trans>
         </th>
         <th>
-          <Trans i18nKey="Days">days</Trans>
+          <Trans i18nKey="LotViewMonths">Months</Trans>
         </th>
         <th>
-          <Trans i18nKey="Price">price</Trans>
+          <Trans i18nKey="LotViewPrice">Price</Trans>
         </th>
+        <th></th>
       </tr>
     </thead>
   );

@@ -16,10 +16,14 @@
   "Statistics": "Statistics",
   "Users": "Users",
   "AboutUs": "About Us",
+  "CreateNewLot": "Create new lot",
+  "AgreementList": "Agreement list",
 
   "LS": "LS",
 
-  "AgreementsList": "list of agreements",
+  "MyAgreementsList": "list of my agreements",
+  "AgreementsListRequests": "list of agreements requests",
+  
   "Number": "№",
   "LotLink": "lot link",
   "CustomerLink": "customer link",
@@ -28,6 +32,10 @@
   "CreationDate": "creation date",
   "StartDate": "start date",
   "EndDate": "end date",
+  "PayForAgreement": "Pay",
+  "Payments": "payments",
+  "Payment": "Payment",
+  "PaymentDescription": "You're agoing to make a payment for agreement",
 
   "HeaderApprove": "approve",
   "HeaderDisapprove": "disapprove",
@@ -40,6 +48,7 @@
 
   "LotViewHeader": "Lot ",
   "LotViewBuyNow": "buy it now",
+  "LotViewRentNow": "rent it now",
   "LotViewPlaceBid": "place bid",
   "LotViewLoading": "Data is Loading",
   "LotViewNewLot": "New Lot",
@@ -49,84 +58,55 @@
   "LotViewCreate" : "Save changes and create a new lot",
   "LotViewSelectServiceAmount" : "Select sevice and amount",
   "LotViewSelect": "Select",
+  "LotViewSelected": "Selected",
   "LotViewCancelText": "Cancel",
   "LotViewAddProduct": "Add product to list",
   "LotViewProductList": "Product List",
   "LotViewTotalPrice": "Price is ",
   "LotViewDescription": "Description",
   "LotViewAddComment": "AddComment",
+  "LotViewMonths": "Months",
+  "LotViewPrice": "Price",
+  "Price": "Price",
+  "LotViewApproveRent": "Approve rent",
+  "LotViewBodyApprove": "You are going to create a requact for an agreement . To confirm press `continue` button or to exit press `cancel` button",
+  "LotViewBodyApproveBid": "Approve bid",
+  "LotViewBodyApproveBidDescription": "You are going to create a bid for this lot. To make it, you should anter bid value and press 'confirm' button or press `cancel` button to exit",
+  "LotViewBodyStartDate": "start date",
+  "LotViewBodyEndDate": "end date",
 
+  "LotViewCountry": "Country",
+  "LotViewRegion": "Region",
+  "LotViewCity": "City",
+  "LotViewStreet": "Street",
+  "LotViewHouse": "House",
+  "LotViewViews": "Views:",
 
-  "Header": {
-    "AboutUs": "About Us",
-    "LS": "LS 2022",
-    "AuthorizeBox": {
-      "Title": "Please log in or register",
+  "Back": "Back",
+  "SortType": "sort type",
+  "LotType": "lot type",
+  "StateType": "state type",
+  "Clear": "Clear",
 
-      "RegisterTab": {
-          "Title": "Register",
-          "ButtonText": "Register",
-          "SubmitButtonText": "Submit",
-          "Labels": {
-              "Name": "Name",
-              "Surname": "Surname",
-              "Phone": "Phone number",
-              "Email": "Email address",
-              "Password": "Password",
-              "NewPassword": "New password",
-              "CurrentPassword": "Current password",
-              "ShowPasswordButton": "Show password"
-          },
-          "Placeholders": {
-              "Name": "Enter name",
-              "Surname": "Enter surname",
-              "Phone": "+380 (xx) xxx-xx-xx",
-              "Email": "email@gmail.com",
-              "Password": "Enter password"
-          },
-          "InvalidText": {
-              "Name": "Name must consist of 2-20 letters of the Cyrillic or Latin alphabet.",
-              "Surname": "Surname must consist of 2-20 letters of the Cyrillic or Latin alphabet.",
-              "Phone": "Invalid phone number format",
-              "Email": "Invalid email format",
-              "Password": "Invalid password format"
-          },
-          "ErrorText": {
-              "IncorrectData": "Server: incorrect data"
-          }
-      }
-    }
-  },
-  "LotList": {
-    "Back": "Back",
-    "SortType": "sort type",
-    "LotType": "lot type",
-    "StateType": "state type",
-    "Clear": "Clear"
-  },  
- 
-  "UserList": {
-    "Header": "User List",
-    "AddUserButtonText": "Add user",
-    "Position": "Position",
-    "Role": "Role"
-  },
-  "NewLotPage": {
-    "Loading": "Data is Loading",
-    "NewLot": "New Lot",
-    "Cansel": "Cancel",
-    "Services": "Services",
-    "Amount" : "Amount: ",
-    "Create" : "Save changes and create a new lot",
-    "SelectServiceAmount" : "Select sevice and amount",
-    "Select": "Select",
-    "CancelText": "Cancel",
-    "AddProduct": "Add product to list",
-    "ProductList": "Product List",
-    "TotalPrice": "Price is ",
-    "Description": "Description",
-    "PleaseAddProduct": "",
-    "AddComment": "AddComment",
-    "CommentAdded": "Comment Added"
-  }
+  "Header": "User List",
+  "AddUserButtonText": "Add user",
+  "Position": "Position",
+  "Role": "Role",
+  
+  "Loading": "Data is Loading",
+  "NewLot": "New Lot",
+  "Cansel": "Cancel",
+  "Services": "Services",
+  "Amount" : "Amount: ",
+  "Create" : "Save changes and create a new lot",
+  "SelectServiceAmount" : "Select sevice and amount",
+  "Select": "Select",
+  "CancelText": "Cancel",
+  "AddProduct": "Add product to list",
+  "ProductList": "Product List",
+  "TotalPrice": "Price is ",
+    
+  "PleaseAddProduct": "",
+  "AddComment": "AddComment",
+  "CommentAdded": "Comment Added"
 }

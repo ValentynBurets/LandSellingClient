@@ -16,10 +16,14 @@
   "Statistics": "Статистика",
   "Users": "Користувачі",
   "AboutUs": "Про нас",
+  "CreateNewLot": "Cтворити нове оголошення",
+  "AgreementList": "Cписок угод",
   
   "LS": "ПЗ",
 
-  "AgreementsList": "список угод",
+  "MyAgreementsList": "Список угод до моїх оголошень",
+  "AgreementsListRequests": "Список створених мною угод",
+  
   "Number": "№",
   "LotLink": "оголошення",
   "CustomerLink": "замовник",
@@ -28,18 +32,26 @@
   "CreationDate": "дата створення",
   "StartDate": "початок дії",
   "EndDate": "кінець дії",
+  "PayForAgreement": "оплатити",
+  "Price": "Вартість",
+  "Payments": "платіжки",
+  "Payment": "Оплата",
+  "PaymentDescription": "Ви збираєтеся оплатити угоду",
 
   "HeaderApprove": "прийняти",
   "HeaderDisapprove": "відхилити",
-  "BodyDisapprove": "ви зираєтеся відхилити цю угоду. Щоб відхилити, натисніть відхилити або щоб вийти натисніть повернутися",
+  "BodyDisapprove": "ви збираєтеся відхилити цю угоду. Щоб відхилити, натисніть відхилити або щоб вийти натисніть повернутися",
   "BodyApprove": "ви зираєтеся прийняти цю угоду. Щоб прийняти, натисніть прийняти або щоб вийти натисніть повернутися",
+  "LotViewBodyApproveBid": "Зробити ставку",
+  "LotViewBodyApproveBidDescription": "Ви збираєтеся зробити ставку на це оголошення. Щоб зробити ставку уведіть суму ставки та написніть продовжити або щоб вийти натисніть повернутися",
   "FooterContinue": "продовжити",
   "FooterCancel": "повернутися",
 
-  "BadConnection": "Ви маєье проблеми із з'єднанням з API",
+  "BadConnection": "Ви маєте проблеми із з'єднанням до API",
   
   "LotViewHeader": "оголошення",
   "LotViewBuyNow": "купити це зараз",
+  "LotViewRentNow": "орендувати",
   "LotViewPlaceBid": "зробити ставку",
   "LotViewLoading": "дані завантажуються",
   "LotViewNewLot": "нове оголошення",
@@ -49,81 +61,49 @@
   "LotViewCreate" : "зберегти зміни та створити нове оголошення",
   "LotViewSelectServiceAmount" : "зберегти сервіси та кількість",
   "LotViewSelect": "вибрати",
+  "LotViewSelected": "вибрано",
   "LotViewTotalPrice": "кінцева ціна",
   "LotViewDescription": "опис",
   "LotViewAddComment": "додати коментар",
-
-
-  "Header": {
-    "AboutUs": "Про нас",
-    "LS": "ПЗ 2022",
-    "AuthorizeBox": {
-      "Title": "будь ласка увійдіть у систему",
-      
-      "RegisterTab": {
-          "Title": "Register",
-          "ButtonText": "Register",
-          "SubmitButtonText": "Submit",
-          "Labels": {
-              "Name": "Name",
-              "Surname": "Surname",
-              "Phone": "Phone number",
-              "Email": "Email address",
-              "Password": "Password",
-              "NewPassword": "New password",
-              "CurrentPassword": "Current password",
-              "ShowPasswordButton": "Show password"
-          },
-          "Placeholders": {
-              "Name": "Enter name",
-              "Surname": "Enter surname",
-              "Phone": "+380 (xx) xxx-xx-xx",
-              "Email": "email@gmail.com",
-              "Password": "Enter password"
-          },
-          "InvalidText": {
-              "Name": "Name must consist of 2-20 letters of the Cyrillic or Latin alphabet.",
-              "Surname": "Surname must consist of 2-20 letters of the Cyrillic or Latin alphabet.",
-              "Phone": "Invalid phone number format",
-              "Email": "Invalid email format",
-              "Password": "Invalid password format"
-          },
-          "ErrorText": {
-              "IncorrectData": "Server: incorrect data"
-          }
-      }
-    }
-  },
-  "LotList": {
-    "Back": "Back",
-    "SortType": "sort type",
-    "LotType": "lot type",
-    "StateType": "state type",
-    "Clear": "Clear"
-  },  
+  "LotViewMonths": "Місяці",
+  "LotViewPrice": "Ціна",
+  "LotViewApproveRent": "Підтвердити оренду",
+  "LotViewBodyApprove": "Ви збираєтеся подати заявку на створення угоди оренди. Щоб підтвердити, натисніть `Підтвердити оренду` або щоб вийти натисніть `повернутися`",
+  "LotViewBodyStartDate": "початкова дата",
+  "LotViewBodyEndDate": "кінцева дата",
   
-  "UserList": {
-    "Header": "User List",
-    "AddUserButtonText": "Add user",
-    "Position": "Position",
-    "Role": "Role"
-  },
-  "NewLotPage": {
-    "Loading": "Data is Loading",
-    "NewLot": "New Lot",
-    "Cansel": "Cancel",
-    "Services": "Services",
-    "Amount" : "Amount: ",
-    "Create" : "Save changes and create a new lot",
-    "SelectServiceAmount" : "Select sevice and amount",
-    "Select": "Select",
-    "CancelText": "Cancel",
-    "AddProduct": "Add product to list",
-    "ProductList": "Product List",
-    "TotalPrice": "Price is ",
-    "Description": "Description",
-    "PleaseAddProduct": "",
-    "AddComment": "AddComment",
-    "CommentAdded": "Comment Added"
-  }
+  "LotViewCountry": "Країна",
+  "LotViewRegion": "Область",
+  "LotViewCity": "Місто",
+  "LotViewStreet": "Вулиця",
+  "LotViewHouse": "Будинок",
+  "LotViewViews": "Кількість переглядів:",
+
+  "Back": "Back",
+  "SortType": "sort type",
+  "LotType": "lot type",
+  "StateType": "state type",
+  "Clear": "Clear",
+  
+  "Header": "User List",
+  "AddUserButtonText": "Add user",
+  "Position": "Position",
+  "Role": "Role",
+  
+  "Loading": "Data is Loading",
+  "NewLot": "New Lot",
+  "Cansel": "Cancel",
+  "Services": "Services",
+  "Amount" : "Amount: ",
+  "Create" : "Save changes and create a new lot",
+  "SelectServiceAmount" : "Select sevice and amount",
+  "Select": "Select",
+  "CancelText": "Cancel",
+  "AddProduct": "Add product to list",
+  "ProductList": "Product List",
+  "TotalPrice": "Price is ",
+  "PleaseAddProduct": "",
+  "AddComment": "AddComment",
+  "CommentAdded": "Comment Added"
+  
 }

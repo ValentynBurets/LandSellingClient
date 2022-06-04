@@ -94,10 +94,6 @@ export default function NewLot() {
     handleCheckChangeFunction(value);
   }, []);
 
-  // useEffect(() => {
-  //   console.log(lotData);
-  // }, [lotData]);
-
   var options = {
     weekday: "long",
     year: "numeric",

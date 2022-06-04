@@ -1,6 +1,6 @@
 export interface PriceCoef{
   id: string;
   number: number;
-  daysCount: number;
+  monthCount: number;
   value: number;
 }

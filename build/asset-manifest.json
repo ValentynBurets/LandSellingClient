@@ -1,0 +1,28 @@
+{
+  "files": {
+    "main.css": "/static/css/main.fd7a6ba8.chunk.css",
+    "main.js": "/static/js/main.90948c5a.chunk.js",
+    "main.js.map": "/static/js/main.90948c5a.chunk.js.map",
+    "runtime-main.js": "/static/js/runtime-main.f669ad30.js",
+    "runtime-main.js.map": "/static/js/runtime-main.f669ad30.js.map",
+    "static/css/2.b0bc1e73.chunk.css": "/static/css/2.b0bc1e73.chunk.css",
+    "static/js/2.b59eeba8.chunk.js": "/static/js/2.b59eeba8.chunk.js",
+    "static/js/2.b59eeba8.chunk.js.map": "/static/js/2.b59eeba8.chunk.js.map",
+    "static/js/3.08a6c0bb.chunk.js": "/static/js/3.08a6c0bb.chunk.js",
+    "static/js/3.08a6c0bb.chunk.js.map": "/static/js/3.08a6c0bb.chunk.js.map",
+    "index.html": "/index.html",
+    "static/css/2.b0bc1e73.chunk.css.map": "/static/css/2.b0bc1e73.chunk.css.map",
+    "static/css/main.fd7a6ba8.chunk.css.map": "/static/css/main.fd7a6ba8.chunk.css.map",
+    "static/js/2.b59eeba8.chunk.js.LICENSE.txt": "/static/js/2.b59eeba8.chunk.js.LICENSE.txt",
+    "static/media/Logo.87bb7ff2.png": "/static/media/Logo.87bb7ff2.png",
+    "static/media/Valentyn.56c19e6e.jpg": "/static/media/Valentyn.56c19e6e.jpg",
+    "static/media/compass.af81e567.svg": "/static/media/compass.af81e567.svg"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.f669ad30.js",
+    "static/css/2.b0bc1e73.chunk.css",
+    "static/js/2.b59eeba8.chunk.js",
+    "static/css/main.fd7a6ba8.chunk.css",
+    "static/js/main.90948c5a.chunk.js"
+  ]
+}

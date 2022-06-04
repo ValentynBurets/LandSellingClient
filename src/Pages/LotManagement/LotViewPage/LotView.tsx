@@ -1,39 +1,35 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import React from "react"
+import React from "react";
 import { useCallback, useEffect, useState } from "react";
-import { useHistory, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import Spinner from "react-bootstrap/spinner";
-import { Container, Col, Row, Button, Table } from "react-bootstrap";
+import { Container, Col, Row } from "react-bootstrap";
 
-// import { BootstrapTable, TableHeaderColumn } from "react-bootstrap-table";
+import { Trans } from "react-i18next";
 
 import LoadDetailLotInfoService from "./Services/LoadDetailLotInfoService";
-
-import { DetailedLot } from "../../../Components/Types/Lot/Lot";
 import UpdateLotViewsService from "./Services/UpdateLotViewsService";
 import LoadImagesService from "../../../Components/LotCard/LotCard/Service/LoadImagesService";
 import { LotImage } from "../../../Components/Types/LotImage";
-import TextData from "../../../Assets/jsonData/TextData/LotView.json";
+import { DetailedLot } from "../../../Components/Types/Lot";
+import { PriceCoef } from "../../../Components/Types/PriceCoef";
+import { Bid } from "../../../Components/Types/Bid";
+
+import LotImageCarousel from "../../../Components/Image/ImageCarousel/LotImageCarousel";
+import MapComponent from "../../../Components/Map/MapComponent";
+
+import AuctionLot from "./Components/BuyLot/BuyLot";
+import RentLot from "./Components/RentLot/RentLot";
+
+import LoadBidsService from "./Services/LoadBidsService";
+import LoadPriceCoefService from "./Services/LoadPriceCoefService";
 
 import style from "./LotView.module.sass";
-import LotImageCarousel from "../../../Components/Image/ImageCarousel/LotImageCarousel";
-import LoadPriceCoefService from "./Services/LoadPriceCoefService";
-import { PriceCoef } from "../../../Components/Types/PriceCoef";
-import MapComponent from "../../../Components/Map/MapComponent";
-import LoadBidsService from "./Services/LoadBidsService";
-import { Bid } from "../../../Components/Types/Bid";
-import CountdownTimer from "../../../Components/TimeCounter/CountdownTimer";
-import LinkConfig from "../../../Assets/jsonData/LinkConfig/LinkConfig.json";
-import { CreateAgreement } from "../../../Components/Types/Agreement";
-import CreateNewAgreementService from "./Services/CreateNewAgreementService";
-import TheaderList from "./Components/Table/TheaderList";
-import Tbody from "./Components/Table/Tbody";
 
 interface LotViewProps {}
 
 function LotView(props: LotViewProps) {
   const params: { id: string } = useParams();
-  let history = useHistory();
 
   const [date, setDateFunction] = useState<string>();
   const [remainingTime, setRemainingTime] = useState<string>("");
@@ -51,6 +47,7 @@ function LotView(props: LotViewProps) {
     publicationDate: "",
     buyPrice: 0,
     minBidPrice: 0,
+    minBidStep: 0,
     auctionDuration: 0,
     isRent: false,
     isAuction: false,
@@ -80,16 +77,6 @@ function LotView(props: LotViewProps) {
   const [lot, setLot] = useState<DetailedLot>(lotInitialState);
 
   const [lotInfo, setLotInfo] = useState<DetailedLot>(lotInitialState);
-
-  const [agreement, setAgreement] = useState<CreateAgreement>({
-    lotId: "",
-    description: "test description",
-    startDate: new Date("2022-08-01T11:55:03.030Z").toISOString(),
-    endDate: new Date("2022-12-06T11:55:03.030Z").toISOString(),
-  });
-
-  const [selectedPriceCoefIdState, setSelectedPriceCoefIdState] = useState<string>()
-
 
   const [dataLoading, setDataLoading] = useState({
     isLoading: true,
@@ -132,7 +119,6 @@ function LotView(props: LotViewProps) {
         });
       }
     }
-    setAgreement((prev) => ({ ...prev, lotId: lot.id }));
 
     setDataLoading((prev: any) => ({
       ...prev,
@@ -164,18 +150,6 @@ function LotView(props: LotViewProps) {
     console.log("lotInfo", lotInfo);
   }, [lotInfo.publicationDate]);
 
-  const BuyLot = () => {
-    console.log(agreement)
-    CreateNewAgreementService({agreement: agreement});
-  };
-
-  const PlaceBid = () => {
-    history.push({
-      pathname: LinkConfig.lot_management.agreement.new_agreement,
-      state: { lotId: `${lotInfo.id}` },
-    });
-  };
-
   return (
     <div className={style.lotview_page_background}>
       <Container>
@@ -187,7 +161,9 @@ function LotView(props: LotViewProps) {
           <Container>
             {/* Header row */}
             <div>
-              <div className={style.header_text}>{TextData.Header}</div>
+              <div className={style.header_text}>
+                <Trans i18nKey="LotViewHeader">lot</Trans>
+              </div>
             </div>
             {/* Image donwnload and set main properties */}
             <Row>
@@ -205,81 +181,12 @@ function LotView(props: LotViewProps) {
                 </label>
                 <label className={style.text_header}>{lotInfo.header}</label>
                 {lotInfo.isAuction && (
-                  <div className={style.auction_text_style}>
-                    <label className={style.text_style}>
-                      {lotInfo.bids
-                        ? "Highest bid is " + lotInfo.bids[lotInfo.bids.length]
-                        : "Minimum bid: " + lotInfo.minBidPrice}
-                      {" or Buy it now for " + lotInfo.buyPrice}
-                    </label>
-                    <div>
-                      <label className={style.text_style}>Your Pick</label>
-
-                      <div className={style.auction_options_style}>
-                        <div className={style.bid_container}>
-                          <CountdownTimer
-                            targetDate={new Date(remainingTime)}
-                          />
-                          <label className={style.bids_count_style}>
-                            {lotInfo.bids
-                              ? lotInfo.bids.length + ". bids"
-                              : "0 bids"}
-                          </label>
-                        </div>
-                        <Button
-                          className={style.button_style}
-                          variant="primary"
-                          onClick={PlaceBid}
-                          style={{
-                            backgroundColor: "#4CAF50",
-                            borderColor: "#2f6d31",
-                          }}
-                        >
-                          {TextData.PlaceBid}
-                        </Button>
-                        <Button
-                          className={style.button_style}
-                          variant="primary"
-                          onClick={BuyLot}
-                          style={{
-                            backgroundColor: "#4CAF50",
-                            borderColor: "#2f6d31",
-                          }}
-                        >
-                          {TextData.BuyNow}
-                        </Button>
-                      </div>
-                    </div>
-                  </div>
+                  <AuctionLot lotInfo={lotInfo} remainingTime={remainingTime}/>
                 )}
-
                 {lotInfo.isRent && (
-                  <div className={style.price_coefs_style}>
-                    {/* <BootstrapTable
-                      data={lotInfo.priceCoefs}
-                      bodyStyle={{ border: "none" }}
-                      tableStyle={{ border: "none" }}
-                      headerStyle={{ border: "none !important" }}
-                      version="4"
-                    >
-                      <TableHeaderColumn width="150" isKey dataField="number">
-                        Id
-                      </TableHeaderColumn>
-                      <TableHeaderColumn width="150" dataField="daysCount">
-                        Months
-                      </TableHeaderColumn>
-                      <TableHeaderColumn width="150" dataField="value">
-                        Cost
-                      </TableHeaderColumn>
-                    </BootstrapTable> */}
-                    <Table responsive>
-                      <TheaderList />
-                      <Tbody
-                        bodyData={lotInfo.priceCoefs}
-                        setSelectedPriceCoefIdState={(arg: string) => setSelectedPriceCoefIdState(arg)}
-                      />
-                    </Table>
-                  </div>
+                  <RentLot
+                    lotInfo={lotInfo}
+                  />
                 )}
               </Col>
             </Row>
@@ -287,7 +194,9 @@ function LotView(props: LotViewProps) {
             <Row>
               <Col className={style.container_style}>
                 <div className={style.description_col_style}>
-                  <label>{TextData.Description}</label>
+                  <label>
+                    <Trans i18nKey="LotViewDescription">Description</Trans>
+                  </label>
                   <textarea
                     className={style.description_area_style}
                     name="description"
@@ -311,7 +220,9 @@ function LotView(props: LotViewProps) {
               </Col>
               <Col className={style.text_input_col}>
                 <div className={style.text_input}>
-                  <label>Country</label>
+                  <label>
+                    <Trans i18nKey="LotViewCountry">Country</Trans>
+                  </label>
                   <input
                     type="header"
                     className="form-control"
@@ -324,7 +235,9 @@ function LotView(props: LotViewProps) {
                   />
                 </div>
                 <div className={style.text_input}>
-                  <label>Region</label>
+                  <label>
+                    <Trans i18nKey="LotViewRegion">Region</Trans>
+                  </label>
                   <input
                     type="header"
                     className="form-control"
@@ -337,7 +250,9 @@ function LotView(props: LotViewProps) {
                   />
                 </div>
                 <div className={style.text_input}>
-                  <label>City</label>
+                  <label>
+                    <Trans i18nKey="LotViewCity">City</Trans>
+                  </label>
                   <input
                     type="header"
                     className="form-control"
@@ -350,7 +265,9 @@ function LotView(props: LotViewProps) {
                   />
                 </div>
                 <div className={style.text_input}>
-                  <label>Street</label>
+                  <label>
+                    <Trans i18nKey="LotViewStreet">Street</Trans>
+                  </label>
                   <input
                     type="header"
                     className="form-control"
@@ -363,7 +280,9 @@ function LotView(props: LotViewProps) {
                   />
                 </div>
                 <div className={style.text_input}>
-                  <label>House</label>
+                  <label>
+                    <Trans i18nKey="LotViewHouse">House</Trans>
+                  </label>
                   <input
                     type="header"
                     className="form-control"
@@ -379,7 +298,10 @@ function LotView(props: LotViewProps) {
             </Row>
             <Row className={style.save_row_style}>
               <Col className={style.container_style}>
-                <label>Views: {lotInfo.views}</label>
+                <label>
+                  <Trans i18nKey="LotViewViews">Views</Trans>
+                  {lotInfo.views}
+                </label>
               </Col>
             </Row>
           </Container>

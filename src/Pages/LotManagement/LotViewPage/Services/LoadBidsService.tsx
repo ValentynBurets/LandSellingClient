@@ -12,7 +12,7 @@ function LoadBidsService(props: LoadBidsServiceProps) {
     .get(
       `${
         ConnectionConfig.ServerUrl +
-        ConnectionConfig.Routes.Bid.Create +
+        ConnectionConfig.Routes.Bid.GetAllByLotId +
         "?LotId=" +
         props.lotId
       }`

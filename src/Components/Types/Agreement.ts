@@ -14,6 +14,7 @@ export interface FullAgreement{
   creationDate:	string;
   startDate:	string;
   endDate:	string; 
+  price: number;
 }
 
 export interface TableAgreement{
@@ -28,4 +29,5 @@ export interface TableAgreement{
   endDate:	string; 
   isApprove: boolean;
   isDisApprove: boolean;
+  price: number;
 }

@@ -1,23 +1,19 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
-import { Layout } from "./Components/Layouts/Layout/Layout";
 
-import StartPage from "./Pages/StartPage/StartPage";
+import { Layout } from "./Components/Layouts/Layout/Layout";
 import NewLot from "./Pages/LotManagement/NewLot/NewLot.js"
 import LotList from "./Pages/LotManagement/LotListPage/LotList"
 import LotView from "./Pages/LotManagement/LotViewPage/LotView"
 import AgreementListPage from "./Pages/LotManagement/AgreementManagement/AgreementListPage/AgreementListPage"
-import MapComponent from "./Components/Map/MapComponent";
-import Payment from "./Components/Payment/Payment"
+import PaymentList from "./Pages/LotManagement/AgreementManagement/PaymentList/PaymentList"
 import About from "./Pages/AboutPage/About"
 import UserListPage from "./Pages/UserListPage/UserListPage"
-
+import StatisticsPage from "./Pages/StatisticsPage/StatisticsPage"
 
 import "bootstrap/dist/css/bootstrap.min.css";
 
-
 function App() {
-
   return (
       <Router>
         <div>
@@ -30,25 +26,13 @@ function App() {
               <Link to="/about">About</Link>
             </li>
             <li>
-              <Link to="/autorization">AutorizationPage</Link>
-            </li>
-            <li>
               <Link to="/user-list">UserListPage</Link>
             </li>
             <li>
               <Link to="/new-lot">CrateNewLot</Link>
             </li>
             <li>
-              <Link to="/map">MapComponent</Link>
-            </li>
-            <li>
-              <Link to="/agreement">AgreementPage</Link>
-            </li>
-            <li>
               <Link to="/agreement-list">AgreementListPage</Link>
-            </li>
-            <li>
-              <Link to="/new-agreement">NewAgreementPage</Link>
             </li>
             <li>
               <Link to="/payment">Payment</Link>
@@ -59,24 +43,27 @@ function App() {
             <li>
               <Link to="/lot"> LotView</Link>
             </li>
+            <li>
+              <Link to="/statistics-page"> Statistics</Link>
+            </li>
           </ul>
         </nav>
       </div>
       <Layout>
         {/* to add a new page just add a route here */}
-        <Route exact path="/" component={StartPage} />
-        <Route exact path="/index" component={StartPage} />
-        <Route exact path="/index.html" component={StartPage} />
-        <Route exact path="/home" component={LotList} />
-        <Route exact path="/new-lot" component={NewLot} />
-        <Route exact path="/lot-list" component={LotList} />
-        <Route exact path="/lot" component={LotView} />
-        <Route exact path="/lot/:id" component={LotView} />
-        <Route exact path="/map" component={MapComponent} />
-        <Route exact path="/agreement-list" component={AgreementListPage} />
-        <Route exact path="/payment" component={Payment} />
-        <Route exact path="/about" component={About} />
-        <Route exact path="/user-list" component={UserListPage} />
+        {/* <Route path="/" component={LotList} /> */}
+        <Route path="/index" component={LotList} />
+        <Route path="/index.html" component={LotList} />
+        <Route path="/new-lot" component={NewLot} />
+        <Route path="/lot-list" component={LotList} />
+        <Route path="/lot" component={LotView} />
+        <Route path="/lot/:id" component={LotView} />
+        <Route path="/" componenet={StatisticsPage} />
+        <Route path="/payments" componenet={PaymentList} />
+        <Route path="/payments/:i" componenet={PaymentList} />
+        <Route path="/agreement-list" component={AgreementListPage} />
+        <Route path="/about" component={About} />
+        <Route path="/user-list" component={UserListPage} />
       </Layout>
     </Router>
   );

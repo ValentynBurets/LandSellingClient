@@ -7,7 +7,7 @@ const saveLot = (lotData, setLotId) => {
     return;
   }
 
-  console.log(lotData)
+  // console.log(lotData)
   let token = localStorage.getItem("token");
   axios
     .post(

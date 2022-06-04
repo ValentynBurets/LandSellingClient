@@ -20,7 +20,7 @@ const LoadImagesService = (props: LoadServiceProps) => {
     )
     .then((responce) => {
       var data = responce.data;
-      console.log(data)
+      //console.log(data)
       props.setImageArray(data);
     })
     .catch((e: any) => {
