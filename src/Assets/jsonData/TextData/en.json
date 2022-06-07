@@ -18,11 +18,38 @@
   "AboutUs": "About Us",
   "CreateNewLot": "Create new lot",
   "AgreementList": "Agreement list",
+  "Account": "Account",
+  "Navigation": "Navigation",
+  "AllRightsReserved": "All rights reserved",
+  "SocialMedia": "Social media",
+  "ContactUs": "Contact us",
+  "Rules": "Rules",
 
   "LS": "LS",
 
+  "LandBuilding": "LAND AND BUILDING",
+  "BestOffer": "Find your best offer for you with our service",
+  "LotList": "List of lots",
+  "Back": "Back",
+  "SortType": "sort type",
+  "LotType": "lot type",
+  "StateType": "state type",
+  "Clear": "clear",
+
+
+  "WhatISLS": "What is LandSelling",
+  "OurTeam": "Our team",
+
   "MyAgreementsList": "list of my agreements",
   "AgreementsListRequests": "list of agreements requests",
+  "UsedInstruments": "Used instruments",
+  "WeTeam": "We are a team of young professionals who want to develop a new and unique products that will not leave you indifferent.",
+  "OurMainGoal": "Our main goal is to gain maximum skills in the development of this site to apply them in the future in new and even better projects. Each of us wants to develop in this direction in the future and develop better and better projects.",
+  "PartOfThesis": "As part of this thesis, a web system for the sale and lease of land and real estate was designed and implemented. The system provides for its use by real estate companies. To do this, the system has a user-friendly interface and various opportunities for sale or lease of land and real estate.",
+  "WhoWeAre": "Who we are?",
+  "MainGoal": "Our main goal",
+  "React": "React (also known as React.js or ReactJS) is an open-source front-end JavaScript library for building user interfaces or UI components. It is maintained by Facebook and a community of individual developers and companies. React can be used as a base in the development of single-page or mobile applications. However, React is only concerned with state management and rendering that state to the DOM, so creating React applications usually requires the use of additional libraries for routing, as well as certain client-side functionality",
+  "Net": "The .NET Framework (pronounced as 'dot net') is a software framework developed by Microsoft that runs primarily on Microsoft Windows. It includes a large class library called Framework Class Library (FCL) and provides language interoperability (each language can use code written in other languages) across several programming languages. Programs written for .NET Framework execute in a software environment (in contrast to a hardware environment) named the Common Language Runtime (CLR). The CLR is an application virtual machine that provides services such as security, memory management, and exception handling. As such, computer code written using .NET Framework is called 'managed code'. FCL and CLR together constitute the .NET Framework.",
   
   "Number": "№",
   "LotLink": "lot link",
@@ -81,12 +108,6 @@
   "LotViewStreet": "Street",
   "LotViewHouse": "House",
   "LotViewViews": "Views:",
-
-  "Back": "Back",
-  "SortType": "sort type",
-  "LotType": "lot type",
-  "StateType": "state type",
-  "Clear": "Clear",
 
   "Header": "User List",
   "AddUserButtonText": "Add user",

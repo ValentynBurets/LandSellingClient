@@ -5,7 +5,6 @@
       "Register": "Authentication/RegisterCustomer",
       "RegisterUser": "Authentication/RegisterUser",
       "RegisterAdmin": "Authentication/RegisterAdmin",
-      
       "Lot": {
         "Create": "Lot/Create",
         "GetAll": "Lot/GetAll",

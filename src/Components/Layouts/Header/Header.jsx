@@ -14,6 +14,7 @@ import axios from "axios";
 
 import TextData from "../../../Assets/jsonData/TextData/Header.json";
 import ConnectionConfig from "../../../Assets/jsonData/ConnectionConfig/ConnectionConfig.json";
+import LinkConfig from "../../../Assets/jsonData/LinkConfig/LinkConfig.json";
 import { useTranslation, Trans } from "react-i18next";
 
 import style from "./Header.module.sass";
@@ -160,13 +161,10 @@ function Header() {
     if (localStorage.getItem("UserRole") === "User") {
       return (
         <div className={style.header_links_container}>
-          <Nav.Link href="/statistics">
-            <Trans i18nKey="Statistics">Statistics</Trans>
-          </Nav.Link>
           <Nav.Link href="/agreement-list">
             <Trans i18nKey="AgreementList">Agreement list</Trans>
           </Nav.Link>
-          <Nav.Link href="/new-lot">
+          <Nav.Link href={LinkConfig.lot_management.new_lot}>
             <Trans i18nKey="CreateNewLot">create new lot</Trans>
           </Nav.Link>
         </div>
@@ -174,13 +172,10 @@ function Header() {
     } else if (localStorage.getItem("UserRole") === "Admin") {
       return (
         <div className={style.header_links_container}>
-          <Nav.Link href="/statistics">
-            <Trans i18nKey="Statistics">Statistics</Trans>
-          </Nav.Link>
-          <Nav.Link href="/agreement-list">
+          <Nav.Link href={LinkConfig.lot_management.agreement.agreement_list}>
             <Trans i18nKey="AgreementList">Agreement list</Trans>
           </Nav.Link>
-          <Nav.Link href="/user-list-page">
+          <Nav.Link href={LinkConfig.person.user_list}>
             <Trans i18nKey="Users">Users</Trans>
           </Nav.Link>
         </div>
@@ -192,7 +187,7 @@ function Header() {
     <>
       <Navbar collapseOnSelect expand="md" bg="dark" variant="dark">
         <Container>
-          <Navbar.Brand href="/home">
+          <Navbar.Brand href="/">
             <Trans i18nKey="LS">LS</Trans>
           </Navbar.Brand>
 
@@ -203,6 +198,7 @@ function Header() {
                 style={{
                   fontWeight: i18n.resolvedLanguage === lng ? "bold" : "normal",
                 }}
+                className={style.lang_button_style}
                 type="submit"
                 onClick={() => {
                   i18n.changeLanguage(lng);
@@ -218,6 +214,9 @@ function Header() {
             <Nav className="mr-auto">
               <Nav.Link href="/lot-list">
                 <Trans i18nKey="Lots">Lots</Trans>
+              </Nav.Link>
+              <Nav.Link href={LinkConfig.statistics}>
+                <Trans i18nKey="Statistics">Statistics</Trans>
               </Nav.Link>
               {getUserLinks()}
               <Nav.Link href="/about">

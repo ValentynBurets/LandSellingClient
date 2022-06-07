@@ -16,6 +16,7 @@ import LotCardDeck from "../../../Components/LotCard/LotCardDeck/LotCardDeck";
 import TextData from "../../../Assets/jsonData/TextData/LotList.json";
 
 import style from "./LotListStyle.module.sass";
+import { Trans } from "react-i18next";
 
 interface LotListProps {}
 
@@ -100,94 +101,84 @@ function LotList(props: LotListProps) {
           <Container>
             <div className={style.present_col}>
               <div className={style.description}>
-                <h1>LAND AND BUILDING</h1>
-                <h5>Find your best offer for you with our service</h5>
+                <h1>
+                  <Trans i18nKey="LandBuilding">LAND AND BUILDING</Trans>
+                </h1>
+                <h5>
+                  <Trans i18nKey="BestOffer">
+                    Find your best offer for you with our service
+                  </Trans>
+                </h5>
               </div>
             </div>
             <Row className={style.lot_list_header_text}>
-              <div>List of lots</div>
+              <div>
+                <Trans i18nKey="LotsList">List of lots</Trans>
+              </div>
             </Row>
 
-            <Row className={style.top_row_options_style}>
-              <Col md="auto">
-                <Row>
-                  <Col>
-                    <label className={style.sort_label_style}>
-                      {TextData.SortType}
-                    </label>
-                    <DropdownButton
-                      className={style.drop_down_button}
-                      title={selectedParams.sortType}
-                      onSelect={setSortTypeHandler}
-                    >
-                      {SortTypes.map((item, id) => (
-                        <Dropdown.Item key={id} eventKey={item}>
-                          {item}
-                        </Dropdown.Item>
-                      ))}
-                    </DropdownButton>
-                  </Col>
-                  <Col style={{ width: "6rem" }}>
-                    <label className={style.sort_label_style}>
-                      {TextData.LotType}
-                    </label>
-                    <DropdownButton
-                      className={style.drop_down_button}
-                      title={selectedParams.lotType}
-                      onSelect={setLotTypeHandler}
-                    >
-                      {LotTypes.map((item, id) => (
-                        <Dropdown.Item key={id} eventKey={item}>
-                          {item}
-                        </Dropdown.Item>
-                      ))}
-                    </DropdownButton>
-                  </Col>
-                  <Col>
-                    <label className={style.sort_label_style}>
-                      {TextData.StateType}
-                    </label>
-                    <DropdownButton
-                      className={style.drop_down_button}
-                      title={selectedParams.state}
-                      onSelect={setStateHandler}
-                    >
-                      {States.map((item, id) => (
-                        <Dropdown.Item key={id} eventKey={item}>
-                          {item}
-                        </Dropdown.Item>
-                      ))}
-                    </DropdownButton>
-                  </Col>
-                  <Col style={{ display: "flex", justifyContent: "bottom" }}>
-                    <Button
-                      style={{
-                        width: "5rem",
-                        height: "2.5rem",
-                        marginTop: "1.5rem",
-                      }}
-                      variant="primary"
-                      onClick={clearSortTypes}
-                    >
-                      {TextData.Clear}
-                    </Button>
-                  </Col>
-                </Row>
-              </Col>
-              <Col md={7} className={style.top_row_back_button}>
+            <div className={style.top_row_options_style}>
+              <div className={style.sort_col_style}>
+                <label className={style.sort_label_style}>
+                  <Trans i18nKey="SortType">sort type</Trans>
+                </label>
+                <DropdownButton
+                  style={{width: "100px"}}
+                  className={style.drop_down_button}
+                  title={selectedParams.sortType}
+                  onSelect={setSortTypeHandler}
+                >
+                  {SortTypes.map((item, id) => (
+                    <Dropdown.Item key={id} eventKey={item}>
+                      {item}
+                    </Dropdown.Item>
+                  ))}
+                </DropdownButton>
+              </div>
+              <div>
+                <label className={style.sort_label_style}>
+                  <Trans i18nKey="LotType">lot type</Trans>
+                </label>
+                <DropdownButton
+                  className={style.drop_down_button}
+                  title={selectedParams.lotType}
+                  onSelect={setLotTypeHandler}
+                >
+                  {LotTypes.map((item, id) => (
+                    <Dropdown.Item key={id} eventKey={item}>
+                      {item}
+                    </Dropdown.Item>
+                  ))}
+                </DropdownButton>
+              </div>
+              <div>
+                <label className={style.sort_label_style}>
+                  <Trans i18nKey="StateType">state type</Trans>
+                </label>
+                <DropdownButton
+                  className={style.drop_down_button}
+                  title={selectedParams.state}
+                  onSelect={setStateHandler}
+                >
+                  {States.map((item, id) => (
+                    <Dropdown.Item key={id} eventKey={item}>
+                      {item}
+                    </Dropdown.Item>
+                  ))}
+                </DropdownButton>
+              </div>
+              <div>
                 <Button
                   style={{
-                    width: "5rem",
-                    height: "2.5rem",
                     marginTop: "1.5rem",
                   }}
                   variant="primary"
-                  onClick={back}
+                  onClick={clearSortTypes}
                 >
-                  {TextData.Back}
+                  <Trans i18nKey="Clear">clear</Trans>
                 </Button>
-              </Col>
-            </Row>
+              </div>
+            </div>
             <Col>{lots && <LotCardDeck lots={lots} />}</Col>
           </Container>
         )}

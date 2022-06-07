@@ -9,14 +9,13 @@ import AgreementListPage from "./Pages/LotManagement/AgreementManagement/Agreeme
 import PaymentList from "./Pages/LotManagement/AgreementManagement/PaymentList/PaymentList"
 import About from "./Pages/AboutPage/About"
 import UserListPage from "./Pages/UserListPage/UserListPage"
-import StatisticsPage from "./Pages/StatisticsPage/StatisticsPage"
-
+import StatisticCharts from "./Pages/StatisticCharts/StatisticCharts"
 import "bootstrap/dist/css/bootstrap.min.css";
 
 function App() {
   return (
       <Router>
-        <div>
+        {/* <div>
         <nav>
           <ul>
             <li>
@@ -48,22 +47,22 @@ function App() {
             </li>
           </ul>
         </nav>
-      </div>
+      </div> */}
       <Layout>
         {/* to add a new page just add a route here */}
-        {/* <Route path="/" component={LotList} /> */}
-        <Route path="/index" component={LotList} />
-        <Route path="/index.html" component={LotList} />
-        <Route path="/new-lot" component={NewLot} />
-        <Route path="/lot-list" component={LotList} />
-        <Route path="/lot" component={LotView} />
-        <Route path="/lot/:id" component={LotView} />
-        <Route path="/" componenet={StatisticsPage} />
-        <Route path="/payments" componenet={PaymentList} />
-        <Route path="/payments/:i" componenet={PaymentList} />
-        <Route path="/agreement-list" component={AgreementListPage} />
-        <Route path="/about" component={About} />
-        <Route path="/user-list" component={UserListPage} />
+        <Route exact path="/" component={LotList} />
+        <Route exact path="/index" component={LotList} />
+        <Route exact path="/index.html" component={LotList} />
+        <Route exact path="/new-lot" component={NewLot} />
+        <Route exact path="/lot-list" component={LotList} />
+        <Route exact path="/lot" component={LotView} />
+        <Route exact path="/lot/:id" component={LotView} />
+        <Route exact path="/payments" componenet={PaymentList} />
+        <Route exact path="/payments/:i" componenet={PaymentList} />
+        <Route exact path="/agreement-list" component={AgreementListPage} />
+        <Route exact path="/about" component={About} />
+        <Route exact path="/user-list" component={UserListPage} />
+        <Route exact path="/statistics" component={StatisticCharts} />
       </Layout>
     </Router>
   );

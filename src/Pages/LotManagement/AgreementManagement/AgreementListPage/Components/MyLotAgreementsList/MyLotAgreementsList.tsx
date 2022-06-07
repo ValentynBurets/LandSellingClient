@@ -72,6 +72,7 @@ function AgreementListPage(props: AgreementPageProps) {
           endDate: agreements[i].endDate,
           isApprove: false,
           isDisApprove: false,
+          price: 0
         };
         setTableAgreements((prev) => [...prev, tAgreement]);
       }

@@ -31,8 +31,8 @@ function RentLot(props: RentLotProps) {
   const [agreement, setAgreement] = useState<CreateAgreement>({
     lotId: props.lotInfo.id,
     description: "test description",
-    startDate: new Date("2022-08-01T11:55:03.030Z").toISOString(),
-    endDate: new Date("2022-12-06T11:55:03.030Z").toISOString(),
+    startDate: new Date().toISOString(),
+    endDate: new Date().toISOString(),
   });
 
   const [showRentWindow, setShowRentWindow] = useState<boolean>(false);

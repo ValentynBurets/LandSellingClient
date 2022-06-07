@@ -1,4 +1,5 @@
 {
+  "statistics": "/statistics",
   "home": {
     "about": "/about"
   },
@@ -19,6 +20,7 @@
     }
   },
   "person": {
-    "profile": "/profile"
+    "profile": "/profile",
+    "user_list": "/user-list"
   }  
 }

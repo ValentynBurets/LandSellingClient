@@ -66,7 +66,7 @@ export default function LotCard(props: lotCardProps) {
             <LotImageCarousel imgArray={imageArray} />
           )}
         </Col>
-        <Coll className={style.card_col_block}>
+        <Coll style={{marginTop: "2rem"}} className={style.card_col_block}>
           <Card.Title style={{fontSize: "30px"}}>{lot.header}</Card.Title>
           <Card.Text className="ml-3">
             {"Publiction date: " + `${da} ${mo} ${ye}`}
