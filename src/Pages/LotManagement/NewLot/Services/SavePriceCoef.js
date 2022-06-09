@@ -1,7 +1,7 @@
 import axios from "axios";
 import ConnectionConfig from "../../../../Assets/jsonData/ConnectionConfig/ConnectionConfig.json";
 
-const saveLot = (priceCoefs, lotId) => {
+const SavePriceCoef = (priceCoefs, lotId) => {
   if (priceCoefs == null) {
     alert("Please add price coefs to create a new lot with rent option");
     return;
@@ -12,8 +12,8 @@ const saveLot = (priceCoefs, lotId) => {
   priceCoefs.map(item => {
     let singlePriceCoef = {
       "lotId": lotId,
-      "daysCount": item.days,
-      "value": item.cost
+      "monthsCount": item.monthsCount,
+      "value": item.value
     }
     axios
     .post(
@@ -39,4 +39,4 @@ const saveLot = (priceCoefs, lotId) => {
   
 };
 
-export default saveLot;
+export default SavePriceCoef;

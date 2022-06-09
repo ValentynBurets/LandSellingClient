@@ -55,6 +55,7 @@
       },
       "ProductService": "ProductService",
       "GetProfileInfo": "Profile/info",
+      "GetProfileInfoById": "Profile/info/getById",
       "UpdateProfileInfo": "Profile/info/update",
       "GetProfilePhone": "Profile/phone",
       "UpdateProfilePhone": "Profile/phone/update",

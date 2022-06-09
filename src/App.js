@@ -10,6 +10,8 @@ import PaymentList from "./Pages/LotManagement/AgreementManagement/PaymentList/P
 import About from "./Pages/AboutPage/About"
 import UserListPage from "./Pages/UserListPage/UserListPage"
 import StatisticCharts from "./Pages/StatisticCharts/StatisticCharts"
+import  ProfilePage from "./Pages/ProfilePage/ProfilePage"
+
 import "bootstrap/dist/css/bootstrap.min.css";
 
 function App() {
@@ -57,12 +59,13 @@ function App() {
         <Route exact path="/lot-list" component={LotList} />
         <Route exact path="/lot" component={LotView} />
         <Route exact path="/lot/:id" component={LotView} />
-        <Route exact path="/payments" componenet={PaymentList} />
-        <Route exact path="/payments/:i" componenet={PaymentList} />
         <Route exact path="/agreement-list" component={AgreementListPage} />
+        <Route exact path="/payment-list/:id" component={PaymentList} />
         <Route exact path="/about" component={About} />
         <Route exact path="/user-list" component={UserListPage} />
         <Route exact path="/statistics" component={StatisticCharts} />
+        <Route exact path="/profile" component={ProfilePage} />
+        <Route exact path="/profile/:id" component={ProfilePage} />
       </Layout>
     </Router>
   );

@@ -1,5 +1,6 @@
 {
   "LogIn": "увійти",
+  "Close": "Закрити",
   "LogOut": "вийти",
   "Profile": "профіль",
   "ButtonText": "увійти",
@@ -35,6 +36,11 @@
   "LotType": "тип лоту",
   "StateType": "тип стану",
   "Clear": "очистити",
+  "Upload": "Завантажити фото",
+
+  "Remove": "видалити",
+  "Months": "Місяці",
+  "Cost": "Ціна",
 
   "WhatISLS": "Що Таке Ленд Селлінг",
   "OurTeam": "Наша команда",
@@ -76,6 +82,7 @@
 
   "BadConnection": "Ви маєте проблеми із з'єднанням до API",
   
+  "LotsList": "Список оголошень",
   "LotViewHeader": "оголошення",
   "LotViewBuyNow": "купити це зараз",
   "LotViewRentNow": "орендувати",
@@ -112,7 +119,6 @@
   "Role": "Role",
   
   "Loading": "Data is Loading",
-  "NewLot": "New Lot",
   "Cansel": "Cancel",
   "Services": "Services",
   "Amount" : "Amount: ",
@@ -125,6 +131,54 @@
   "TotalPrice": "Price is ",
   "PleaseAddProduct": "",
   "AddComment": "AddComment",
-  "CommentAdded": "Comment Added"
+  "CommentAdded": "Comment Added",
   
+  "NewLot": "Нове оголошення",
+  "LotHeader": "Заголовок",
+  "EnterLotHeader": "уведіть заголовок оголошення",
+  "Date": "Дата",
+  "Country": "Країна",
+  "EnterCountry": "Уведіть назву країни",
+  "Region": "Область",
+  "EnterRegion": "уведіть назву області",
+  "City": "Місто",
+  "EnterCity": "уведіть назву міста",
+  "Street": "Вулиця",
+  "EnterStreet": "уведіть назву вулиці",
+  "House": "Будинок",
+  "EnterHouse": "уведіть назву будинку",
+  "Latitude": "Довгота",
+  "EnterLatitude": "уведіть параметри довготи",
+  "Longitude": "Широта",
+  "EnterLongitude": "уведіть параметри широти",
+
+  "AddPriceCoef": "Додати коефіцієнт оренди",
+  "BuyPrice": "Вартість купівлі відразу",
+  "SetAuctionDuration": "встановіть тривалість аукціону",
+  "AuctionDuration": "триваліть аукціону",
+  "MinimumBidStep": "мінімальний крок ставки",
+  "MinimumBidPrice": "мінімальна ставка",
+  "MinBid": "мін ставка",
+  "AllowAuction": "дозвлолити аукціон",
+  "AllowRent": "дозволити орнеду",
+
+  "NoPayments": "Іще не було оплат для цієї угоди",
+  "PaymentList": "список оплат",
+
+  "Name": "Ім'я",
+  "InvalidName": "неправильне ім'я",
+  
+  "SurName": "прізвище",
+  "InvalidSurName": "неправильне прізвище",
+  
+  "Phone": "номер телефону",
+  "InvalidPhone": "неправильний номер телефону",
+  
+  "NewPassword": "новий пароль",
+  "InvalidNewPassword": "неправильний новий пароль",
+  
+  "CurrentPassword": "поточний пароль",
+  "Invalid current password": "неправильний поточний пароль",
+  
+  "SubmitButtonText": "Підтвердити"
 }

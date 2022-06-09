@@ -5,7 +5,6 @@ import {
   Marker,
   InfoWindow,
 } from "@react-google-maps/api";
-import { formatRelative } from "date-fns";
 import Geocode from "react-geocode";
 
 import Search from "./Search/Search";

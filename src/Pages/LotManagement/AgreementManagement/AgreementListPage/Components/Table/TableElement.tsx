@@ -50,9 +50,9 @@ function TableElement(props: TableElementProps) {
             <Link
               to={{
                 pathname:
-                  LinkConfig.person.profile +
+                "/profile" +
                   `/${props.elementData.customerId}`,
-                state: { lotId: `${props.elementData.customerId}` },
+                state: { id: `${props.elementData.customerId}` },
               }}
             >
               Customer

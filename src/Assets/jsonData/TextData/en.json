@@ -1,5 +1,6 @@
 {
   "LogIn": "Log in",
+  "Close": "Close",
   "LogOut": "Log out",
   "Profile": "Profile",
   "ButtonText": "Log in",
@@ -35,7 +36,11 @@
   "LotType": "lot type",
   "StateType": "state type",
   "Clear": "clear",
+  "Upload": "Upload photo",
 
+  "Remove": "Remove",
+  "Months": "Months",
+  "Cost": "Cost",
 
   "WhatISLS": "What is LandSelling",
   "OurTeam": "Our team",
@@ -115,7 +120,6 @@
   "Role": "Role",
   
   "Loading": "Data is Loading",
-  "NewLot": "New Lot",
   "Cansel": "Cancel",
   "Services": "Services",
   "Amount" : "Amount: ",
@@ -127,7 +131,52 @@
   "ProductList": "Product List",
   "TotalPrice": "Price is ",
     
-  "PleaseAddProduct": "",
-  "AddComment": "AddComment",
-  "CommentAdded": "Comment Added"
+  "NewLot": "New lot",
+  "LotHeader": "Lot header",
+  "EnterLotHeader": "Enter header text. This text will be on the top of the your lot.",
+  "Date": "Date",
+  "Country": "Country",
+  "EnterCountry": "enter country text",
+  "Region": "Region",
+  "EnterRegion": "enter region text",
+  "City": "City",
+  "EnterCity": "enter city text",
+  "Street": "Street",
+  "EnterStreet": "enter street text",
+  "House": "House",
+  "EnterHouse": "enter house text",
+  "Latitude": "Latitude",
+  "EnterLatitude": "enter latitude text",
+  "Longitude": "Longitude",
+  "EnterLongitude": "enter longitude text",
+
+  "AddPriceCoef": "Add price coef",
+  "BuyPrice": "Buy price",
+  "SetAuctionDuration": "set duration of auction",
+  "AuctionDuration": "auction duration",
+  "MinimumBidStep": "minimum bid step",
+  "MinimumBidPrice": "minimum bid price",
+  "MinBid": "min bid",
+  "AllowAuction": "allow auction",
+  "AllowRent": "allow rent",
+
+  "NoPayments": "There are no payments fot this agreement",
+  "PaymentList": "payment list",
+
+  "Name": "Name",
+  "InvalidName": "invalid name",
+  
+  "SurName": "Surname",
+  "InvalidSurName": "invalid Surname",
+  
+  "Phone": "Phone number",
+  "InvalidPhone": "invalid phone number",
+  
+  "NewPassword": "New password",
+  "InvalidNewPassword": "Invalid new password",
+  
+  "CurrentPassword": "Current password",
+  "Invalid current password": "Invalid current password",
+  
+  "SubmitButtonText": "Submit"
 }

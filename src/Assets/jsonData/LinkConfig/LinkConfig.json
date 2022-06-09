@@ -12,11 +12,11 @@
       "agreement": "/agreement",
       "agreement_list": "/agreement-list",
       "new_agreement": "/new-agreement",
-      "payments": "payments"
+      "payments": "payment-list"
     },
     "components": {
       "map": "/map",
-      "payment": "/payment"
+      "payment": "payment"
     }
   },
   "person": {

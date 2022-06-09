@@ -1,5 +1,7 @@
 import React from 'react'
 import PropTypes from "prop-types";
+import { Trans } from 'react-i18next';
+
 import encodeFile from "../../Services/encodeFile";
 import LotImageCarousel from "../../../../../Components/Image/ImageCarousel/LotImageCarousel";
 
@@ -20,21 +22,21 @@ function UploadImage(props: UploadImageProps) {
   };
 
   return (
-    <div className={style.pictureBox}>
+    <div className={style.pictureBox}  style={{ minHeight: "23rem" }}>
       <div>
         {props.lotPictures.length > 0 ? (
           <div>
             <LotImageCarousel imgArray={props.lotPictures} />
             <label className={style.custom_file_upload}>
               <input type="file" id="input" onChange={onFileChange} />
-              Upload
+              <Trans i18nKey="Upload">Upload</Trans>
             </label>
           </div>
         ) : (
           <div style={{width: "500px", marginTop: "3rem", marginBottom: "3rem"}}>
           <label className={style.custom_file_upload}>
             <input type="file" id="input" onChange={onFileChange} />
-            Upload
+            <Trans i18nKey="Upload">Upload</Trans>
           </label>
           </div>
         )}

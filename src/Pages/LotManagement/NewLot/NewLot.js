@@ -6,8 +6,9 @@ import {
   Button,
   InputGroup,
   FormControl,
+  Table
 } from "react-bootstrap";
-// import { BootstrapTable, TableHeaderColumn } from "react-bootstrap-table";
+import { Trans } from 'react-i18next';
 import style from "./NewLot.module.sass";
 import saveLot from "./Services/SaveLot";
 import savePriceCoef from "./Services/SavePriceCoef";
@@ -19,6 +20,8 @@ import Spinner from "react-bootstrap/spinner";
 import MapComponent from "../../../Components/Map/MapComponent";
 import LinkConfig from "../../../Assets/jsonData/LinkConfig/LinkConfig.json";
 import { MapContextProvider } from "../../../Components/Map/useMapContext";
+import Tbody from "./Component/PriceCoefTable/Tbody"
+import TheaderList from "./Component/PriceCoefTable/TheaderList";
 
 export default function NewLot() {
   let history = useHistory();
@@ -151,15 +154,15 @@ export default function NewLot() {
 
   const [newPriceCoef, setNewPriceCoef] = useState({
     id: 1,
-    days: 1,
-    cost: 1,
+    monthCount: 1,
+    value: 1,
   });
 
   const daysClickHandler = (v) => {
-    setNewPriceCoef({ id: newPriceCoef.id, days: v, cost: newPriceCoef.cost });
+    setNewPriceCoef({ id: newPriceCoef.id, monthCount: v, value: newPriceCoef.value });
   };
   const costClickHandler = (v) => {
-    setNewPriceCoef({ id: newPriceCoef.id, days: newPriceCoef.days, cost: v });
+    setNewPriceCoef({ id: newPriceCoef.id, monthCount: newPriceCoef.monthCount, value: v });
   };
 
   const [priceCoefs, setPriceCoefs] = useState([]);
@@ -167,17 +170,29 @@ export default function NewLot() {
   const addNewPriceCoef = () => {
     setNewPriceCoef({
       id: newPriceCoef.id + 1,
-      days: newPriceCoef.days,
-      cost: newPriceCoef.cost,
+      monthCount: newPriceCoef.monthCount,
+      value: newPriceCoef.value,
     });
     const PriceCoef = {
       id: newPriceCoef.id,
-      days: newPriceCoef.days,
-      cost: newPriceCoef.cost,
+      monthCount: newPriceCoef.monthCount,
+      value: newPriceCoef.value,
     };
 
     setPriceCoefs((prev) => [...prev, PriceCoef]);
   };
+
+  const RemovePriceCoef = (arg) => {
+    let tempArray = [];
+    
+    priceCoefs.forEach(element => {
+      if(element.id !== arg){
+        tempArray.push(element);
+      }
+    });
+
+    setPriceCoefs(tempArray);
+  }
 
   const [lotPictures, addLotPicture] = useState([]);
 
@@ -212,7 +227,7 @@ export default function NewLot() {
                 <Col>
                   <label className={style.date_style}>{"Date: " + date}</label>
                   <div className={style.text_input}>
-                    <label>Lot Header</label>
+                    <label><Trans i18nKey="LotHeader">Lot header</Trans></label>
                     <input
                       type="header"
                       class="form-control"
@@ -226,8 +241,7 @@ export default function NewLot() {
                       }}
                     />
                     <small id="emailHelp" class="form-text text-muted">
-                      Enter header text. This text will be on the top of the
-                      your lot.
+                    <Trans i18nKey="EnterLotHeader">Enter header text. This text will be on the top of the your lot.</Trans>
                     </small>
                   </div>
                 </Col>
@@ -235,7 +249,7 @@ export default function NewLot() {
 
               <div className={style.check_box_style}>
                 <Row>
-                  <Col style={{ width: "25rem" }}>
+                  <Col style={{ width: "25rem"}}>
                     <div class="form-check">
                       <input
                         class="form-check-input"
@@ -249,7 +263,7 @@ export default function NewLot() {
                         }}
                       />
                       <label class="form-check-label" for="flexCheckDefault">
-                        allow rent
+                        <Trans i18nKey="AllowRent">allow rent</Trans>
                       </label>
                     </div>
                     <div class="form-check">
@@ -265,19 +279,19 @@ export default function NewLot() {
                         }}
                       />
                       <label class="form-check-label" for="flexCheckDefault">
-                        allow auction
+                      <Trans i18nKey="AllowAuction">allow auction</Trans>
                       </label>
                     </div>
                   </Col>
 
                   <Col>
                     {lotData.isAuction && (
-                      <div>
+                      <div style={{marginTop: "-35px"}}>
                         <div
                           className={style.text_input}
                           style={{ display: "flex", flexDirection: "column" }}
                         >
-                          <label>Min bid</label>
+                          <label><Trans i18nKey="MinBid">Min bid</Trans></label>
                           <input
                             className={style.input_style}
                             type="number"
@@ -292,7 +306,8 @@ export default function NewLot() {
                             }}
                           />
                           <small id="emailHelp" class="form-text text-muted">
-                            minimum bid price
+                            
+                            <Trans i18nKey="MinimumBidPrice">minimum bid price</Trans>
                           </small>
                         </div>
                         <div
@@ -314,14 +329,14 @@ export default function NewLot() {
                             }}
                           />
                           <small id="emailHelp" class="form-text text-muted">
-                            minimum bid step
+                          <Trans i18nKey="MinimumBidStep">minimum bid step</Trans>
                           </small>
                         </div>
                         <div
                           className={style.text_input}
                           style={{ display: "flex", flexDirection: "column" }}
                         >
-                          <label>auction duration</label>
+                          <label><Trans i18nKey="AuctionDuration">Auction Duration</Trans></label>
                           <input
                             className={style.input_style}
                             type="number"
@@ -336,7 +351,7 @@ export default function NewLot() {
                             }}
                           />
                           <small id="emailHelp" class="form-text text-muted">
-                            set duration of auction
+                          <Trans i18nKey="SetAuctionDuration">Set Auction Duration</Trans>
                           </small>
                         </div>
                       </div>
@@ -348,7 +363,7 @@ export default function NewLot() {
                         className={style.text_input}
                         style={{ display: "flex", flexDirection: "column" }}
                       >
-                        <label>Buy Price</label>
+                        <label><Trans i18nKey="BuyPrice">Buy Price</Trans></label>
                         <input
                           className={style.input_style}
                           type="number"
@@ -381,29 +396,23 @@ export default function NewLot() {
                   </Row>
                   <Row>
                     <div className={style.price_coefs_style}>
-                      {/* <BootstrapTable
-                        data={priceCoefs}
-                        bodyStyle={{ border: "none" }}
-                        tableStyle={{ border: "none" }}
-                        headerStyle={{ border: "none !important" }}
-                        version="4"
-                      >
-                        <TableHeaderColumn width="100" isKey dataField="id">
-                          ID
-                        </TableHeaderColumn>
-                        <TableHeaderColumn width="100" dataField="days">
-                          Months
-                        </TableHeaderColumn>
-                        <TableHeaderColumn width="100" dataField="cost">
-                          Cost
-                        </TableHeaderColumn>
-                      </BootstrapTable> */}
+                    {priceCoefs && priceCoefs.length > 0 && (
+              <Table responsive>
+                <TheaderList />
+                <Tbody
+                  bodyData={priceCoefs}
+                  RemovePriceCoef={(arg) => {
+                    RemovePriceCoef(arg);
+                  }}
+                />
+              </Table>
+            )}
                     </div>
                   </Row>
                   <Row>
                     <Col>
                       <InputGroup className="form-control">
-                        <InputGroup.Text>Months</InputGroup.Text>
+                        <InputGroup.Text> <Trans i18nKey="Months">Months</Trans></InputGroup.Text>
                         <FormControl
                           onChange={(e) => daysClickHandler(e.target.value)}
                           type="number"
@@ -415,7 +424,7 @@ export default function NewLot() {
                     </Col>
                     <Col>
                       <InputGroup className="form-control">
-                        <InputGroup.Text>Cost</InputGroup.Text>
+                        <InputGroup.Text><Trans i18nKey="Cost">Cost</Trans></InputGroup.Text>
                         <FormControl
                           onChange={(e) => costClickHandler(e.target.value)}
                           type="number"
@@ -428,7 +437,7 @@ export default function NewLot() {
                     </Col>
                     <Col>
                       <Button variant="primary" onClick={addNewPriceCoef}>
-                        Add price coef
+                      <Trans i18nKey="AddPriceCoef">Add price coef</Trans>
                       </Button>
                     </Col>
                   </Row>
@@ -440,7 +449,7 @@ export default function NewLot() {
           <Row>
             <Col className={style.container_style}>
               <div className={style.description_col_style}>
-                <label>{TextData.Description}</label>
+                <label><Trans i18nKey="Description">Description</Trans></label>
                 <textarea
                   className={style.description_area_style}
                   name="description"
@@ -470,7 +479,7 @@ export default function NewLot() {
             </Col>
             <Col className={style.text_input_col}>
               <div className={style.text_input}>
-                <label>Country</label>
+                <label><Trans i18nKey="Country">Country</Trans></label>
                 <input
                   type="header"
                   class="form-control"
@@ -484,11 +493,11 @@ export default function NewLot() {
                   }}
                 />
                 <small id="emailHelp" class="form-text text-muted">
-                  Enter country text.
+                <Trans i18nKey="EnterCountry">Enter Country</Trans>
                 </small>
               </div>
               <div className={style.text_input}>
-                <label>Region</label>
+                <label><Trans i18nKey="Region">Region</Trans></label>
                 <input
                   type="header"
                   class="form-control"
@@ -502,11 +511,11 @@ export default function NewLot() {
                   }}
                 />
                 <small id="emailHelp" class="form-text text-muted">
-                  Enter region text.
+                <Trans i18nKey="EnterRegion">Enter region</Trans>
                 </small>
               </div>
               <div className={style.text_input}>
-                <label>City</label>
+                <label><Trans i18nKey="City">City</Trans></label>
                 <input
                   type="header"
                   class="form-control"
@@ -520,11 +529,11 @@ export default function NewLot() {
                   }}
                 />
                 <small id="emailHelp" class="form-text text-muted">
-                  Enter region text.
+                <Trans i18nKey="EnterCity">EnterCity</Trans>
                 </small>
               </div>
               <div className={style.text_input}>
-                <label>Street</label>
+                <label><Trans i18nKey="Street">Street</Trans></label>
                 <input
                   type="header"
                   class="form-control"
@@ -538,11 +547,14 @@ export default function NewLot() {
                   }}
                 />
                 <small id="emailHelp" class="form-text text-muted">
-                  Enter street text.
+                <Trans i18nKey="EnterStreet">EnterStreet</Trans>
+                 
                 </small>
               </div>
               <div className={style.text_input}>
-                <label>House</label>
+                <label>
+                  
+                <Trans i18nKey="House">House</Trans></label>
                 <input
                   type="header"
                   class="form-control"
@@ -556,11 +568,14 @@ export default function NewLot() {
                   }}
                 />
                 <small id="emailHelp" class="form-text text-muted">
-                  Enter street text.
+                  <label>
+                <Trans i18nKey="EnterHouse">EnterHouse</Trans></label>
                 </small>
               </div>
               <div className={style.text_input}>
-                <label>Latitude</label>
+                <label>
+                <Trans i18nKey="Latitude">Latitude</Trans>
+                </label>
                 <input
                   type="header"
                   class="form-control"
@@ -572,11 +587,13 @@ export default function NewLot() {
                   disabled
                 />
                 <small id="emailHelp" class="form-text text-muted">
-                  Enter street text.
+                  <Trans i18nKey="EnterLatitude">Enter Latitude</Trans>
                 </small>
               </div>
               <div className={style.text_input}>
-                <label>Longitude</label>
+                <label>
+                <Trans i18nKey="Longitude">Longitude</Trans>
+                  </label>
                 <input
                   type="header"
                   class="form-control"
@@ -588,7 +605,7 @@ export default function NewLot() {
                   disabled
                 />
                 <small id="emailHelp" class="form-text text-muted">
-                  street text.
+                  <Trans i18nKey="EnterLongitude">Enter Longitude</Trans>
                 </small>
               </div>
             </Col>

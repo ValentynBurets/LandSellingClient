@@ -8,12 +8,16 @@ interface LoadPaymentProps{
 }
 
 const LoadPaymentService = (props: LoadPaymentProps) => {
+  let token = localStorage.getItem("token");
   
   axios
-    .post(
+    .get(
       `${ConnectionConfig.ServerUrl + ConnectionConfig.Routes.Payment.GetByAgreementId +
-      "?LotId=" +
-      props.agreementId}`
+      "?agreementId=" +
+      props.agreementId}`,
+      {
+        headers: { Authorization: `Bearer ${token}` },
+      }
     )
     .then((responce) => {
       var data = responce.data;

@@ -167,6 +167,9 @@ function Header() {
           <Nav.Link href={LinkConfig.lot_management.new_lot}>
             <Trans i18nKey="CreateNewLot">create new lot</Trans>
           </Nav.Link>
+          <Nav.Link href="/profile">
+            <Trans i18nKey="Profile">Profile</Trans>
+          </Nav.Link>
         </div>
       );
     } else if (localStorage.getItem("UserRole") === "Admin") {
@@ -177,6 +180,9 @@ function Header() {
           </Nav.Link>
           <Nav.Link href={LinkConfig.person.user_list}>
             <Trans i18nKey="Users">Users</Trans>
+          </Nav.Link>
+          <Nav.Link href="/profile">
+            <Trans i18nKey="Profile">Profile</Trans>
           </Nav.Link>
         </div>
       );
@@ -227,8 +233,8 @@ function Header() {
           <Nav>{getDropdown()}</Nav>
         </Container>
       </Navbar>
-      <Modal show={show} onHide={handleClose}>
-        <Modal.Header closeButton>
+      <Modal show={show}>
+        <Modal.Header className={style.login_modal_header}>
           <Modal.Title>
             <Trans i18nKey="LogIn">LogIn</Trans>
           </Modal.Title>
@@ -269,9 +275,14 @@ function Header() {
               <Form.Check type="checkbox" label="Remember me" />
             </Form.Group>
             <Form.Group controlId="fromSignInButton">
-              <Button variant="primary" onClick={handleSignIn}>
-                {TextData.AuthorizeBox.LoginTab.LogIn}
-              </Button>
+              <div className={style.login_modal_footer}>
+                <Button variant="primary" onClick={handleSignIn}>
+                  <Trans i18nKey="LogIn">LogIn</Trans>
+                </Button>
+                <Button variant="primary" onClick={handleClose}>
+                  <Trans i18nKey="Close">Close</Trans>
+                </Button>
+              </div>
             </Form.Group>
           </Form>
         </Modal.Body>
