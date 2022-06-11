@@ -11,22 +11,17 @@ import { CreateAgreement } from "../../../../../Components/Types/Agreement";
 import CreateNewAgreementService from "../../Services/CreateNewAgreementService";
 import SelectPriceCoefService from "../../Services/SelectPriceCoefService";
 import { DetailedLot } from "../../../../../Components/Types/Lot";
-import BadRequest from "../../../../../Components/Message/BadRequest";
 
 import style from "./RentLotStyle.module.sass";
+import { RequestResult } from "../../../../../Components/Types/RequestResult";
 
 interface RentLotProps {
   lotInfo: DetailedLot;
+  setGoodRequest: (arg: RequestResult) => void;
+  setBadRequest: (arg: RequestResult) => void;
 }
 
 function RentLot(props: RentLotProps) {
-  const [badRequest, setBadRequest] = useState<{
-    show: boolean;
-    message: string;
-  }>({
-    show: false,
-    message: "",
-  });
 
   const [agreement, setAgreement] = useState<CreateAgreement>({
     lotId: props.lotInfo.id,
@@ -45,11 +40,14 @@ function RentLot(props: RentLotProps) {
 
     console.log(agreement);
     CreateNewAgreementService({ agreement: agreement });
+    props.setGoodRequest({
+      show: true,
+      message: "Rent request created"
+    })
   };
 
   return (
     <div>
-      <BadRequest show={badRequest.show} text={badRequest.message} />
       <Modal
         style={{ display: "flex", marginTop: "10%" }}
         show={showRentWindow}
@@ -150,7 +148,7 @@ function RentLot(props: RentLotProps) {
           variant="primary"
           onClick={() => {
             if (selectedPriceCoefIdState === "") {
-              setBadRequest({
+              props.setBadRequest({
                 show: true,
                 message: "select Price Coef "
               })

@@ -6,6 +6,7 @@ import { Link } from "react-router-dom";
 import { TableAgreement } from "../../../../../../Components/Types/Agreement";
 import { Trans } from "react-i18next";
 import Payment from "../../../../../../Components/Payment/Payment";
+import { RequestResult } from "../../../../../../Components/Types/RequestResult";
 
 interface TableElementProps {
   index: number;
@@ -14,6 +15,8 @@ interface TableElementProps {
   setDisApproveState: () => void;
   setAgreementNumber: (arg: number) => void;
   isCustomer?: boolean;
+  setGoodRequest: (arg: RequestResult) => void;
+  setBadRequest: (arg: RequestResult) => void;
 }
 
 function TableElement(props: TableElementProps) {
@@ -49,9 +52,7 @@ function TableElement(props: TableElementProps) {
           {props.elementData && props.elementData.customerId && (
             <Link
               to={{
-                pathname:
-                "/profile" +
-                  `/${props.elementData.customerId}`,
+                pathname: "/profile" + `/${props.elementData.customerId}`,
                 state: { id: `${props.elementData.customerId}` },
               }}
             >
@@ -77,7 +78,7 @@ function TableElement(props: TableElementProps) {
           .substring(0, props.elementData.endDate.indexOf("."))
           .replace("T", " ")}
       </td>
-      {props.isCustomer && <td>{props.elementData.price}</td>}
+      <td>{props.elementData.price}</td>
       {props.isCustomer && (
         <td>
           {props.elementData && props.elementData.customerId && (
@@ -112,6 +113,8 @@ function TableElement(props: TableElementProps) {
         <div>
           <td>
             <Payment
+              setGoodRequest={props.setGoodRequest}
+              setBadRequest={props.setBadRequest}
               show={showPayment}
               setShowPayment={setShowPayment}
               AgreementId={props.elementData.id}

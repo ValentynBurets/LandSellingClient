@@ -15,6 +15,7 @@ export interface FullAgreement{
   startDate:	string;
   endDate:	string; 
   price: number;
+  approved: boolean;
 }
 
 export interface TableAgreement{

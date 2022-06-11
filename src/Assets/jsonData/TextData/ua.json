@@ -181,5 +181,7 @@
   "CurrentPassword": "поточний пароль",
   "Invalid current password": "неправильний поточний пароль",
   
-  "SubmitButtonText": "Підтвердити"
+  "SubmitButtonText": "Підтвердити",
+
+  "Publicated": "Опубліковано: "
 }

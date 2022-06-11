@@ -25,10 +25,22 @@ import LoadBidsService from "./Services/LoadBidsService";
 import LoadPriceCoefService from "./Services/LoadPriceCoefService";
 
 import style from "./LotView.module.sass";
+import { RequestResult } from "../../../Components/Types/RequestResult";
+import BadRequest from "../../../Components/Message/BadRequest";
+import GoodRequest from "../../../Components/Message/GoodRequest";
 
 interface LotViewProps {}
 
 function LotView(props: LotViewProps) {
+  const [goodRequest, setGoodRequest] = useState<RequestResult>({
+    show: false,
+    message: "",
+  });
+  const [badRequest, setBadRequest] = useState<RequestResult>({
+    show: false,
+    message: "",
+  });
+
   const params: { id: string } = useParams();
 
   const [date, setDateFunction] = useState<string>();
@@ -152,6 +164,8 @@ function LotView(props: LotViewProps) {
 
   return (
     <div className={style.lotview_page_background}>
+      <BadRequest show={badRequest.show} text={badRequest.message} />
+      <GoodRequest show={goodRequest.show} text={goodRequest.message} />
       <Container>
         {dataLoading.isLoading ? (
           <Spinner animation="border" role="status">
@@ -177,14 +191,21 @@ function LotView(props: LotViewProps) {
                   style={{ justifyContent: "right" }}
                   className={style.date_style}
                 >
-                  {"Publicated: " + date}
+                  <Trans i18nKey="Publicated">Publicated: </Trans> {date}
                 </label>
                 <label className={style.text_header}>{lotInfo.header}</label>
                 {lotInfo.isAuction && (
-                  <AuctionLot lotInfo={lotInfo} remainingTime={remainingTime}/>
+                  <AuctionLot
+                    setGoodRequest={setGoodRequest}
+                    setBadRequest={setBadRequest}
+                    lotInfo={lotInfo}
+                    remainingTime={remainingTime}
+                  />
                 )}
                 {lotInfo.isRent && (
                   <RentLot
+                    setGoodRequest={setGoodRequest}
+                    setBadRequest={setBadRequest}
                     lotInfo={lotInfo}
                   />
                 )}

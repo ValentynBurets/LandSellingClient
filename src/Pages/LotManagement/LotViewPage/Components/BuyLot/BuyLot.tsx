@@ -5,29 +5,22 @@ import { Trans } from "react-i18next";
 import CountdownTimer from "../../../../../Components/TimeCounter/CountdownTimer";
 import { CreateAgreement } from "../../../../../Components/Types/Agreement";
 
-import BadRequest from "../../../../../Components/Message/BadRequest";
-
 import { DetailedLot } from "../../../../../Components/Types/Lot";
 import CreateNewAgreementService from "../../Services/CreateNewAgreementService";
 
 import style from "./BuyLotStyle.module.sass";
 import { CreateBid } from "../../../../../Components/Types/Bid";
 import PlaceBidService from "../../Services/PlaceBidService";
+import { RequestResult } from "../../../../../Components/Types/RequestResult";
 
 interface BuyLotProps {
   lotInfo: DetailedLot;
   remainingTime: string;
+  setGoodRequest: (arg: RequestResult) => void;
+  setBadRequest: (arg: RequestResult) => void;
 }
 
 function BuyLot(props: BuyLotProps) {
-  const [goodRequest, setGoodRequest] = useState<{
-    show: boolean;
-    message: string;
-  }>({ show: false, message: "" });
-  const [badRequest, setBadRequest] = useState<{
-    show: boolean;
-    message: string;
-  }>({ show: false, message: "" });
 
   const [showWindow, setShowWindow] = useState<{
     bid: boolean;
@@ -54,30 +47,30 @@ function BuyLot(props: BuyLotProps) {
   const BuyLot = () => {
     console.log(agreement);
     CreateNewAgreementService({ agreement: agreement });
+    props.setGoodRequest({
+      show: true,
+      message: "buy request created",
+    });
   };
 
   const PlaceBid = () => {
     var res = PlaceBidService({ bid: bid });
     if (res) {
-      setGoodRequest((prev) => ({
-        ...prev,
+      props.setGoodRequest({
         show: res,
         message: "bid created",
-      }));
+      });
     } else {
-      setBadRequest((prev) => ({
-        ...prev,
+      props.setBadRequest({
         show: res,
         message: "something went wrong",
-      }));
+      });
     }
     setShowWindow((prev) => ({ ...prev, bid: false }));
   };
 
   return (
     <div>
-      <BadRequest show={badRequest.show} text={badRequest.message} />
-      <BadRequest show={goodRequest.show} text={badRequest.message} />
       <Modal
         style={{ display: "flex", marginTop: "10%" }}
         show={showWindow.bid}
@@ -162,7 +155,7 @@ function BuyLot(props: BuyLotProps) {
         </Modal.Footer>
       </Modal>
       <div className={style.auction_text_style}>
-        <label className={style.text_style}>
+        <label className={style.text_info_style}>
           {props.lotInfo.bids && props.lotInfo.bids.length > 0
             ? "Highest bid is " +
               props.lotInfo.bids[props.lotInfo.bids.length - 1].value

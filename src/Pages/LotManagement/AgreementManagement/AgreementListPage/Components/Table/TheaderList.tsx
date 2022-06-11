@@ -35,11 +35,9 @@ function TheaderList(props: TheaderListProps) {
         <th>
           <Trans i18nKey="EndDate">end date</Trans>
         </th>
-        {props.isCustomer && (
-          <th>
-            <Trans i18nKey="Price">price</Trans>
-          </th>
-        )}
+        <th>
+          <Trans i18nKey="Price">price</Trans>
+        </th>
         {props.isCustomer && (
           <th>
             <Trans i18nKey="Payments">payments</Trans>

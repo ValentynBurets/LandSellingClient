@@ -22,9 +22,15 @@ import LinkConfig from "../../../Assets/jsonData/LinkConfig/LinkConfig.json";
 import { MapContextProvider } from "../../../Components/Map/useMapContext";
 import Tbody from "./Component/PriceCoefTable/Tbody";
 import TheaderList from "./Component/PriceCoefTable/TheaderList";
+import GoodRequest from "../../../Components/Message/GoodRequest";
 
 export default function NewLot() {
   let history = useHistory();
+
+  const [goodRequest, setGoodRequest] = useState({
+    show: false,
+    message: "",
+  });
 
   const [dataStatus, saveDataStatus] = useState({
     isLoading: false,
@@ -135,6 +141,12 @@ export default function NewLot() {
       requests: false,
       inProgress: false,
     }));
+
+    setGoodRequest((prev) => ({
+      ...prev,
+      show: true,
+      message: "new lot created. You can see it on lot list page",
+    }));
   };
 
   useEffect(() => {
@@ -206,6 +218,7 @@ export default function NewLot() {
 
   return (
     <div className={style.newLot_page_background}>
+      <GoodRequest show={goodRequest.show} text={goodRequest.message} />
       {dataStatus.isLoading ? (
         <Spinner animation="border" role="status">
           <span className="visually-hidden">Loading...</span>

@@ -14,6 +14,7 @@ import {
 import Tbody from "../Table/Tbody";
 import TheaderList from "../Table/TheaderList";
 import { Trans } from "react-i18next";
+import { RequestResult } from "../../../../../../Components/Types/RequestResult";
 
 interface AgreementPageProps {}
 
@@ -21,14 +22,8 @@ function AgreementListPage(props: AgreementPageProps) {
 
   const [agreementNumber, setAgreementNumber] = useState<number>(0);
 
-  const [goodRequest, setGoodRequest] = useState<{
-    show: boolean;
-    message: string;
-  }>({ show: false, message: "" });
-  const [badRequest, setBadRequest] = useState<{
-    show: boolean;
-    message: string;
-  }>({ show: false, message: "" });
+  const [goodRequest, setGoodRequest] = useState<RequestResult>({ show: false, message: "" });
+  const [badRequest, setBadRequest] = useState<RequestResult>({ show: false, message: "" });
 
   const [isLoaded, setIsLoaded] = useState(false);
   const [agreements, setAgreements] = useState<FullAgreement[]>();
@@ -46,9 +41,10 @@ function AgreementListPage(props: AgreementPageProps) {
       ConnectionConfig.ServerUrl + ConnectionConfig.Routes.Agreement.GetMy
     ).then((response) => {
       if (response.data === null) {
-        setBadRequest((prev)=> ({...prev, show: true, message: "agreements want loaded"}));
+        setBadRequest({show: true, message: "agreements won't loaded"});
       } else {
         var data = response.data;
+        console.log(data)
         setAgreements(data);
         setIsLoaded(true);
         console.log(data);
@@ -70,9 +66,9 @@ function AgreementListPage(props: AgreementPageProps) {
           creationDate: agreements[i].creationDate,
           startDate: agreements[i].startDate,
           endDate: agreements[i].endDate,
-          isApprove: false,
+          isApprove: agreements[i].approved,
           isDisApprove: false,
-          price: 0
+          price: agreements[i].price
         };
         setTableAgreements((prev) => [...prev, tAgreement]);
       }
@@ -87,8 +83,9 @@ function AgreementListPage(props: AgreementPageProps) {
       ).then((response) => {
         if (response.data === true) {
           window.location.reload();
+          setGoodRequest({show: true, message: "aggrement is appreved"});
         } else {
-          setBadRequest((prev)=> ({...prev, show: true, message: "aggrement isn't appreved"}));
+          setBadRequest({show: true, message: "aggrement isn't appreved"});
           setApproveState(!approveState);
           setAgreementNumber(0);
           LoadAgreements();
@@ -105,8 +102,9 @@ function AgreementListPage(props: AgreementPageProps) {
       ).then((response) => {
         if (response.data === true) {
           window.location.reload();
+          setGoodRequest({show: true, message: "agreements is disaproved"});
         } else {
-          setBadRequest((prev)=> ({...prev, show: true, message: "agreements isn't disaproved"}));
+          setBadRequest({show: true, message: "agreements isn't disaproved"});
           setDisApproveState(!disApproveState);
           setAgreementNumber(0);
           LoadAgreements();
@@ -115,9 +113,9 @@ function AgreementListPage(props: AgreementPageProps) {
     }
   };
 
-  useEffect(() => {
-    console.log(tableAgreements);
-  }, [tableAgreements]);
+  // useEffect(() => {
+  //   console.log(tableAgreements);
+  // }, [tableAgreements]);
 
 
   return (
@@ -198,7 +196,9 @@ function AgreementListPage(props: AgreementPageProps) {
             {tableAgreements && tableAgreements.length > 0 && (
               <Table responsive>
                 <TheaderList />
-                <Tbody
+                <Tbody  
+                  setGoodRequest={setGoodRequest}
+                  setBadRequest={setBadRequest}
                   bodyData={tableAgreements}
                   setApproveState={() => {
                     setApproveState(!approveState);

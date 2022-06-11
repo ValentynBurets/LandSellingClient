@@ -12,9 +12,9 @@ import axios from "axios";
 import connection from "../../../Assets/jsonData/ConnectionConfig/ConnectionConfig.json";
 import LoadProfileInfoByIdService from "../Services/LoadProfileInfoByIdService";
 
-interface ProfileFormProps{
-  isReadOnly?: boolean
-  id: string
+interface ProfileFormProps {
+  isReadOnly?: boolean;
+  id: string;
 }
 
 function ProfileForm(props: ProfileFormProps) {
@@ -57,13 +57,19 @@ function ProfileForm(props: ProfileFormProps) {
   });
 
   useEffect(() => {
-    if(props.isReadOnly){
-      LoadProfileInfoByIdService({setFieldsState: setFieldsState, setFieldsStateCash: setFieldsStateCash, id: props.id})
+    if (props.isReadOnly) {
+      LoadProfileInfoByIdService({
+        setFieldsState: setFieldsState,
+        setFieldsStateCash: setFieldsStateCash,
+        id: props.id,
+      });
+    } else {
+      LoadProfileInfoService({
+        setFieldsState: setFieldsState,
+        setFieldsStateCash: setFieldsStateCash,
+      });
     }
-    else{
-      LoadProfileInfoService({setFieldsState: setFieldsState, setFieldsStateCash: setFieldsStateCash})
-    }
-  }, [])
+  }, []);
 
   useEffect(() => {
     setFieldsModifiedState(() => {
@@ -210,7 +216,7 @@ function ProfileForm(props: ProfileFormProps) {
                 surname: currentData.surname,
                 phoneNumber: currentData.phoneNumber,
                 email: currentData.email,
-                password: ""
+                password: "",
               });
 
               setFieldsState(() => {
@@ -252,9 +258,9 @@ function ProfileForm(props: ProfileFormProps) {
     }
   }
 
-  useEffect(()=> {
+  useEffect(() => {
     console.log("fieldsState", fieldsState);
-  })
+  });
 
   return (
     <Container className="profile-form-container">
@@ -365,40 +371,42 @@ function ProfileForm(props: ProfileFormProps) {
           </InputGroup>
         </Form.Group>
 
-        <Form.Group className="mb-3">
-          <Form.Label>
-            <Trans i18nKey="NewPassword">NewPassword</Trans>
-          </Form.Label>
-          <InputGroup>
-            <Form.Control
-              value={fieldsState.password}
-              onChange={(event) =>
-                checkDataChanges({ password: event.target.value })
-              }
-              className="ig-form-control"
-              type={formState.passwordVisible === true ? "text" : "password"}
-              pattern={passwordValidPattern}
-              maxLength={30}
-              disabled={props.isReadOnly}
-            />
-            <i
-              onClick={() =>
-                setFormState((prev) => {
-                  return { ...prev, passwordVisible: !prev.passwordVisible };
-                })
-              }
-              className={
-                formState.passwordVisible
-                  ? "bi bi-eye fs-4 eye-icon"
-                  : "bi bi-eye-slash fs-4 eye-icon"
-              }
-              style={{ marginLeft: "10px" }}
-            ></i>
-            <Form.Control.Feedback type="invalid">
-              <Trans i18nKey="InvalidNewPassword">invalid new password</Trans>
-            </Form.Control.Feedback>
-          </InputGroup>
-        </Form.Group>
+        {!props.isReadOnly && (
+          <Form.Group className="mb-3">
+            <Form.Label>
+              <Trans i18nKey="NewPassword">NewPassword</Trans>
+            </Form.Label>
+            <InputGroup>
+              <Form.Control
+                value={fieldsState.password}
+                onChange={(event) =>
+                  checkDataChanges({ password: event.target.value })
+                }
+                className="ig-form-control"
+                type={formState.passwordVisible === true ? "text" : "password"}
+                pattern={passwordValidPattern}
+                maxLength={30}
+                disabled={props.isReadOnly}
+              />
+              <i
+                onClick={() =>
+                  setFormState((prev) => {
+                    return { ...prev, passwordVisible: !prev.passwordVisible };
+                  })
+                }
+                className={
+                  formState.passwordVisible
+                    ? "bi bi-eye fs-4 eye-icon"
+                    : "bi bi-eye-slash fs-4 eye-icon"
+                }
+                style={{ marginLeft: "10px" }}
+              ></i>
+              <Form.Control.Feedback type="invalid">
+                <Trans i18nKey="InvalidNewPassword">invalid new password</Trans>
+              </Form.Control.Feedback>
+            </InputGroup>
+          </Form.Group>
+        )}
 
         {formState.confirmPassword ? (
           <div>
@@ -451,14 +459,16 @@ function ProfileForm(props: ProfileFormProps) {
           </div>
         ) : null}
         <Form.Group className="mt-4 text-center">
-          <Button
-            variant="primary"
-            type="submit"
-            className="submit-button"
-            disabled={!formState.submitButtonActive || props.isReadOnly}
-          >
-            <Trans i18nKey="SubmitButtonText">Submit</Trans>
-          </Button>
+          {!props.isReadOnly && (
+            <Button
+              variant="primary"
+              type="submit"
+              className="submit-button"
+              disabled={!formState.submitButtonActive || props.isReadOnly}
+            >
+              <Trans i18nKey="SubmitButtonText">Submit</Trans>
+            </Button>
+          )}
         </Form.Group>
       </Form>
     </Container>

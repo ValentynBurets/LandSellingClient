@@ -179,5 +179,7 @@
   "CurrentPassword": "Current password",
   "Invalid current password": "Invalid current password",
   
-  "SubmitButtonText": "Submit"
+  "SubmitButtonText": "Submit",
+  
+  "Publicated": "Publicated: "
 }

@@ -1,4 +1,4 @@
 export interface RequestResult{
-  show: true;
+  show: boolean;
   message: string;
 }

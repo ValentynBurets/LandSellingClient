@@ -1,11 +1,12 @@
-
 import React, { useEffect, useState } from "react";
 import GetService from "../../../../../../Components/Services/GetService";
-import { FullAgreement, TableAgreement } from "../../../../../../Components/Types/Agreement";
+import {
+  FullAgreement,
+  TableAgreement,
+} from "../../../../../../Components/Types/Agreement";
 
 import ConnectionConfig from "../../../../../../Assets/jsonData/ConnectionConfig/ConnectionConfig.json";
 
-import style from "./MyLotAgreementsListAsCustomerStyle.module.sass"
 import BadRequest from "../../../../../../Components/Message/BadRequest";
 import GoodRequest from "../../../../../../Components/Message/GoodRequest";
 
@@ -14,24 +15,23 @@ import { Trans } from "react-i18next";
 import TheaderList from "../Table/TheaderList";
 import PutService from "../../../../../../Components/Services/PutService";
 import Tbody from "../Table/Tbody";
-import PayForAgreement from "./PayForAgreement/PayForAgreement";
+import { RequestResult } from "../../../../../../Components/Types/RequestResult";
 
-interface MyLotAgreementsListAsCustomerProps{
+interface MyLotAgreementsListAsCustomerProps {}
 
-}
-
-function MyLotAgreementsListAsCustomer(props: MyLotAgreementsListAsCustomerProps){
-  
+function MyLotAgreementsListAsCustomer(
+  props: MyLotAgreementsListAsCustomerProps
+) {
   const [agreementNumber, setAgreementNumber] = useState<number>(0);
 
-  const [goodRequest, setGoodRequest] = useState<{
-    show: boolean;
-    message: string;
-  }>({ show: false, message: "" });
-  const [badRequest, setBadRequest] = useState<{
-    show: boolean;
-    message: string;
-  }>({ show: false, message: "" });
+  const [goodRequest, setGoodRequest] = useState<RequestResult>({
+    show: false,
+    message: "",
+  });
+  const [badRequest, setBadRequest] = useState<RequestResult>({
+    show: false,
+    message: "",
+  });
 
   const [isLoaded, setIsLoaded] = useState(false);
   const [agreements, setAgreements] = useState<FullAgreement[]>();
@@ -46,10 +46,15 @@ function MyLotAgreementsListAsCustomer(props: MyLotAgreementsListAsCustomerProps
 
   const LoadAgreements = () => {
     GetService.request(
-      ConnectionConfig.ServerUrl + ConnectionConfig.Routes.Agreement.GetMyAsCustomer
+      ConnectionConfig.ServerUrl +
+        ConnectionConfig.Routes.Agreement.GetMyAsCustomer
     ).then((response) => {
       if (response.data === null) {
-        setBadRequest((prev)=> ({...prev, show: true, message: "agreements wasn't loaded"}));
+        setBadRequest((prev) => ({
+          ...prev,
+          show: true,
+          message: "agreements wasn't loaded",
+        }));
       } else {
         var data = response.data;
         setAgreements(data);
@@ -57,13 +62,12 @@ function MyLotAgreementsListAsCustomer(props: MyLotAgreementsListAsCustomerProps
         console.log(data);
       }
     });
-  }
+  };
 
   useEffect(() => {
     if (agreements !== undefined) {
       setTableAgreements([]);
       for (let i = 0; i < agreements?.length; i++) {
-
         let tAgreement: TableAgreement = {
           number: i + 1,
           id: agreements[i].id,
@@ -76,42 +80,33 @@ function MyLotAgreementsListAsCustomer(props: MyLotAgreementsListAsCustomerProps
           endDate: agreements[i].endDate,
           isApprove: false,
           isDisApprove: false,
-          price: agreements[i].price
+          price: agreements[i].price,
         };
         setTableAgreements((prev) => [...prev, tAgreement]);
       }
     }
   }, [agreements]);
 
-  // const approveAgreement = () => {
-  //   if (agreements !== undefined) {
-  //     PutService.request(
-  //       ConnectionConfig.ServerUrl + ConnectionConfig.Routes.Agreement.Approve,
-  //       "?AgreementId=" + agreements[agreementNumber].id
-  //     ).then((response) => {
-  //       if (response.data === true) {
-  //         window.location.reload();
-  //       } else {
-  //         setBadRequest((prev)=> ({...prev, show: true, message: "aggrement isn't appreved"}));
-  //         setApproveState(!approveState);
-  //         setAgreementNumber(0);
-  //         LoadAgreements();
-  //       }
-  //     });
-  //   }
-  // };
-  
   const disApproveAgreement = () => {
     if (agreements !== undefined) {
       PutService.request(
         ConnectionConfig.ServerUrl +
           ConnectionConfig.Routes.Agreement.Disapprove,
-          "?AgreementId=" + agreements[agreementNumber].id
+        "?AgreementId=" + agreements[agreementNumber].id
       ).then((response) => {
         if (response.data === true) {
           window.location.reload();
+          setGoodRequest((prev) => ({
+            ...prev,
+            show: true,
+            message: "agreements is disaproved",
+          }));
         } else {
-          setBadRequest((prev)=> ({...prev, show: true, message: "agreements isn't disaproved"}));
+          setBadRequest((prev) => ({
+            ...prev,
+            show: true,
+            message: "agreements isn't disaproved",
+          }));
           setDisApproveState(!disApproveState);
           setAgreementNumber(0);
           LoadAgreements();
@@ -123,7 +118,6 @@ function MyLotAgreementsListAsCustomer(props: MyLotAgreementsListAsCustomerProps
   useEffect(() => {
     console.log(tableAgreements);
   }, [tableAgreements]);
-
 
   return (
     <div>
@@ -161,51 +155,23 @@ function MyLotAgreementsListAsCustomer(props: MyLotAgreementsListAsCustomerProps
               </Button>
             </Modal.Footer>
           </Modal>
-          <Modal
-            style={{ display: "flex", marginTop: "10%" }}
-            show={approveState}
-            getOpenState={(e: any) => setApproveState(e)}
-            tabIndex="-1"
-          >
-            <Modal.Header>
-              <Modal.Title>
-                <Trans i18nKey="HeaderApprove">HeaderApprove</Trans>
-              </Modal.Title>
-            </Modal.Header>
-            <Modal.Body>
-              <Trans i18nKey="BodyApprove">BodyApprove</Trans>
-            </Modal.Body>
-            <Modal.Footer>
-              <Button variant="danger" onClick={() => PayForAgreement({})}>
-                <Trans i18nKey="FooterContinue">FooterContinue</Trans>
-              </Button>
-              <div className="vr" />
-              <Button
-                variant="secondary"
-                onClick={() => {
-                  setApproveState(!approveState);
-                  setAgreementNumber(0);
-                }}
-              >
-                <Trans i18nKey="FooterCancel">FooterCancel</Trans>
-              </Button>
-            </Modal.Footer>
-          </Modal>
-
-          <Row style={{marginTop: "5rem"}}>
+          <Row style={{ marginTop: "5rem" }}>
             <h1 className="text-center mt-3">
               <Trans i18nKey="AgreementsListRequests">
                 AgreementsListRequests
               </Trans>
             </h1>
           </Row>
-          <Row style={{marginBottom: "20rem"}} className="justify-content-md-center mx-auto mt-3 ListOfElem">
+          <Row
+            style={{ marginBottom: "20rem" }}
+            className="justify-content-md-center mx-auto mt-3 ListOfElem"
+          >
             {tableAgreements && tableAgreements.length > 0 && (
               <Table responsive>
-                <TheaderList
-                  isCustomer={true}
-                />
+                <TheaderList isCustomer={true} />
                 <Tbody
+                  setGoodRequest={setGoodRequest}
+                  setBadRequest={setBadRequest}
                   bodyData={tableAgreements}
                   setApproveState={() => {
                     setApproveState(!approveState);
@@ -227,4 +193,4 @@ function MyLotAgreementsListAsCustomer(props: MyLotAgreementsListAsCustomerProps
   );
 }
 
-export default MyLotAgreementsListAsCustomer
+export default MyLotAgreementsListAsCustomer;

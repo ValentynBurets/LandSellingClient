@@ -1,10 +1,10 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect, useState } from "react";
 
-import { Row, Modal, Button, Container, Table } from "react-bootstrap";
+import { Modal, Button } from "react-bootstrap";
 
-import style from "./PaymentStyle.module.sass";
 import { Trans } from "react-i18next";
+import { RequestResult } from "../Types/RequestResult";
 import BraintreeDropIn from "./Components/BraintreeDropIn/BraintreeDropIn";
 
 interface PaymentProps {
@@ -12,6 +12,8 @@ interface PaymentProps {
   setShowPayment: (arg: boolean) => void;
   AgreementId: string;
   Price: number;
+  setGoodRequest: (arg: RequestResult) => void;
+  setBadRequest: (arg: RequestResult) => void;
 }
 
 function Payment(props: PaymentProps) {
@@ -20,7 +22,6 @@ function Payment(props: PaymentProps) {
       <Modal
         style={{ display: "flex", marginTop: "10%" }}
         show={props.show}
-        // getOpenState={(e: any) => setDisApproveState(e)}
         tabIndex="-1"
       >
         <Modal.Header>
@@ -29,8 +30,17 @@ function Payment(props: PaymentProps) {
           </Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <Trans i18nKey="PaymentDescription">You're agoing to make a payment for agreement</Trans>
-          <BraintreeDropIn show={true} onPaymentCompleted={() => {}} AgreementId={props.AgreementId} Price={props.Price}/>
+          <Trans i18nKey="PaymentDescription">
+            You're agoing to make a payment for agreement
+          </Trans>
+          <BraintreeDropIn
+            setGoodRequest={props.setGoodRequest}
+            setBadRequest={props.setBadRequest}
+            show={true}
+            onPaymentCompleted={props.setShowPayment}
+            AgreementId={props.AgreementId}
+            Price={props.Price}
+          />
         </Modal.Body>
         <Modal.Footer>
           <div className="vr" />
