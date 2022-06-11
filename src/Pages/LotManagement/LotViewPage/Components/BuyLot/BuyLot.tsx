@@ -163,7 +163,7 @@ function BuyLot(props: BuyLotProps) {
       </Modal>
       <div className={style.auction_text_style}>
         <label className={style.text_style}>
-          {props.lotInfo.bids
+          {props.lotInfo.bids && props.lotInfo.bids.length > 0
             ? "Highest bid is " +
               props.lotInfo.bids[props.lotInfo.bids.length - 1].value
             : "Minimum bid: " + props.lotInfo.minBidPrice}

@@ -157,6 +157,7 @@
   "SetAuctionDuration": "встановіть тривалість аукціону",
   "AuctionDuration": "триваліть аукціону",
   "MinimumBidStep": "мінімальний крок ставки",
+  "BidStep": "крок ставки",
   "MinimumBidPrice": "мінімальна ставка",
   "MinBid": "мін ставка",
   "AllowAuction": "дозвлолити аукціон",

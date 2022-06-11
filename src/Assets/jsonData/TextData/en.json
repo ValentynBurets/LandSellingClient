@@ -155,6 +155,7 @@
   "SetAuctionDuration": "set duration of auction",
   "AuctionDuration": "auction duration",
   "MinimumBidStep": "minimum bid step",
+  "BidStep": "bid step",
   "MinimumBidPrice": "minimum bid price",
   "MinBid": "min bid",
   "AllowAuction": "allow auction",

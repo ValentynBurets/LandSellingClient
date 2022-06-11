@@ -19,8 +19,8 @@ function LoadBidsService(props: LoadBidsServiceProps) {
     )
     .then((responce) => {
       var data = responce.data;
-      //console.log(data)
-      if (data != null) {
+      console.log(data)
+      if (data != null && (data as Bid[]).length > 0 ) {
         props.setBids(data);
       }
     })
