@@ -4,16 +4,16 @@ import { useCallback, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import Spinner from "react-bootstrap/spinner";
 import { Container, Col, Row } from "react-bootstrap";
-
 import { Trans } from "react-i18next";
 
-import LoadDetailLotInfoService from "./Services/LoadDetailLotInfoService";
-import UpdateLotViewsService from "./Services/UpdateLotViewsService";
-import LoadImagesService from "../../../Components/LotCard/LotCard/Service/LoadImagesService";
 import { LotImage } from "../../../Components/Types/LotImage";
 import { DetailedLot } from "../../../Components/Types/Lot";
 import { PriceCoef } from "../../../Components/Types/PriceCoef";
 import { Bid } from "../../../Components/Types/Bid";
+
+import LoadDetailLotInfoService from "./Services/LoadDetailLotInfoService";
+import UpdateLotViewsService from "./Services/UpdateLotViewsService";
+import LoadImagesService from "../../../Components/LotCard/LotCard/Service/LoadImagesService";
 
 import LotImageCarousel from "../../../Components/Image/ImageCarousel/LotImageCarousel";
 import MapComponent from "../../../Components/Map/MapComponent";
@@ -24,10 +24,11 @@ import RentLot from "./Components/RentLot/RentLot";
 import LoadBidsService from "./Services/LoadBidsService";
 import LoadPriceCoefService from "./Services/LoadPriceCoefService";
 
-import style from "./LotView.module.sass";
 import { RequestResult } from "../../../Components/Types/RequestResult";
 import BadRequest from "../../../Components/Message/BadRequest";
 import GoodRequest from "../../../Components/Message/GoodRequest";
+
+import style from "./LotView.module.sass";
 
 interface LotViewProps {}
 

@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import { useHistory } from "react-router-dom";
 import {
   Container,
   Col,
@@ -13,27 +12,19 @@ import Spinner from "react-bootstrap/spinner";
 import { SimpleLot } from "../../../Components/Types/Lot";
 import LoadLotsService from "./Services/LoadLotsService";
 import LotCardDeck from "../../../Components/LotCard/LotCardDeck/LotCardDeck";
-import TextData from "../../../Assets/jsonData/TextData/LotList.json";
+import { Trans } from "react-i18next";
 
 import style from "./LotListStyle.module.sass";
-import { Trans } from "react-i18next";
 
 interface LotListProps {}
 
 function LotList(props: LotListProps) {
-  let history = useHistory();
 
   const [dataLoading, setDataLoading] = useState({
     isLoading: true,
     requests: null,
     inProgress: null,
   });
-
-  const back = () => {
-    history.push({
-      pathname: "/home",
-    });
-  };
 
   const clearSortTypes = () => {
     setSelectedParam({
@@ -123,7 +114,7 @@ function LotList(props: LotListProps) {
                   <Trans i18nKey="SortType">sort type</Trans>
                 </label>
                 <DropdownButton
-                  style={{width: "100px"}}
+                  style={{ width: "100px" }}
                   className={style.drop_down_button}
                   title={selectedParams.sortType}
                   onSelect={setSortTypeHandler}

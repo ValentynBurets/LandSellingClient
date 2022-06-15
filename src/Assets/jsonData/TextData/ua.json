@@ -114,7 +114,7 @@
   "LotViewViews": "Кількість переглядів:",
   
   "Header": "User List",
-  "AddUserButtonText": "Add user",
+  "AddUserButtonText": "Додати користувача",
   "Position": "Position",
   "Role": "Role",
   
@@ -204,5 +204,10 @@
   "AdminLotListisAuction": "аукціон",
   "AdminLotListlocation": "локація",
 
-  "StatisticCharts": "статистика"
+  "StatisticCharts": "статистика",
+  "PriceCoefs": "цінові коефіцієнти",
+  "UserList": "список користувачів",
+  "Admin": "адмін",
+  "User": "користувач",
+  "ChooseRole": "виберіть роль"
 }

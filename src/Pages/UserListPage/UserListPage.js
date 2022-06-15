@@ -11,8 +11,8 @@ import TableContainer from "@material-ui/core/TableContainer";
 import TablePagination from "@material-ui/core/TablePagination";
 import TableRow from "@material-ui/core/TableRow";
 import axios from "axios";
+import { Trans } from "react-i18next";
 
-import TextData from "../../Assets/jsonData/TextData/UserList.json";
 import ConnectionConfig from "../../Assets/jsonData/ConnectionConfig/ConnectionConfig.json";
 
 import "./UserListPage.sass";
@@ -232,10 +232,15 @@ function UserListPage() {
   };
 
   return (
-    <div style={{ minHeight: `${window.innerHeight - 180}px`, paddingTop: "3rem"}} className="user_list_background_style">
-      <ModalWrapper >
+    <div
+      style={{ minHeight: `${window.innerHeight - 180}px`, paddingTop: "3rem" }}
+      className="user_list_background_style"
+    >
+      <ModalWrapper>
         <ModalContent>
-          <h1>{TextData.Header}</h1>
+          <h1>
+            <Trans i18nKey="UserList">User list</Trans>
+          </h1>
         </ModalContent>
 
         <TableContainer className={classes.container}>
@@ -289,9 +294,9 @@ function UserListPage() {
           onChangePage={handleChangePage}
           onChangeRowsPerPage={handleChangeRowsPerPage}
         />
-        <ModalContent>
+        <ModalContent style={{ marginTop: "3rem" }}>
           <Button className="AddUserButton" onClick={openModal}>
-            {TextData.AddUserButtonText}
+            <Trans i18nKey="AddUserButtonText">Add user</Trans>
           </Button>
           <br />
           <AddUserModalWindow

@@ -202,5 +202,10 @@
   "AdminLotListisAuction": "is auction",
   "AdminLotListlocation": "location",
 
-  "StatisticCharts": "statistics"
+  "StatisticCharts": "statistics",
+  "PriceCoefs": "price coefs",
+  "UserList": "user list",
+  "Admin": "admin",
+  "User": "user",
+  "ChooseRole": "choose role"
 }

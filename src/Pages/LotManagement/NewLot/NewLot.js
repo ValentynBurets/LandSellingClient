@@ -9,20 +9,22 @@ import {
   Table,
 } from "react-bootstrap";
 import { Trans } from "react-i18next";
-import style from "./NewLot.module.sass";
+import { useHistory } from "react-router-dom";
+import Spinner from "react-bootstrap/spinner";
+
 import saveLot from "./Services/SaveLot";
 import savePriceCoef from "./Services/SavePriceCoef";
-import { useHistory } from "react-router-dom";
-import UploadImage from "./Component/UploadImage/UploadImage";
 import SaveImages from "./Services/SaveImages";
-import TextData from "../../../Assets/jsonData/TextData/NewLotPage.json";
-import Spinner from "react-bootstrap/spinner";
+
+import UploadImage from "./Component/UploadImage/UploadImage";
 import MapComponent from "../../../Components/Map/MapComponent";
 import LinkConfig from "../../../Assets/jsonData/LinkConfig/LinkConfig.json";
 import { MapContextProvider } from "../../../Components/Map/useMapContext";
 import Tbody from "./Component/PriceCoefTable/Tbody";
 import TheaderList from "./Component/PriceCoefTable/TheaderList";
 import GoodRequest from "../../../Components/Message/GoodRequest";
+
+import style from "./NewLot.module.sass";
 
 export default function NewLot() {
   let history = useHistory();
@@ -227,7 +229,9 @@ export default function NewLot() {
         <Container className={style.wrapper_style}>
           {/* Header row */}
           <div>
-            <div className={style.header_text}>{TextData.NewLot}</div>
+            <div className={style.header_text}>
+              <Trans i18nKey="NewLot">new lot</Trans>
+            </div>
           </div>
           {/* Image donwnload and set main properties */}
           <Row>
@@ -343,9 +347,7 @@ export default function NewLot() {
                           className={style.text_input}
                           style={{ display: "flex", flexDirection: "column" }}
                         >
-                          <Trans i18nKey="BidStep">
-                            bid step
-                          </Trans>
+                          <Trans i18nKey="BidStep">bid step</Trans>
                           <input
                             className={style.input_style}
                             type="number"
@@ -433,7 +435,7 @@ export default function NewLot() {
               <Col className={style.container_style}>
                 <Container>
                   <Row className="HeaderText">
-                    <div>{TextData.Services}</div>
+                    <Trans i18nKey="PriceCoefs">price coefs</Trans>
                   </Row>
                   <Row>
                     <div className={style.price_coefs_style}>
@@ -674,7 +676,9 @@ export default function NewLot() {
                 onClick={newLot}
                 style={{ backgroundColor: "#4CAF50", borderColor: "#2f6d31" }}
               >
-                {TextData.Create}
+                <Trans i18nKey="LotViewCreate">
+                  Save changes and create a new lot
+                </Trans>
               </Button>
             </Col>
           </Row>
