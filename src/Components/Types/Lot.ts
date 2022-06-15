@@ -26,8 +26,8 @@ export interface SimpleLot{
 export interface DetailedLot{
   id: string;
   ownerId: string;
-  status: string;
   header: string;
+  status: string;
   description: string;
   views: number;
   publicationDate: string;
@@ -42,5 +42,19 @@ export interface DetailedLot{
   images: LotImage[],
   priceCoefs: PriceCoef[],
   bids: Bid[]
+}
+
+export interface UpdateLot{
+  ownerId: string;
+  status: string;
+  header: string;
+  description: string;
+  buyPrice: number;
+  minBidPrice: number;
+  minBidStep: number;
+  auctionDuration: number;
+  isRent: boolean;
+  isAuction: boolean;
+  location: LotLocation
 }
 

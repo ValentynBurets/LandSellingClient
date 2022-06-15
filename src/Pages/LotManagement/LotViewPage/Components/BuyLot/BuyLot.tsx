@@ -39,7 +39,7 @@ function BuyLot(props: BuyLotProps) {
 
   const [agreement, setAgreement] = useState<CreateAgreement>({
     lotId: props.lotInfo.id,
-    description: "test description",
+    description: "",
     startDate: new Date().toISOString(),
     endDate: new Date().toISOString(),
   });

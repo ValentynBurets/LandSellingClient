@@ -12,7 +12,6 @@ import {
 import { useHistory } from "react-router-dom";
 import axios from "axios";
 
-import TextData from "../../../Assets/jsonData/TextData/Header.json";
 import ConnectionConfig from "../../../Assets/jsonData/ConnectionConfig/ConnectionConfig.json";
 import LinkConfig from "../../../Assets/jsonData/LinkConfig/LinkConfig.json";
 import { useTranslation, Trans } from "react-i18next";
@@ -181,8 +180,8 @@ function Header() {
           <Nav.Link href={LinkConfig.person.user_list}>
             <Trans i18nKey="Users">Users</Trans>
           </Nav.Link>
-          <Nav.Link href="/profile">
-            <Trans i18nKey="Profile">Profile</Trans>
+          <Nav.Link href="/lot-list-management">
+            <Trans i18nKey="LotListManagement">Lot list management</Trans>
           </Nav.Link>
         </div>
       );

@@ -232,8 +232,8 @@ function UserListPage() {
   };
 
   return (
-    <div style={{ minHeight: `${window.innerHeight - 180}px` }}>
-      <ModalWrapper>
+    <div style={{ minHeight: `${window.innerHeight - 180}px`, paddingTop: "3rem"}} className="user_list_background_style">
+      <ModalWrapper >
         <ModalContent>
           <h1>{TextData.Header}</h1>
         </ModalContent>

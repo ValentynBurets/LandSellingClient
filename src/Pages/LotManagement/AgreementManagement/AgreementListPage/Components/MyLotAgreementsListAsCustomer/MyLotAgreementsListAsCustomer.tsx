@@ -17,6 +17,8 @@ import PutService from "../../../../../../Components/Services/PutService";
 import Tbody from "../Table/Tbody";
 import { RequestResult } from "../../../../../../Components/Types/RequestResult";
 
+import style from "./MyLotAgreementsListAsCustomerStyle.module.sass"
+
 interface MyLotAgreementsListAsCustomerProps {}
 
 function MyLotAgreementsListAsCustomer(
@@ -124,7 +126,7 @@ function MyLotAgreementsListAsCustomer(
       <BadRequest show={badRequest.show} text={badRequest.message} />
       <GoodRequest show={goodRequest.show} text={goodRequest.message} />
       {!isLoaded ? null : (
-        <Container style={{ width: "70%" }}>
+        <Container style={{ width: "70%" }} className={style.container_style}>
           <Modal
             style={{ display: "flex", marginTop: "10%" }}
             show={disApproveState}

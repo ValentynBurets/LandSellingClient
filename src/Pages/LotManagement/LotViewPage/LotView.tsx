@@ -172,7 +172,7 @@ function LotView(props: LotViewProps) {
             <span className="visually-hidden">Loading...</span>
           </Spinner>
         ) : (
-          <Container>
+          <Container className={style.wrapper_style}>
             {/* Header row */}
             <div>
               <div className={style.header_text}>

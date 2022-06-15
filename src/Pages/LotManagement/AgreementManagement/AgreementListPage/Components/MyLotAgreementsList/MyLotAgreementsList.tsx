@@ -16,6 +16,8 @@ import TheaderList from "../Table/TheaderList";
 import { Trans } from "react-i18next";
 import { RequestResult } from "../../../../../../Components/Types/RequestResult";
 
+import style from "./MyLotAgreementsListStyle.module.sass"
+
 interface AgreementPageProps {}
 
 function AgreementListPage(props: AgreementPageProps) {
@@ -123,7 +125,7 @@ function AgreementListPage(props: AgreementPageProps) {
       <BadRequest show={badRequest.show} text={badRequest.message} />
       <GoodRequest show={goodRequest.show} text={goodRequest.message} />
       {!isLoaded ? null : (
-        <Container style={{ width: "70%" }}>
+        <Container style={{ width: "70%" }} className={style.container_style}>
           <Modal
             style={{ display: "flex", marginTop: "10%" }}
             show={disApproveState}

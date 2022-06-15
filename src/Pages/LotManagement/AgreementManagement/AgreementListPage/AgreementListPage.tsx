@@ -9,7 +9,7 @@ interface AgreementPageProps {}
 function AgreementListPage(props: AgreementPageProps) {
 
   return (
-    <div className={style.page_wraper}>
+    <div  style={{ minHeight: `${window.innerHeight - 205}px` }} className={style.page_wraper}>
       <MyLotAgreementsList/>
       <MyLotAgreementsListAsCustomer/>
     </div>

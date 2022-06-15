@@ -181,5 +181,26 @@
   
   "SubmitButtonText": "Submit",
   
-  "Publicated": "Publicated: "
+  "Publicated": "Publicated: ",
+
+  "LotListManagement": "Lot list management",
+
+  "Delete": "Delete",
+  "Update": "Update",
+  "AdminLotListLotLink": "Lot link",
+  "AdminLotListOwnerLink": "Owner link",
+  "AdminLotListHeader": "Header",
+  "AdminLotListStatus": "Status",
+  "AdminLotListDescription": "Description",
+  "AdminLotListViews": "Views",
+  "AdminLotListPublicationDate": "Publication date",
+  "AdminLotListBuyPrice": "buy price",
+  "AdminLotListMinBidPrice": "min bid price",
+  "AdminLotListMinBidStep": "min bid step",
+  "AdminLotListAuctionDuration": "auction duration",
+  "AdminLotListisRent": "is rent",
+  "AdminLotListisAuction": "is auction",
+  "AdminLotListlocation": "location",
+
+  "StatisticCharts": "statistics"
 }

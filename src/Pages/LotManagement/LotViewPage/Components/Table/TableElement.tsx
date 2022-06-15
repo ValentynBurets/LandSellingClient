@@ -1,6 +1,4 @@
-import { removePropertiesDeep } from "@babel/types";
-import { Backdrop } from "@material-ui/core";
-import React, { useState } from "react";
+import React from "react";
 import Button from "react-bootstrap/Button";
 
 import { Trans } from "react-i18next";

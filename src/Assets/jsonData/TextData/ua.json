@@ -183,5 +183,26 @@
   
   "SubmitButtonText": "Підтвердити",
 
-  "Publicated": "Опубліковано: "
+  "Publicated": "Опубліковано: ",
+  
+  "LotListManagement": "Менеджмент оголошень",
+
+  "Delete": "видалити",
+  "Update": "оновити",
+  "AdminLotListLotLink": "посилання на оголошення",
+  "AdminLotListOwnerLink": "посилання на власника",
+  "AdminLotListHeader": "заголовок",
+  "AdminLotListStatus": "статус",
+  "AdminLotListDescription": "опис",
+  "AdminLotListViews": "перегляди",
+  "AdminLotListPublicationDate": "час публікації",
+  "AdminLotListBuyPrice": "ціна покупки",
+  "AdminLotListMinBidPrice": "мінімальна ставка",
+  "AdminLotListMinBidStep": "крок ставки",
+  "AdminLotListAuctionDuration": "тривалість аукціону",
+  "AdminLotListisRent": "оренда",
+  "AdminLotListisAuction": "аукціон",
+  "AdminLotListlocation": "локація",
+
+  "StatisticCharts": "статистика"
 }

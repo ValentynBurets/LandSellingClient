@@ -11,6 +11,7 @@ import About from "./Pages/AboutPage/About"
 import UserListPage from "./Pages/UserListPage/UserListPage"
 import StatisticCharts from "./Pages/StatisticCharts/StatisticCharts"
 import  ProfilePage from "./Pages/ProfilePage/ProfilePage"
+import AdminLotList from "./Pages/LotManagement/AdminLotListPage/AdminLotList"
 
 import "bootstrap/dist/css/bootstrap.min.css";
 
@@ -66,6 +67,7 @@ function App() {
         <Route exact path="/statistics" component={StatisticCharts} />
         <Route exact path="/profile" component={ProfilePage} />
         <Route exact path="/profile/:id" component={ProfilePage} />
+        <Route exact path="/lot-list-management" component={AdminLotList} />
       </Layout>
     </Router>
   );
