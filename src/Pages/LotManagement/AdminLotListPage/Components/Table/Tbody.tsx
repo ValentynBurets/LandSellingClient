@@ -1,9 +1,12 @@
 import React, { useState } from "react"
 import { DetailedLot } from "../../../../../Components/Types/Lot";
+import { RequestResult } from "../../../../../Components/Types/RequestResult";
 import TableElement from "./TableElement";
 
 interface TbodyProps {
-  bodyData : DetailedLot[]
+  bodyData : DetailedLot[];
+  setGoodRequest: (arg: RequestResult) => void;
+  setBadRequest: (arg: RequestResult) => void;
 }
 
 function Tbody(props: TbodyProps) {
@@ -18,6 +21,8 @@ function Tbody(props: TbodyProps) {
           index={index}
           isSelected={isSelected}
           setIsSelected={setIsSelected}
+          setGoodRequest={props.setGoodRequest}
+          setBadRequest={props.setBadRequest}
         />
       ))}
     </tbody>

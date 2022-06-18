@@ -5,14 +5,19 @@ import { Trans } from "react-i18next";
 import { Link } from "react-router-dom";
 import { DetailedLot, UpdateLot } from "../../../../../Components/Types/Lot";
 import LinkConfig from "../../../../../Assets/jsonData/LinkConfig/LinkConfig.json";
+import UpdateLotData from "../../Services/UpdateLotData"
+import DeleteLotData from "../../Services/DeleteLotData"
 
 import style from "./TableStyle.module.sass";
+import { RequestResult } from "../../../../../Components/Types/RequestResult";
 
 interface TableElementProps {
   index: number;
   elementData: DetailedLot;
   isSelected: string;
   setIsSelected: (arg: string) => void;
+  setGoodRequest: (arg: RequestResult) => void;
+  setBadRequest: (arg: RequestResult) => void;
 }
 
 function TableElement(props: TableElementProps) {
@@ -44,10 +49,12 @@ function TableElement(props: TableElementProps) {
 
   const Update = () => {
     UpdateLotData({ lotData: lotData, lotId: lot.id });
+    props.setGoodRequest({show: true, message: "lot is updated"});
   };
 
   const Delete = () => {
     DeleteLotData({ lotId: lot.id });
+    props.setGoodRequest({show: true, message: "lot is deleted"});
   };
 
   return (
@@ -202,11 +209,4 @@ function TableElement(props: TableElementProps) {
   );
 }
 
-export default TableElement;
-function UpdateLotData(arg0: { lotData: UpdateLot; lotId: string }) {
-  throw new Error("Function not implemented.");
-}
-
-function DeleteLotData(arg0: { lotId: string }) {
-  throw new Error("Function not implemented.");
-}
+export default TableElement

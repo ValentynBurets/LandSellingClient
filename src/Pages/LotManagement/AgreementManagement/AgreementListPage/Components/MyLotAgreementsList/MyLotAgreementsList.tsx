@@ -87,7 +87,7 @@ function AgreementListPage(props: AgreementPageProps) {
           window.location.reload();
           setGoodRequest({show: true, message: "aggrement is appreved"});
         } else {
-          setBadRequest({show: true, message: "aggrement isn't appreved"});
+          setBadRequest({show: true, message: "aggrement is appreved"});
           setApproveState(!approveState);
           setAgreementNumber(0);
           LoadAgreements();
@@ -106,7 +106,7 @@ function AgreementListPage(props: AgreementPageProps) {
           window.location.reload();
           setGoodRequest({show: true, message: "agreements is disaproved"});
         } else {
-          setBadRequest({show: true, message: "agreements isn't disaproved"});
+          setBadRequest({show: true, message: "agreements is disaproved"});
           setDisApproveState(!disApproveState);
           setAgreementNumber(0);
           LoadAgreements();
@@ -142,7 +142,7 @@ function AgreementListPage(props: AgreementPageProps) {
             </Modal.Body>
             <Modal.Footer>
               <Button variant="danger" onClick={disApproveAgreement}>
-                <Trans i18nKey="FooterDisapprove">FooterDisapprove</Trans>
+                <Trans i18nKey="FooterDisapprove">Disapprove</Trans>
               </Button>
               <div className="vr" />
               <Button

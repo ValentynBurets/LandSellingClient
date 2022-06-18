@@ -133,7 +133,7 @@
     
   "NewLot": "New lot",
   "LotHeader": "Lot header",
-  "EnterLotHeader": "Enter header text. This text will be on the top of the your lot.",
+  "EnterLotHeader": "Enter header text",
   "Date": "Date",
   "Country": "Country",
   "EnterCountry": "enter country text",
@@ -207,5 +207,7 @@
   "UserList": "user list",
   "Admin": "admin",
   "User": "user",
-  "ChooseRole": "choose role"
+  "ChooseRole": "choose role",
+  "Days": "days",
+  "FooterDisapprove": "Disapprove"
 }

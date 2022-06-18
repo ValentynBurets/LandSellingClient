@@ -98,6 +98,11 @@ export default function NewLot() {
 
   const handleCheckChangeFunction = (event) => {
     const { name, checked } = event.target;
+    if (name === "isRent" && checked) {
+      setLotData((prev) => ({ ...prev, isAuction: false }));
+    } else if (name === "isAuction" && checked) {
+      setLotData((prev) => ({ ...prev, isRent: false }));
+    }
     setLotData((prev) => ({ ...prev, [name]: checked }));
   };
 
@@ -316,7 +321,7 @@ export default function NewLot() {
 
                   <Col>
                     {lotData.isAuction && (
-                      <div style={{ marginTop: "-35px" }}>
+                      <div style={{ marginTop: "-55px" }}>
                         <div
                           className={style.text_input}
                           style={{ display: "flex", flexDirection: "column" }}
@@ -324,19 +329,22 @@ export default function NewLot() {
                           <label>
                             <Trans i18nKey="MinBid">Min bid</Trans>
                           </label>
-                          <input
-                            className={style.input_style}
-                            type="number"
-                            min="100"
-                            max="50000000000"
-                            id="flexCheckDefault"
-                            step="100"
-                            name="minBidPrice"
-                            value={lotData.minBidPrice}
-                            onChange={(e) => {
-                              handleInputChange(e);
-                            }}
-                          />
+                          <div className={style.input_with_currnecy}>
+                            <input
+                              className={style.input_style}
+                              type="number"
+                              min="100"
+                              max="50000000000"
+                              id="flexCheckDefault"
+                              step="100"
+                              name="minBidPrice"
+                              value={lotData.minBidPrice}
+                              onChange={(e) => {
+                                handleInputChange(e);
+                              }}
+                            />
+                            <span className={style.currence}>$</span>
+                          </div>
                           <small id="emailHelp" class="form-text text-muted">
                             <Trans i18nKey="MinimumBidPrice">
                               minimum bid price
@@ -348,19 +356,22 @@ export default function NewLot() {
                           style={{ display: "flex", flexDirection: "column" }}
                         >
                           <Trans i18nKey="BidStep">bid step</Trans>
-                          <input
-                            className={style.input_style}
-                            type="number"
-                            min="100"
-                            max="50000000000"
-                            id="flexCheckDefault"
-                            step="100"
-                            name="minBidStep"
-                            value={lotData.minBidStep}
-                            onChange={(e) => {
-                              handleInputChange(e);
-                            }}
-                          />
+                          <div className={style.input_with_currnecy}>
+                            <input
+                              className={style.input_style}
+                              type="number"
+                              min="100"
+                              max="50000000000"
+                              id="flexCheckDefault"
+                              step="100"
+                              name="minBidStep"
+                              value={lotData.minBidStep}
+                              onChange={(e) => {
+                                handleInputChange(e);
+                              }}
+                            />
+                            <span className={style.currence}>$</span>
+                          </div>
                           <small id="emailHelp" class="form-text text-muted">
                             <Trans i18nKey="MinimumBidStep">
                               minimum bid step
@@ -376,24 +387,26 @@ export default function NewLot() {
                               Auction Duration
                             </Trans>
                           </label>
-                          <input
-                            className={style.input_style}
-                            type="number"
-                            min="1"
-                            max="100"
-                            id="flexCheckDefault"
-                            step="1"
-                            name="auctionDuration"
-                            value={lotData.auctionDuration}
-                            onChange={(e) => {
-                              handleInputChange(e);
-                            }}
-                          />
-                          <small id="emailHelp" class="form-text text-muted">
-                            <Trans i18nKey="SetAuctionDuration">
-                              Set Auction Duration
-                            </Trans>
-                          </small>
+                          <div className={style.input_with_currnecy}>
+                            <input
+                              className={style.input_style}
+                              type="number"
+                              min="1"
+                              max="100"
+                              id="flexCheckDefault"
+                              step="1"
+                              name="auctionDuration"
+                              value={lotData.auctionDuration}
+                              onChange={(e) => {
+                                handleInputChange(e);
+                              }}
+                            />
+                            <span className={style.currence}>
+                              <Trans i18nKey="Days">
+                                days
+                              </Trans>
+                            </span>
+                          </div>
                         </div>
                       </div>
                     )}
@@ -407,19 +420,22 @@ export default function NewLot() {
                         <label>
                           <Trans i18nKey="BuyPrice">Buy Price</Trans>
                         </label>
-                        <input
-                          className={style.input_style}
-                          type="number"
-                          min="100"
-                          max="50000000000"
-                          id="flexCheckDefault"
-                          step="100"
-                          name="buyPrice"
-                          value={lotData.buyPrice}
-                          onChange={(e) => {
-                            handleInputChange(e);
-                          }}
-                        />
+                        <div className={style.input_with_currnecy}>
+                          <input
+                            className={style.input_style}
+                            type="number"
+                            min="100"
+                            max="50000000000"
+                            id="flexCheckDefault"
+                            step="100"
+                            name="buyPrice"
+                            value={lotData.buyPrice}
+                            onChange={(e) => {
+                              handleInputChange(e);
+                            }}
+                          />
+                          <span className={style.currence}>$</span>
+                        </div>
                         <small id="emailHelp" class="form-text text-muted">
                           Enter buy price
                         </small>

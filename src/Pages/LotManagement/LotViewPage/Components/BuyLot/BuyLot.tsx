@@ -158,9 +158,9 @@ function BuyLot(props: BuyLotProps) {
         <label className={style.text_info_style}>
           {props.lotInfo.bids && props.lotInfo.bids.length > 0
             ? "Highest bid is " +
-              props.lotInfo.bids[props.lotInfo.bids.length - 1].value
-            : "Minimum bid: " + props.lotInfo.minBidPrice}
-          {" or Buy it now for " + props.lotInfo.buyPrice}
+              props.lotInfo.bids[props.lotInfo.bids.length - 1].value + "$"
+            : "Minimum bid: " + props.lotInfo.minBidPrice + "$"}
+          {" or Buy it now for " + props.lotInfo.buyPrice  + "$"}
         </label>
         <div>
           <label className={style.text_style}>Your Pick</label>

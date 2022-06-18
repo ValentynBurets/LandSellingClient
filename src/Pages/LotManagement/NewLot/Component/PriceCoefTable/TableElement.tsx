@@ -15,7 +15,7 @@ function TableElement(props: TableElementProps) {
     <tr className="align-middle text-center">
       <td>{props.elementData.id}</td>
       <td>{props.elementData.monthCount}</td>
-      <td>{props.elementData.value}</td>
+      <td>{props.elementData.value}$</td>
 
       <td>
         <Button

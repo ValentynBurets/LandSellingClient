@@ -10,14 +10,18 @@ interface IUpdateLotDataProps{
 }
 
 function UpdateLotData(props: IUpdateLotDataProps){
-
+  let token = localStorage.getItem("token");
+  
   axios
   .put(
     `${
       ConnectionConfig.ServerUrl +
       ConnectionConfig.Routes.Lot.Update
     }`,
-    props.lotData
+    props.lotData,
+    {
+      headers: { Authorization: `Bearer ${token}` },
+    }
   )
   .then((responce) => {
     var data = responce.data;
@@ -29,4 +33,4 @@ function UpdateLotData(props: IUpdateLotDataProps){
   });
 }
 
-
+export default UpdateLotData

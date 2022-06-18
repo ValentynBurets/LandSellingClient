@@ -80,8 +80,8 @@ function MyLotAgreementsListAsCustomer(
           creationDate: agreements[i].creationDate,
           startDate: agreements[i].startDate,
           endDate: agreements[i].endDate,
-          isApprove: false,
-          isDisApprove: false,
+          isApprove: agreements[i].approved,
+          isDisApprove: !agreements[i].approved,
           price: agreements[i].price,
         };
         setTableAgreements((prev) => [...prev, tAgreement]);

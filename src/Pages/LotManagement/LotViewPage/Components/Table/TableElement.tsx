@@ -42,7 +42,7 @@ function TableElement(props: TableElementProps) {
             : style.row_style
         }
       >
-        {props.elementData.value}
+        {props.elementData.value}$
       </td>
       <td className={
           props.isSelected === props.elementData.number

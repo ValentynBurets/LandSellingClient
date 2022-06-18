@@ -9,7 +9,6 @@ interface IDeleteLotDataProps{
 
 function DeleteLotData(props: IDeleteLotDataProps){
 
-
   let token = localStorage.getItem("token");
   
   axios
@@ -31,4 +30,4 @@ function DeleteLotData(props: IDeleteLotDataProps){
   });
 }
 
-
+export default DeleteLotData
