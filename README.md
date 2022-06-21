@@ -5,7 +5,7 @@ Successful operation of the web system requires the appropriate hardware charact
 
 Video demonstration
 
-
+https://drive.google.com/file/d/1vLK-RIUq5dQttHqbQ9LvkW14pUnMJgPe/view?usp=sharing
 
 1. Software components
 
