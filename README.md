@@ -3,6 +3,10 @@ The developed web system has a server part written in C # 9.0 in the environment
 The client part is written using the React library in the TypeScript programming language in the MS Visual Studio Code programming environment.
 Successful operation of the web system requires the appropriate hardware characteristics, which are given in the specifications and you need to download the appropriate files
 
+Video demonstration
+
+
+
 1. Software components
 
 The developed web system has a server part written on C # 9.0 in the environment of MS Visual Studio 2022.
